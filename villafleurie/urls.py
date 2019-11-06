@@ -10,5 +10,6 @@ urlpatterns = [
     path('contact/', views.Contact.as_view(), name='contact'),
     path('a-propos/', views.about, name='about'),
     path('reservation/', views.Reserver.as_view(), name='reservation'),
+    path('legal/', views.Legal.as_view(), name='legal'),
     path('', include('rental.urls', namespace='rental')),
 ]

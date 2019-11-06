@@ -43,6 +43,9 @@ class Contact(TemplateView):
 class Reserver(TemplateView):
     template_name = 'rental/reservation.html'
 
+class Legal(TemplateView):
+    template_name = 'rental/legal.html'
+
 def about(request):
     context = {}
     return render(request, 'rental/about.html', context)
