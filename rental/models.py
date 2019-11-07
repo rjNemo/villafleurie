@@ -12,9 +12,13 @@ class Place(models.Model):
     name=models.CharField(max_length=10, unique=True)
     pictures=models.ImageField(upload_to="uploads/",null=True,blank=True)
     description=models.TextField(blank=True)
+    info=models.TextField(blank=True)
     subname=models.CharField(max_length=100, blank=True)
     tagline=models.CharField(max_length=100, blank=True)
     price=models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    surface=models.IntegerField(null=True,blank=True)
+    beds=models.IntegerField(null=True,blank=True)
+    max_occupation=models.IntegerField(null=True,blank=True)
 
 
 class Guest(models.Model):
@@ -38,6 +42,7 @@ class Reservation(models.Model):
 
     place=models.OneToOneField(Place,on_delete=models.CASCADE)
     guest=models.ForeignKey(Guest,on_delete=models.CASCADE)
+    message=models.TextField(blank=True)
 
 
 class Testimonial(models.Model):

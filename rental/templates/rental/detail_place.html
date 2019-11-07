@@ -19,7 +19,7 @@
                 <a href="{% url 'rental:index' %}">Accueil</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="{% url 'rental:detail_place' place_name=place.name %}">Hébergements</a>
+                <a href="{% url 'rental:list_place' %}">Hébergements</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 {{ place.name }}
@@ -56,7 +56,7 @@
                     <span class="ion-money">€</span>
                   </div>
                   <div class="card-title-c align-self-center">
-                    <h5 class="title-c"> {{ place.price }}</h5>
+                    <h5 class="title-c"> {{ place.price }} </h5>
                   </div>
                 </div>
               </div>
@@ -71,16 +71,8 @@
                 <div class="summary-list">
                   <ul class="list">
                     <li class="d-flex justify-content-between">
-                      <strong>Property ID :</strong>
-                      <span>1134</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
                       <strong>Localisation :</strong>
                       <span>Le Gosier, Guadeloupe</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Type :</strong>
-                      <span>House</span>
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Status :</strong>
@@ -88,21 +80,17 @@
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Surface :</strong>
-                      <span>340m
+                      <span>{{ place.surface}}
                         <sup>2</sup>
                       </span>
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Lits :</strong>
-                      <span>4</span>
+                      <span>{{ place.beds }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>Baths:</strong>
-                      <span>2</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Garage:</strong>
-                      <span>1</span>
+                      <strong>Nombre de voyageurs maximum :</strong>
+                      <span>{{ place.max_occupation}}</span>
                     </li>
                   </ul>
                 </div>
@@ -118,10 +106,10 @@
               </div>
               <div class="property-description">
                 <p class="description color-text-a">
-                  {{ place.description}}
+                  {{ place.description |safe}}
                 </p>
                 <p class="description color-text-a no-margin">
-                  {{ place.description}}
+                  {{ place.info |safe}}
                 </p>
               </div>
               <div class="row section-t3">
@@ -149,26 +137,26 @@
         </div>
         <div class="col-md-10 offset-md-1">
           <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active" id="pills-video-tab" data-toggle="pill" href="#pills-video" role="tab"
                 aria-controls="pills-video" aria-selected="true">Video</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map"
+              <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map"
                 aria-selected="false">Localisation</a>
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
+            <!-- <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
               <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0"
                 webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            </div>
-            <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
+            </div> -->
+            <!-- <div class="tab-pane fade " id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
               <img src="{% static 'img/plan2.jpg' %}" alt="" class="img-fluid">
-            </div>
-            <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834"
-                width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div> -->
+            <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3831.2547874074585!2d-61.48954768556058!3d16.207335988795712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c134f148764f5d5%3A0x981bb218cee8b16c!2sVillaFleurie!5e0!3m2!1sfr!2sde!4v1573125589212!5m2!1sfr!2sde"
+              width="100%" height="460" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </div>
           </div>
         </div>
@@ -180,7 +168,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div id="reservation"class="row">
             <div class="col-md-6 col-lg-4">
               <img src="{% static 'img/agent-4.jpg' %}" alt="" class="img-fluid">
             </div>
@@ -243,29 +231,12 @@
             </div>
             <div class="col-md-12 col-lg-4">
               <div class="property-contact">
-                <form class="form-a">
+                <form class="form-a" method='post'>
                   <div class="row">
                     <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <input type="text" class="form-control form-control-lg form-control-a" id="inputName"
-                          placeholder="Nom *" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1"
-                          placeholder="Email *" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <textarea id="textMessage" class="form-control" placeholder="Message *" name="message" cols="45"
-                          rows="8" required></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <button type="submit" class="btn btn-a">Envoyer</button>
-                    </div>
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                      <p><button type="submit" class="btn btn-a">Envoyer</button></p>
                   </div>
                 </form>
               </div>
