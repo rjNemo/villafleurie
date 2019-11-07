@@ -7,10 +7,19 @@ from.forms import ReservationForm
 from django.db import IntegrityError
 
 
-class Accueil(ListView):
-    model = Place
-    template_name = 'rental/index.html'
-    context_object_name = 'places'
+# class Accueil(ListView):
+#     model = Place
+#     template_name = 'rental/index.html'
+#     context_object_name = 'places'
+
+def index(request):
+    places = Place.objects.all()
+    temoignages = Testimonial.objects.all()
+    context = {
+        'places' : places,
+        'temoignages' : temoignages
+    }
+    return render(request, 'rental/index.html', context)
 
 
 class ListeLocation(ListView):

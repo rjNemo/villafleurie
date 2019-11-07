@@ -1,0 +1,43 @@
+<section class="section-testimonials section-t8 nav-arrow-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-wrap d-flex justify-content-between">
+          <div class="title-box">
+            <h2 class="title-a">Témoignages</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="testimonial-carousel" class="owl-carousel owl-arrow">
+      {% for temoignage in temoignages %}
+      <div class="carousel-item-a">
+        <div class="testimonials-box">
+          <div class="row">
+
+            <div class="col-sm-12 col-md-6">
+              <div class="testimonial-img">
+                <img src="{{ temoignage.picture.url }}" alt="" class="img-fluid">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="testimonial-ico">
+                <span class="ion-ios-quote"></span>
+              </div>
+              <div class="testimonials-content">
+                <p class="testimonial-text">
+                  {{ temoignage.text }}
+                </p>
+              </div>
+              <div class="testimonial-author-box">
+                <img src="{{ temoignage.picture.url }}" alt="" class="testimonial-avatar">
+                <a href="{{ temoignage.link }}"><h5 class="testimonial-author">{{ temoignage.author }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

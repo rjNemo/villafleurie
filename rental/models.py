@@ -1,6 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
+from villafleurie import settings
 
 class Place(models.Model):
     class Meta:
@@ -10,7 +10,7 @@ class Place(models.Model):
         return self.name
 
     name=models.CharField(max_length=10, unique=True)
-    pictures=models.ImageField(upload_to="uploads/",null=True,blank=True)
+    pictures=models.ImageField(upload_to="img/",null=True,blank=True)
     description=models.TextField(blank=True)
     info=models.TextField(blank=True)
     subname=models.CharField(max_length=100, blank=True)
@@ -50,8 +50,11 @@ class Testimonial(models.Model):
         verbose_name="Témoignage"
 
     def __str__(self):
-        return self.title
+        return self.author
 
-    title=models.CharField(max_length=100)
-    reservation=models.OneToOneField(Reservation,on_delete=models.CASCADE)
+    author=models.CharField(max_length=100)
     text=models.TextField()
+    picture=models.ImageField(upload_to='img/',null=True,blank=True)
+    link=models.URLField(null=True,blank=True)
+    guest=models.OneToOneField(Guest,on_delete=models.CASCADE,blank=True,null=True)
+    reservation=models.OneToOneField(Reservation,on_delete=models.CASCADE,blank=True,null=True)
