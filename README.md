@@ -60,14 +60,15 @@ Le visiteur doit pouvoir :
 * témoignage
 
 ## TO DO
-* Ajouter un bouton réserver maintenant avant le résumé => formulaire en bas
-* formatter la page réservation
 * Formatter la page de remerciement (expliquer la suite)
 * designer la page d'accueil
 * remplir les détails des logements et ajouter les photos dynamiquement
 * Les photos de la page à propos
+* Page service : navette + location
 * écrire les mentions légales
 * Gestion du calendrier
 * Ajout page/module de paiement
 * changer la couleur des liens hypertextes
 * changer l'adresse de l'admin
+* ajouter un diaporama en bas de page ?
+* ajouter les témoignages
