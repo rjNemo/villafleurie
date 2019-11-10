@@ -22,15 +22,31 @@ def index(request):
     return render(request, 'rental/index.html', context)
 
 
-class ListeLocation(ListView):
-    model = Place
-    template_name = 'rental/list_place.html'
-    context_object_name = 'places'
+def liste_location(request):
+    places = Place.objects.all()
+    images = []
+    for place in places:
+        imgs = place.images.all()
+        images.append(imgs)
+    context = {
+        'places' : places,
+        'images' : images
+    }
+    return render(request, 'rental/list_place.html', context)
+
+# class ListeLocation(ListView):
+#     model = Place
+#     template_name = 'rental/list_place.html'
+#     context_object_name = 'places'
 
 
-def location(request, place_name):
+def location(request, place_name='T2'):
     place = get_object_or_404(Place, name=place_name)
-    context = {'place' : place}
+    images = place.images.all()
+    context = {
+        'place' : place,
+        'images' : images
+    }
     if request.method == 'POST':
         form = ReservationForm(request.POST)#, error_class=ParagraphErrorList)
         if form.is_valid():
@@ -104,6 +120,7 @@ def reservation(request):
     else:
         form = ReservationForm()
     context = {'form' : form}
+    context['errors'] = form.errors.items()
     return render(request, 'rental/reservation.html', context)
 
 
@@ -117,6 +134,10 @@ class Legal(TemplateView):
 
 class About(TemplateView):
     template_name = 'rental/about.html'
+
+
+# class Merci(TemplateView):
+#     template_name = 'rental/merci.html'
 
 
 def handler404(request, exception):

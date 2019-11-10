@@ -38,15 +38,11 @@
       <div class="row">
         <div class="col-sm-12">
           <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+            {% for image in images %}
             <div class="carousel-item-b">
-              <img src="{% static 'img/slide-2.jpg' %}" alt="">
+              <img src="{{ image.url.url }}" alt="{{image.alt}}">
             </div>
-            <div class="carousel-item-b">
-              <img src="{% static 'img/slide-3.jpg' %}" alt="">
-            </div>
-            <div class="carousel-item-b">
-              <img src="{% static 'img/slide-1.jpg' %}" alt="">
-            </div>
+            {% endfor %}
           </div>
           <div class="row justify-content-between">
             <div class="col-md-5 col-lg-4">
@@ -120,26 +116,6 @@
                 <p class="description color-text-a no-margin">
                   {{ place.info |safe}}
                 </p>
-              </div>
-              <div class="row section-t3">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">Équipements</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="amenities-list color-text-a">
-                <ul class="list-a no-margin">
-                  <li>Balcony</li>
-                  <li>Outdoor Kitchen</li>
-                  <li>Cable Tv</li>
-                  <li>Deck</li>
-                  <li>Tennis Courts</li>
-                  <li>Internet</li>
-                  <li>Parking</li>
-                  <li>Sun Room</li>
-                  <li>Concrete Flooring</li>
-                </ul>
               </div>
             </div>
           </div>

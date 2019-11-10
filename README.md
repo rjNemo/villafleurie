@@ -60,9 +60,8 @@ Le visiteur doit pouvoir :
 * témoignage
 
 ## TO DO
-* Formatter la page de remerciement (expliquer la suite)
-* designer la page d'accueil
-* remplir les détails des logements et ajouter les photos 
+
+* image de garde des logements sur la page hébergements
 * Les photos de la page à propos
 * Page service : navette + location
 * écrire les mentions légales
@@ -72,3 +71,4 @@ Le visiteur doit pouvoir :
 * changer l'adresse de l'admin
 * ajouter un diaporama en bas de page ?
 * ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
+* deploy on Heroku or somewhere else … don't care

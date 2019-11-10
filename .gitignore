@@ -3,3 +3,4 @@ __pycache__
 rental/__pycache__
 rental/migrations
 villafleurie/__pycache__
+.DS_Store
