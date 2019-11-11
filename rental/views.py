@@ -3,14 +3,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Testimonial, Reservation, Guest, Place
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
-from.forms import ReservationForm
+from .forms import ReservationForm
 from django.db import IntegrityError
 
-
-# class Accueil(ListView):
-#     model = Place
-#     template_name = 'rental/index.html'
-#     context_object_name = 'places'
 
 def index(request):
     places = Place.objects.all()
@@ -34,11 +29,6 @@ def liste_location(request):
     }
     return render(request, 'rental/list_place.html', context)
 
-# class ListeLocation(ListView):
-#     model = Place
-#     template_name = 'rental/list_place.html'
-#     context_object_name = 'places'
-
 
 def location(request, place_name='T2'):
     place = get_object_or_404(Place, name=place_name)
@@ -55,6 +45,8 @@ def location(request, place_name='T2'):
             phone = form.cleaned_data['phone']
             message = form.cleaned_data['message']
             place_name = form.cleaned_data['place']
+            start = form.cleaned_data['start']
+            end = form.cleaned_data['end']
             try:
                 guest = Guest.objects.filter(email=email)
                 if not guest.exists():
@@ -69,7 +61,9 @@ def location(request, place_name='T2'):
                 reservation = Reservation.objects.create(
                     guest=guest,
                     place=place,
-                    message=message
+                    message=message,
+                    start=start,
+                    end=end
                 )
                 context = {
                     'guest': guest,
@@ -95,6 +89,8 @@ def reservation(request):
             phone = form.cleaned_data['phone']
             message = form.cleaned_data['message']
             place_name = form.cleaned_data['place']
+            start = form.cleaned_data['start']
+            end = form.cleaned_data['end']
             try:
                 guest = Guest.objects.filter(email=email)
                 if not guest.exists():
@@ -108,7 +104,9 @@ def reservation(request):
                 reservation = Reservation.objects.create(
                     guest=guest,
                     place=place,
-                    message=message
+                    message=message,
+                    start=start,
+                    end=end
                 )
                 context = {
                     'guest': guest,
@@ -134,10 +132,6 @@ class Legal(TemplateView):
 
 class About(TemplateView):
     template_name = 'rental/about.html'
-
-
-# class Merci(TemplateView):
-#     template_name = 'rental/merci.html'
 
 
 def handler404(request, exception):

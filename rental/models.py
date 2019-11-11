@@ -2,6 +2,14 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 
+class Image(models.Model):
+    def __str__(self):
+        return self.alt
+
+    img=models.ImageField(upload_to='img/', null=True,blank=True)
+    alt=models.CharField(max_length=100)
+
+
 class Place(models.Model):
     class Meta:
         verbose_name = "Appartement"
@@ -18,17 +26,8 @@ class Place(models.Model):
     surface=models.IntegerField(null=True,blank=True)
     beds=models.IntegerField(null=True,blank=True)
     max_occupation=models.IntegerField(null=True,blank=True)
-
-
-class Image(models.Model):
-    def __str__(self):
-        return self.alt
-
-    url=models.ImageField(upload_to='img/', null=True,blank=True)
-    alt=models.CharField(max_length=100)
-    place=models.ManyToManyField(Place, related_name = "images",blank=True)
-
-
+    thumbnail=models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
+    images=models.ManyToManyField(Image, related_name = "places", blank=True)
 
 
 class Guest(models.Model):
@@ -50,9 +49,11 @@ class Reservation(models.Model):
     def __str__(self):
         return "Réservation du {} par {}".format(self.place, self.guest)
 
-    place=models.OneToOneField(Place,on_delete=models.CASCADE)
+    place=models.ForeignKey(Place,on_delete=models.CASCADE)
     guest=models.ForeignKey(Guest,on_delete=models.CASCADE)
     message=models.TextField(blank=True)
+    start=models.DateField()
+    end=models.DateField()
 
 
 class Testimonial(models.Model):

@@ -33,3 +33,17 @@ class ReservationForm(forms.Form):
         min_length=4,
         widget=forms.Textarea(attrs={'class': 'form-control', 'cols': '45', 'rows':'8', 'placeholder': 'Message *'}),
         required=True)
+    start = forms.DateField(
+        label='',
+        input_formats=['%d/%m/%Y'],
+        # max_length=100,
+        # min_length=4,
+        widget=forms.DateInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Début *'}),
+        required=True)
+    end = forms.DateField(
+        label='',
+        input_formats=['%d/%m/%Y'],
+        # max_length=100,
+        # min_length=4,
+        widget=forms.DateInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Fin *'}),
+        required=True)

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fhinkel/create-download-link.svg?branch=master)](https://travis-ci.org/fhinkel/create-download-link)
+
 # Villafleurie : moteur de réservation autonome
 
 `V 0.1 Le site est structuré. Il reste à appliquer le contenu et les visuels`
@@ -61,14 +63,20 @@ Le visiteur doit pouvoir :
 
 ## TO DO
 
-* image de garde des logements sur la page hébergements
-* Les photos de la page à propos
 * Page service : navette + location
-* écrire les mentions légales
 * Gestion du calendrier
+..* Google calendar pour afficher les disponibilités
+.. * Check si les dates choisies sont libres
+* Module calcul prix réservation, afficher le résultat sur la page remerciement
+ou envoyer devis par mail …
 * Ajout page/module de paiement
+* ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
 * changer la couleur des liens hypertextes
 * changer l'adresse de l'admin
-* ajouter un diaporama en bas de page ?
-* ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
+* ajouter un diaporama en bas de page de location ?
 * deploy on Heroku or somewhere else … don't care
+* change placeholders for dates
+* factoriser le code de réservation
+
+
+## BUGS

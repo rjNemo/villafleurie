@@ -7,7 +7,7 @@
 <div class="intro intro-carousel">
   <div id="carousel" class="owl-carousel owl-theme">
     {% for place in places %}
-    <div class="carousel-item-a intro-item bg-image" style="background-image: url({% static 'img/slide-1.jpg' %})">
+    <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ place.thumbnail.img.url }})">
       <div class="overlay overlay-a"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
