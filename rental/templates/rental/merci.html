@@ -1,19 +1,24 @@
-{% extends 'rental/base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'rental/base.html' %} {% load static %} {% block content %}
 
 <section class="intro-single">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div class="title-single-box">
-          <h1 class="title-single">Merci pour votre réservation </h1>
-          <span class="color-text-a">Nous avons enregistré la réservation de {{ guest.name }} du {{ place.name }}.<br/> Nous nous recontactons rapidement ! </span>
+          <h1 class="title-single">Merci pour votre réservation</h1>
+          <span class="color-text-a"
+            >Nous avons enregistré la réservation du {{reservation.place.name}}
+            sous le nom de {{reservation.guest.name}} pour un montant de
+            {{reservation.price}}.<br />
+            Nous nous recontactons rapidement !
+          </span>
         </div>
       </div>
       <div class="col-md-12 col-lg-4">
-        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a href="{% url 'rental:index' %}">Accueil</a>
@@ -31,14 +36,15 @@
     <div class="property-summary">
       <div class="row">
         <div class="col-sm-12">
-            <div class="col-md-12 mb-1">
-              <a href="{% url 'rental:index' %}"><button class="btn btn-a">Retour à l'accueil</button></a>
-            </div>
+          <div class="col-md-12 mb-1">
+            <a href="{% url 'rental:index' %}"
+              ><button class="btn btn-a">Retour à l'accueil</button></a
+            >
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 {% endblock %}

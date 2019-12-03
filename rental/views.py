@@ -5,14 +5,15 @@ from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from .forms import ReservationForm
 from django.db import IntegrityError
+from rental.pricing import get_reservation_price
 
 
 def index(request):
     places = Place.objects.all()
     temoignages = Testimonial.objects.all()
     context = {
-        'places' : places,
-        'temoignages' : temoignages
+        'places': places,
+        'temoignages': temoignages
     }
     return render(request, 'rental/index.html', context)
 
@@ -24,8 +25,8 @@ def liste_location(request):
         imgs = place.images.all()
         images.append(imgs)
     context = {
-        'places' : places,
-        'images' : images
+        'places': places,
+        'images': images
     }
     return render(request, 'rental/list_place.html', context)
 
@@ -34,11 +35,12 @@ def location(request, place_name='T2'):
     place = get_object_or_404(Place, name=place_name)
     images = place.images.all()
     context = {
-        'place' : place,
-        'images' : images
+        'place': place,
+        'images': images
     }
     if request.method == 'POST':
-        form = ReservationForm(request.POST)#, error_class=ParagraphErrorList)
+        # , error_class=ParagraphErrorList)
+        form = ReservationForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -58,16 +60,17 @@ def location(request, place_name='T2'):
                     guest = guest.first()
 
                 place = get_object_or_404(Place, name=place_name)
+                price = get_reservation_price(place, start, end)
                 reservation = Reservation.objects.create(
                     guest=guest,
                     place=place,
                     message=message,
                     start=start,
-                    end=end
+                    end=end,
+                    price=price
                 )
                 context = {
-                    'guest': guest,
-                    'place': place
+                    'reservation': reservation
                 }
                 return render(request, 'rental/merci.html', context)
             except IntegrityError:
@@ -82,7 +85,8 @@ def location(request, place_name='T2'):
 
 def reservation(request):
     if request.method == 'POST':
-        form = ReservationForm(request.POST)#, error_class=ParagraphErrorList)
+        # , error_class=ParagraphErrorList)
+        form = ReservationForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -117,7 +121,7 @@ def reservation(request):
                 form.errors['internal'] = "Une erreur interne est apparue. Merci de recommencer votre requête."
     else:
         form = ReservationForm()
-    context = {'form' : form}
+    context = {'form': form}
     context['errors'] = form.errors.items()
     return render(request, 'rental/reservation.html', context)
 
