@@ -38,7 +38,7 @@ MIDDLEWARE = [
 ]
 
 if os.environ.get('ENV') == 'PRODUCTION':
-    STATICFILES_STORAGE = 'villafleurie.storage.WhiteNoiseStaticFilesStorage'
+    STATICFILES_STORAGE = 'storage.WhiteNoiseStaticFilesStorage'
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
