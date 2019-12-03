@@ -1,0 +1,25 @@
+{% extends 'rental/base.html' %} {% block content %}
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">
+            Calendrier {{place_name}}
+          </h1>
+          {% for booking in bookings %}
+          <h2 class="title-d">
+            {{booking.guest.name}}
+          </h2>
+          <ul>
+            <li>Réservation du {{booking.start}} au {{booking.end}}</li>
+            <li>Montant : {{booking.price}} €</li>
+            <li>Message : {{booking.message}}</li>
+          </ul>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{%endblock%}

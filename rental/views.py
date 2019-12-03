@@ -6,6 +6,7 @@ from django.views.generic.base import TemplateView
 from .forms import ReservationForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
+from rental.calendar import check_availability
 
 
 def index(request):
@@ -54,25 +55,31 @@ def location(request, place_name='T2'):
                 if not guest.exists():
                     guest = Guest.objects.create(
                         email=email,
-                        name=name
+                        name=name,
+                        phone=phone
                     )
                 else:
                     guest = guest.first()
 
                 place = get_object_or_404(Place, name=place_name)
-                price = get_reservation_price(place, start, end)
-                reservation = Reservation.objects.create(
-                    guest=guest,
-                    place=place,
-                    message=message,
-                    start=start,
-                    end=end,
-                    price=price
-                )
-                context = {
-                    'reservation': reservation
-                }
-                return render(request, 'rental/merci.html', context)
+                available = check_availability(place, start, end)
+                if available:
+                    price = get_reservation_price(place, start, end)
+                    reservation = Reservation.objects.create(
+                        guest=guest,
+                        place=place,
+                        message=message,
+                        start=start,
+                        end=end,
+                        price=price
+                    )
+                    context = {
+                        'reservation': reservation
+                    }
+                    return render(request, 'rental/merci.html', context)
+                else:
+                    context = {'form': form}
+                    return render(request, 'rental/reservation.html', context)
             except IntegrityError:
                 form.errors['internal'] = "Une erreur interne est apparue. \
                 Merci de recommencer votre requête."
@@ -100,23 +107,30 @@ def reservation(request):
                 if not guest.exists():
                     guest = Guest.objects.create(
                         email=email,
-                        name=name
+                        name=name,
+                        phone=phone
                     )
                 else:
                     guest = guest.first()
                 place = get_object_or_404(Place, name=place_name)
-                reservation = Reservation.objects.create(
-                    guest=guest,
-                    place=place,
-                    message=message,
-                    start=start,
-                    end=end
-                )
-                context = {
-                    'guest': guest,
-                    'place': place
-                }
-                return render(request, 'rental/merci.html', context)
+                available = check_availability(place, start, end)
+                price = get_reservation_price(place, start, end)
+                if available:
+                    reservation = Reservation.objects.create(
+                        guest=guest,
+                        place=place,
+                        message=message,
+                        start=start,
+                        end=end,
+                        price=price
+                    )
+                    context = {
+                        'reservation': reservation
+                    }
+                    return render(request, 'rental/merci.html', context)
+                else:
+                    context = {'form': form}
+                    return render(request, 'rental/reservation.html', context)
             except IntegrityError:
                 form.errors['internal'] = "Une erreur interne est apparue. Merci de recommencer votre requête."
     else:
@@ -124,6 +138,21 @@ def reservation(request):
     context = {'form': form}
     context['errors'] = form.errors.items()
     return render(request, 'rental/reservation.html', context)
+
+
+def calendar(request, place_name):
+    """
+    returns a list of all related place reservations
+    """
+    booked_dates = Reservation.objects.all()
+    bookings = [
+        booking for booking in booked_dates if booking.place.name == place_name]
+    print(place_name)
+    context = {
+        'place_name': place_name,
+        'bookings': bookings
+    }
+    return render(request, 'rental/calendar.html', context)
 
 
 class Contact(TemplateView):

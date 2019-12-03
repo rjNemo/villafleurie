@@ -12,6 +12,7 @@ urlpatterns = [
     path('hebergements/', views.liste_location, name='list_place'),
     # path('<place_name>/', views.Location.as_view(), name='detail_place'),
     path('<place_name>/', views.location, name='detail_place'),
+    path('calendar/<place_name>/', views.calendar, name='calendar')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
