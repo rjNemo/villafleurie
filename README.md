@@ -79,7 +79,8 @@ Le visiteur doit pouvoir :
 
 - Page service : navette + location
 - Gestion du calendrier
-  ..\_ Google calendar pour afficher les disponibilités
+  ..\_ Synchroniser avec Google calendar
+  ..\_ Afficher les disponibilités
 - Envoyer devis réservation par mail et notification aux hôtes
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
