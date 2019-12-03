@@ -2,28 +2,48 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>VillaFleurie</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
-  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
-  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>VillaFleurie</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <link href="{% static 'rental/img/favicon.png' %}" rel="icon" />
+    <link
+      href="{% static 'rental/img/apple-touch-icon.png' %}"
+      rel="apple-touch-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'rental/lib/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'rental/lib/font-awesome/css/font-awesome.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'rental/lib/animate/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'rental/lib/ionicons/css/ionicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'rental/lib/owlcarousel/assets/owl.carousel.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'rental/css/style.css' %}" rel="stylesheet" />
+  </head>
 
-<body>
-
-  <div class="click-closed"></div>
-  <!--/ Form Search Star /-->
-  <!-- <div class="box-collapse">
+  <body>
+    <div class="click-closed"></div>
+    <!--/ Form Search Star /-->
+    <!-- <div class="box-collapse">
     <div class="title-box-d">
       <h3 class="title-d">Search Property</h3>
     </div>
@@ -113,167 +133,200 @@
       </form>
     </div>
   </div> -->
-  <!--/ Form Search End /-->
+    <!--/ Form Search End /-->
 
-  <!--/ Nav Star /-->
-  <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-    <div class="container">
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <!--/ Nav Star /-->
+    <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+      <div class="container">
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarDefault"
+          aria-controls="navbarDefault"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-      <a class="navbar-brand text-brand" href="{% url 'rental:index' %}">
-        <img class="logo" src="{% static 'img/apple-touch-icon.png' %}" alt="villafleurie_logo" >
-        Villa<span class="color-b">Fleurie</span>
-      </a>
-      <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
-        data-target="#navbarTogglerDemo01" aria-expanded="false">
-        <span class="fa fa-search" aria-hidden="true"></span>
-      </button>
-      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'rental:list_place' %}">Hébergements</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'reservation' %}">Réservation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">À propos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-          </li>
-        </ul>
-      </div>
-      <!-- <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+        <a class="navbar-brand text-brand" href="{% url 'rental:index' %}">
+          <img
+            class="logo"
+            src="{% static 'rental/img/apple-touch-icon.png' %}"
+            alt="villafleurie_logo"
+          />
+          Villa<span class="color-b">Fleurie</span>
+        </a>
+        <button
+          type="button"
+          class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo01"
+          aria-expanded="false"
+        >
+          <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+        <div
+          class="navbar-collapse collapse justify-content-center"
+          id="navbarDefault"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'rental:list_place' %}"
+                >Hébergements</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reservation' %}">Réservation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">À propos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <!-- <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
       </button> -->
-    </div>
-  </nav>
-  <!--/ Nav End /-->
+      </div>
+    </nav>
+    <!--/ Nav End /-->
 
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
-  <!--/ footer Star /-->
-  <section class="section-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <a class="navbar-brand text-brand" href="{% url 'rental:index' %}">
-                <h3 class="w-title-a text-brand">Villa<span class="color-b">Fleurie</span></h3>
-              </a>
-            </div>
-            <div class="w-body-a">
-              <p class="w-text-a color-text-a">
-                Découvrez la ville balnéaire du Gosier
-              </p>
-            </div>
-            <div class="w-footer-a">
-              <ul class="list-unstyled">
-                <li class="color-a">
-                  <span class="color-text-a">📞 Téléphone </span>
-                  <a href="tel:0698267634">06 98 26 76 34</a>
-                </li>
-                <li class="color-a">
-                  <span class="color-text-a">✉️ Email </span>
-                  <a href="mailto:location.villafleurie@gmail.com">location.villafleurie@gmail.com</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-4 section-md-t3">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand"> </h3>
-            </div>
-            <div class="w-body-a">
+    <!--/ footer Star /-->
+    <section class="section-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <a
+                  class="navbar-brand text-brand"
+                  href="{% url 'rental:index' %}"
+                >
+                  <h3 class="w-title-a text-brand">
+                    Villa<span class="color-b">Fleurie</span>
+                  </h3>
+                </a>
+              </div>
               <div class="w-body-a">
+                <p class="w-text-a color-text-a">
+                  Découvrez la ville balnéaire du Gosier
+                </p>
+              </div>
+              <div class="w-footer-a">
                 <ul class="list-unstyled">
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="{% url 'legal' %}">Mentions légales</a>
+                  <li class="color-a">
+                    <span class="color-text-a">📞 Téléphone </span>
+                    <a href="tel:0698267634">06 98 26 76 34</a>
                   </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Jobs</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Espace partenaires</a>
+                  <li class="color-a">
+                    <span class="color-text-a">✉️ Email </span>
+                    <a href="mailto:location.villafleurie@gmail.com"
+                      >location.villafleurie@gmail.com</a
+                    >
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <nav class="nav-footer">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="{% url 'rental:index' %}">Accueil</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="{% url 'rental:list_place' %}">Hébergements</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="{% url 'reservation' %}">Réservation</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="{% url 'about' %}">À propos</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="{% url 'contact' %}">Contact</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="socials-a">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="https://www.facebook.com/location.villafleurie/" target="blank">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="copyright-footer">
-            <p class="copyright color-text-a">
-              &copy;
-              <span class="color-a">2019, VillaFleurie</span> Avec ❤️depuis 2011
-            </p>
+          <div class="col-sm-12 col-md-4 section-md-t3">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand"></h3>
+              </div>
+              <div class="w-body-a">
+                <div class="w-body-a">
+                  <ul class="list-unstyled">
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i>
+                      <a href="{% url 'legal' %}">Mentions légales</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i> <a href="#">Jobs</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i>
+                      <a href="#">Espace partenaires</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!--/ Footer End /-->
+    </section>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <nav class="nav-footer">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="{% url 'rental:index' %}">Accueil</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="{% url 'rental:list_place' %}">Hébergements</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="{% url 'reservation' %}">Réservation</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="{% url 'about' %}">À propos</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="{% url 'contact' %}">Contact</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="socials-a">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a
+                    href="https://www.facebook.com/location.villafleurie/"
+                    target="blank"
+                  >
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="copyright-footer">
+              <p class="copyright color-text-a">
+                &copy;
+                <span class="color-a">2019, VillaFleurie</span> Avec ❤️depuis
+                2011
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--/ Footer End /-->
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
 
-  <!-- JavaScript Libraries -->
-  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
-  <script src="{% static 'lib/popper/popper.min.js' %}"></script>
-  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-  <script src="{% static 'lib/scrollreveal/scrollreveal.min.js' %}"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="{% static 'contactform/contactform.js' %}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'rental/lib/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'rental/lib/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'rental/lib/popper/popper.min.js' %}"></script>
+    <script src="{% static 'rental/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'rental/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'rental/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'rental/lib/scrollreveal/scrollreveal.min.js' %}"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="{% static 'rental/contactform/contactform.js' %}"></script>
 
-  <!-- Template Main Javascript File -->
-  <script src="{% static 'js/main.js' %}"></script>
-
-</body>
+    <!-- Template Main Javascript File -->
+    <script src="{% static 'rental/js/main.js' %}"></script>
+  </body>
 </html>

@@ -126,3 +126,6 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
     os.makedirs(STATIC_TMP, exist_ok=True)
     os.makedirs(STATIC_ROOT, exist_ok=True)
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
