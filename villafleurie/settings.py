@@ -37,9 +37,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware'
 ]
 
-# if os.environ.get('ENV') == 'PRODUCTION':
-#     STATICFILES_STORAGE = 'storage.WhiteNoiseStaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if os.environ.get('ENV') == 'PRODUCTION':
+    # STATICFILES_STORAGE = 'storage.WhiteNoiseStaticFilesStorage'
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 
