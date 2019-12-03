@@ -1,6 +1,6 @@
 [
   {
-    "model": "rental.image",
+    "model": "image",
     "pk": 1,
     "fields": {
       "img": "img/villafleurie_t2_salon_1_wl81yXI.jpg",
