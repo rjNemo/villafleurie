@@ -90,5 +90,6 @@ Le visiteur doit pouvoir :
 - deploy on Heroku or somewhere else … don't care
 - change placeholders for dates
 - factoriser le code de réservation
+- formulaire de réservation : les apparts sont hard codés rendre ça dynamique
 
 ## BUGS
