@@ -3,7 +3,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
+# SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
@@ -38,9 +38,6 @@ MIDDLEWARE = [
 ]
 
 if os.environ.get('ENV') == 'PRODUCTION':
-    # ...
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 INTERNAL_IPS = ['127.0.0.1']
