@@ -38,7 +38,7 @@ MIDDLEWARE = [
 ]
 
 if os.environ.get('ENV') == 'PRODUCTION':
-    STATICFILES_STORAGE = 'villafleurie.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'storage.CompressedManifestStaticFilesStorage'
 
 INTERNAL_IPS = ['127.0.0.1']
 
