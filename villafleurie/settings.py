@@ -37,10 +37,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware'
 ]
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    STATICFILES_STORAGE = 'storage.WhiteNoiseStaticFilesStorage'
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# if os.environ.get('ENV') == 'PRODUCTION':
+#     STATICFILES_STORAGE = 'storage.WhiteNoiseStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 
 INTERNAL_IPS = ['127.0.0.1']
