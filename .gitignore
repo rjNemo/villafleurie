@@ -7,4 +7,5 @@ rental/static/
 .DS_Store
 .vscode/
 Procfile
+heroku.yml
 
