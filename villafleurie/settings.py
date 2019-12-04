@@ -66,17 +66,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'villafleurie.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'villafleurie',
-#         'USER': 'nemausat',
-#         'PASSWORD': '',
-#         'HOST': '',
-#         'PORT': '5432',
-#         'ATOMIC_REQUESTS': True
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'villafleurie',
+        'USER': 'nemausat',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '5432',
+        'ATOMIC_REQUESTS': True
+    }
+}
 
 # DATABASES = {
 #     'default': {
