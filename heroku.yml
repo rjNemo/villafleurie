@@ -1,12 +1,5 @@
 build:
-    docker:
-      web: Dockerfile
-    # config:
-    #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
-    #   RAILS_ENV: production
-  run:
-    web: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    # worker:
-    #   command:
-    #     - bundle exec rake jobs:work
-    #   image: web
+  docker:
+    web: Dockerfile
+run:
+  web: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
