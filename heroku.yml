@@ -1,7 +1,7 @@
 build:
     docker:
       web: Dockerfile
-    config:
+    # config:
     #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
     #   RAILS_ENV: production
   run:
