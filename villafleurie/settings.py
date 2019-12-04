@@ -66,22 +66,44 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'villafleurie.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'villafleurie',
+#         'USER': 'nemausat',
+#         'PASSWORD': '',
+#         'HOST': '',
+#         'PORT': '5432',
+#         'ATOMIC_REQUESTS': True
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'villafleurie',
-        'USER': 'nemausat',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
         'PORT': '5432',
         'ATOMIC_REQUESTS': True
     }
 }
 
 if os.environ.get('ENV') == 'PRODUCTION':
-    # ...
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+    # Heroku
+    # db_from_env = dj_database_url.config(conn_max_age=500)
+    # DATABASES['default'].update(db_from_env)
+    # Docker
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db',
+            'PORT': '5432',
+            'ATOMIC_REQUESTS': True
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [

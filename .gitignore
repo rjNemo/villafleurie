@@ -1,7 +1,10 @@
 env/
-__pycache__
-rental/__pycache__
-rental/migrations
-villafleurie/__pycache__
+__pycache__/
+rental/__pycache__/
+rental/migrations/
+villafleurie/__pycache__/
+rental/static/
 .DS_Store
 .vscode/
+Procfile
+

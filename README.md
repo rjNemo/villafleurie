@@ -37,6 +37,7 @@ Le visiteur doit pouvoir :
 3. Page réservation
 
 - Entrer ses coordonnées
+- La réservation n'est validée que si la période spécifiée est libre
 - Prépayer la réservation ou la caution,
 
 4. Page remerciements
