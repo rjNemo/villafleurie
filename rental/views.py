@@ -167,6 +167,10 @@ class About(TemplateView):
     template_name = 'rental/about.html'
 
 
+class Partners(TemplateView):
+    template_name = 'rental/partners.html'
+
+
 def handler404(request, exception):
     return render(request, 'rental/404.html', status=404)
 

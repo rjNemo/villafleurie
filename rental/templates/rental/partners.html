@@ -1,0 +1,180 @@
+{% extends 'rental/base.html' %} {% load static %} {% block content %}
+
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Les partenaires de VillaFleurie</h1>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:index' %}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Partenaires
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-agents section-t8">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-wrap d-flex justify-content-between">
+          <div class="title-box">
+            <h2 class="title-a">
+              Des professionels à votre service
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="card-box-d">
+          <div class="card-img-d">
+            <img
+              src="{% static 'img/ruidy.jpg' %}"
+              alt=""
+              class="img-d img-fluid"
+            />
+          </div>
+          <div class="card-overlay card-overlay-hover">
+            <div class="card-header-d">
+              <div class="card-title-d align-self-center">
+                <h3 class="title-d">
+                  <a
+                    target="blank"
+                    href="https://ruidywebsite.herokuapp.com/"
+                    class="link-two"
+                    >Ruidy NEMAUSAT</a
+                  >
+                </h3>
+              </div>
+            </div>
+            <div class="card-body-d">
+              <p class="content-d color-text-a">
+                Full-stack Software Engineer : Responsable de la conception,
+                réalisation, hébergement et maintenance du site
+              </p>
+              <div class="info-agents color-a">
+                <p>
+                  <strong>Téléphone: </strong
+                  ><a href="tel:+33658961279">06 58 96 12 79</a>
+                </p>
+                <p>
+                  <strong>Email: </strong>
+                  <a href="mailto:ruidy.nemausat@gmail.com"
+                    >ruidy.nemausat@gmail.com</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="card-footer-d">
+              <div class="socials-footer d-flex justify-content-center">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.linkedin.com/in/ruidy-nemausat-522b4069/"
+                      class="link-one"
+                      target="blank"
+                    >
+                      <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://github.com/rjNemo"
+                      class="link-one"
+                      target="blank"
+                    >
+                      <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://ruidywebsite.herokuapp.com/"
+                      class="link-one"
+                      target="blank"
+                    >
+                      <i class="fa fa-link" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card-box-d">
+          <div class="card-img-d">
+            <img
+              src="{% static 'img/logo_NemoImmo.png' %}"
+              alt=""
+              class="img-d img-fluid"
+            />
+          </div>
+          <div class="card-overlay card-overlay-hover">
+            <div class="card-header-d">
+              <div class="card-title-d align-self-center">
+                <h3 class="title-d">
+                  <a
+                    href="http://nemoimmo.mystrikingly.com/"
+                    class="link-two"
+                    target="blank"
+                    >Nemo Immo
+                  </a>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body-d">
+              <p class="content-d color-text-a">
+                Agence en ligne de gestion immobilière
+              </p>
+              <div class="info-agents color-a">
+                <p>
+                  <strong>Téléphone: </strong
+                  ><a href="tel:+33658961279">06 58 96 12 79</a>
+                </p>
+                <p>
+                  <strong>Email: </strong>
+                  <a href="mailto:ruidy.nemausat@gmail.com"
+                    >hello@nemoimmo.com</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="card-footer-d">
+              <div class="socials-footer d-flex justify-content-center">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a
+                      href="http://nemoimmo.mystrikingly.com/"
+                      class="link-one"
+                      target="blank"
+                    >
+                      <i class="fa fa-link" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
