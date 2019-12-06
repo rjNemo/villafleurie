@@ -19,8 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rental.apps.RentalConfig',
-    'phonenumber_field',
+    'rental.apps.RentalConfig'
 ]
 
 SITE_ID = 1

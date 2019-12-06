@@ -1,6 +1,6 @@
 from django import forms
 from .models import Reservation, Place, Guest
-from phonenumber_field.modelfields import PhoneNumberField
+# from _field.modelfields import Field
 
 
 class ReservationForm(forms.Form):
@@ -20,7 +20,7 @@ class ReservationForm(forms.Form):
     )
     phone = forms.CharField(
         label='',
-        max_length=100,
+        max_length=30,
         min_length=4,
         widget=forms.TextInput(attrs={
                                'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Téléphone *'}),

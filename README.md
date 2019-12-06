@@ -93,7 +93,4 @@ Le visiteur doit pouvoir :
 - factoriser le code de réservation
 - formulaire de réservation : les apparts sont hard codés rendre ça dynamique
 
-
 ## BUGS
-- Le message field du formulaire de réservation est trop court.
-- le numéro de téléphone enlever le field spécifique
