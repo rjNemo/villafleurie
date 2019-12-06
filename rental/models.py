@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Image(models.Model):
@@ -40,7 +39,7 @@ class Guest(models.Model):
 
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    phone = PhoneNumberField(blank=True)
+    phone = models.CharField(max_length=30, blank=True)
 
 
 class Reservation(models.Model):

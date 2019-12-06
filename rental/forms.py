@@ -4,46 +4,53 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class ReservationForm(forms.Form):
-    PLACES=(('T2','T2'), ('T3','T3'),)
+    PLACES = (('T2', 'T2'), ('T3', 'T3'),)
     name = forms.CharField(
         label="",
         max_length=100,
         min_length=4,
-        widget=forms.TextInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Nom *'}),
+        widget=forms.TextInput(attrs={
+                               'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Nom *'}),
         required=True)
     email = forms.EmailField(
-        label = '',
-        widget=forms.EmailInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Email *'}),
+        label='',
+        widget=forms.EmailInput(attrs={
+                                'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Email *'}),
         required=True
     )
     phone = forms.CharField(
         label='',
         max_length=100,
         min_length=4,
-        widget=forms.TextInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Téléphone *'}),
+        widget=forms.TextInput(attrs={
+                               'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Téléphone *'}),
         required=True)
     place = forms.ChoiceField(
-        label = '',
-        widget=forms.Select(attrs={'class': 'form-control form-control-lg form-control-a'}),
+        label='',
+        widget=forms.Select(
+            attrs={'class': 'form-control form-control-lg form-control-a'}),
         required=True,
         choices=PLACES)
     message = forms.CharField(
         label='',
-        max_length=100,
+        # max_length=100,
         min_length=4,
-        widget=forms.Textarea(attrs={'class': 'form-control', 'cols': '45', 'rows':'8', 'placeholder': 'Message *'}),
+        widget=forms.Textarea(attrs={
+                              'class': 'form-control', 'cols': '45', 'rows': '8', 'placeholder': 'Message *'}),
         required=True)
     start = forms.DateField(
         label='',
         input_formats=['%d/%m/%Y'],
         # max_length=100,
         # min_length=4,
-        widget=forms.DateInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Début *'}),
+        widget=forms.DateInput(attrs={
+                               'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Début *'}),
         required=True)
     end = forms.DateField(
         label='',
         input_formats=['%d/%m/%Y'],
         # max_length=100,
         # min_length=4,
-        widget=forms.DateInput(attrs={'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Fin *'}),
+        widget=forms.DateInput(attrs={
+                               'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Fin *'}),
         required=True)
