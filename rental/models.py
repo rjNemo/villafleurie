@@ -28,6 +28,7 @@ class Place(models.Model):
     thumbnail = models.ForeignKey(
         Image, on_delete=models.CASCADE, blank=True, null=True)
     images = models.ManyToManyField(Image, related_name="places", blank=True)
+    calendar = models.CharField(max_length=350, blank=True, null=True)
 
 
 class Guest(models.Model):

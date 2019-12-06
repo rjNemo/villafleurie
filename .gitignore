@@ -8,4 +8,5 @@ rental/static/
 .vscode/
 Procfile
 heroku.yml
+rental/client_secrets.json
 

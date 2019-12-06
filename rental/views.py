@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from .forms import ReservationForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
-from rental.calendar import check_availability
+from rental.bookings import check_availability
 
 
 def index(request):

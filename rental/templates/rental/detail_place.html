@@ -1,154 +1,180 @@
-{% extends 'rental/base.html'%}
-{% load static %}
+{% extends 'rental/base.html'%} {% load static %} {% block content %}
 
-{% block content %}
-  <!--/ Intro Single star /-->
-  <section class="intro-single">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box">
-            <h1 class="title-single">{{ place.subname }} {{ place.name }} </h1>
-            <span class="color-text-a">VillaFleurie</span>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-4">
-          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="{% url 'rental:index' %}">Accueil</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="{% url 'rental:list_place' %}">Hébergements</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                {{ place.name }}
-              </li>
-            </ol>
-          </nav>
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">{{ place.subname }} {{ place.name }}</h1>
+          <span class="color-text-a">VillaFleurie</span>
         </div>
       </div>
+      <div class="col-md-12 col-lg-4">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:index' %}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:list_place' %}">Hébergements</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{ place.name }}
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
-  </section>
-  <!--/ Intro Single End /-->
+  </div>
+</section>
 
-  <!--/ Property Single Star /-->
-  <section class="property-single nav-arrow-b">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-            {% for image in images %}
-            <div class="carousel-item-b">
-              <img src="{{ image.img.url }}" alt="{{image.alt}}">
-            </div>
-            {% endfor %}
+<section class="property-single nav-arrow-b">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div
+          id="property-single-carousel"
+          class="owl-carousel owl-arrow gallery-property"
+        >
+          {% for image in images %}
+          <div class="carousel-item-b">
+            <img src="{{ image.img.url }}" alt="{{image.alt}}" />
           </div>
-          <div class="row justify-content-between">
-            <div class="col-md-5 col-lg-4">
-              <div class="property-price d-flex justify-content-center foo">
-                <div class="card-header-c d-flex">
-                  <div class="card-box-ico">
-                    <span class="ion-money">€</span>
-                  </div>
-                  <div class="card-title-c align-self-center">
-                    <h5 class="title-c"> {{ place.price }} </h5>
-                  </div>
+          {% endfor %}
+        </div>
+        <div class="row justify-content-between">
+          <div class="col-md-5 col-lg-4">
+            <div class="property-price d-flex justify-content-center foo">
+              <div class="card-header-c d-flex">
+                <div class="card-box-ico">
+                  <span class="ion-money">€</span>
                 </div>
-              </div>
-              <div class="property-summary">
-                <div class="row">
-                  <div class="col-sm-12">
-                      <div class="col-md-12 mb-1">
-                        <a href="#reservation"><button class="btn btn-a">Réserver maintenant</button></a>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="property-summary">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="title-box-d section-t4">
-                      <h3 class="title-d">Résumé</h3>
-                    </div>
-                  </div>
-                </div>
-                <div class="summary-list">
-                  <ul class="list">
-                    <li class="d-flex justify-content-between">
-                      <strong>Localisation :</strong>
-                      <span>Le Gosier, Guadeloupe</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Status :</strong>
-                      <span>Disponible</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Surface :</strong>
-                      <span>{{ place.surface}}
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Lits :</strong>
-                      <span>{{ place.beds }}</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Nombre de voyageurs maximum :</strong>
-                      <span>{{ place.max_occupation}}</span>
-                    </li>
-                  </ul>
+                <div class="card-title-c align-self-center">
+                  <h5 class="title-c">{{ place.price }}</h5>
                 </div>
               </div>
             </div>
-            <div class="col-md-7 col-lg-7 section-md-t3">
+            <div class="col-sm-12">
+              <div class="title-box-d section-t4">
+                <a href="#reservation" class="btn btn-a">Réserver</a>
+              </div>
+            </div>
+            <div class="property-summary">
               <div class="row">
                 <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">Description</h3>
+                  <div class="title-box-d section-t4">
+                    <h3 class="title-d">Résumé</h3>
                   </div>
                 </div>
               </div>
-              <div class="property-description">
-                <p class="description color-text-a">
-                  {{ place.description |safe}}
-                </p>
-                <p class="description color-text-a no-margin">
-                  {{ place.info |safe}}
-                </p>
+              <div class="summary-list">
+                <ul class="list">
+                  <li class="d-flex justify-content-between">
+                    <strong>Localisation :</strong>
+                    <span>Le Gosier, Guadeloupe</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Status :</strong>
+                    <span>Disponible</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Surface :</strong>
+                    <span
+                      >{{ place.surface}}
+                      <sup>2</sup>
+                    </span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Lits :</strong>
+                    <span>{{ place.beds }}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Nombre de voyageurs maximum :</strong>
+                    <span>{{ place.max_occupation}}</span>
+                  </li>
+                </ul>
               </div>
+            </div>
+            <iframe
+              src="{{place.calendar | safe}}"
+              style="border-width:0"
+              width="400"
+              height="400"
+              frameborder="0"
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div class="col-md-7 col-lg-7 section-md-t3">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="title-box-d">
+                  <h3 class="title-d">Description</h3>
+                </div>
+              </div>
+            </div>
+            <div class="property-description">
+              <p class="description color-text-a">
+                {{ place.description |safe}}
+              </p>
+              <p class="description color-text-a no-margin">
+                {{ place.info |safe}}
+              </p>
             </div>
           </div>
         </div>
-        <div class="col-md-10 offset-md-1">
-          <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
-            <!-- <li class="nav-item">
+      </div>
+      <div class="col-md-10 offset-md-1">
+        <ul
+          class="nav nav-pills-a nav-pills mb-3 section-t3"
+          id="pills-tab"
+          role="tablist"
+        >
+          <!-- <li class="nav-item">
               <a class="nav-link active" id="pills-video-tab" data-toggle="pill" href="#pills-video" role="tab"
                 aria-controls="pills-video" aria-selected="true">Video</a>
             </li> -->
-            <li class="nav-item">
-              <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map"
-                aria-selected="false">Localisation</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <!-- <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="pills-map-tab"
+              data-toggle="pill"
+              href="#pills-map"
+              role="tab"
+              aria-controls="pills-map"
+              aria-selected="false"
+              >Localisation</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <!-- <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
               <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0"
                 webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div> -->
-            <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3831.2547874074585!2d-61.48954768556058!3d16.207335988795712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c134f148764f5d5%3A0x981bb218cee8b16c!2sVillaFleurie!5e0!3m2!1sfr!2sde!4v1573125589212!5m2!1sfr!2sde"
-              width="100%" height="460" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-            </div>
+          <div
+            class="tab-pane fade show active"
+            id="pills-map"
+            role="tabpanel"
+            aria-labelledby="pills-map-tab"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3831.2547874074585!2d-61.48954768556058!3d16.207335988795712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c134f148764f5d5%3A0x981bb218cee8b16c!2sVillaFleurie!5e0!3m2!1sfr!2sde!4v1573125589212!5m2!1sfr!2sde"
+              width="100%"
+              height="460"
+              frameborder="0"
+              style="border:0;"
+              allowfullscreen=""
+            ></iframe>
           </div>
         </div>
-
-        {% include 'rental/reservation_form.html' %}
-
-
       </div>
+
+      {% include 'rental/reservation_form.html' %}
     </div>
-  </section>
-  <!--/ Property Single End /-->
+  </div>
+</section>
 
 {% endblock %}
