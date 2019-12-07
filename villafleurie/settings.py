@@ -65,28 +65,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'villafleurie.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'villafleurie',
-        'USER': 'nemausat',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '5432',
-        'ATOMIC_REQUESTS': True
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'db',
+#         'NAME': 'villafleurie',
+#         'USER': 'nemausat',
+#         'PASSWORD': '',
+#         'HOST': '',
 #         'PORT': '5432',
 #         'ATOMIC_REQUESTS': True
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+        'ATOMIC_REQUESTS': True
+    }
+}
 
 if os.environ.get('ENV') == 'PRODUCTION':
     # Heroku
@@ -106,18 +106,10 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
 LANGUAGE_CODE = 'fr'

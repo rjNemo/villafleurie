@@ -5,8 +5,8 @@ services:
     image: postgres
   web:
     build: .
-    command: bash -c "python manage.py runserver 0.0.0.0:8000"
-    # command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py loaddata villafleurie.json && gunicorn villafleurie.wsgi 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py loaddata villafleurie.json && python manage.py runserver 0.0.0.0:8000"
+    # command: gunicorn villafleurie.wsgi -b 0.0.0.0:8000 # Production server more secure
     container_name: villafleurie
     volumes:
       - .:/villafleurie

@@ -147,7 +147,7 @@ def calendar(request, place_name):
     booked_dates = Reservation.objects.all()
     bookings = [
         booking for booking in booked_dates if booking.place.name == place_name]
-    print(place_name)
+    # print(place_name)
     context = {
         'place_name': place_name,
         'bookings': bookings
