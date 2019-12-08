@@ -6,7 +6,8 @@ from django.views.generic.base import TemplateView
 from .forms import ReservationForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
-from rental.bookings import check_availability
+from rental.bookings import check_availability  # , synchronize_calendars
+# import sys
 
 
 def index(request):
@@ -40,7 +41,6 @@ def location(request, place_name='T2'):
         'images': images
     }
     if request.method == 'POST':
-        # , error_class=ParagraphErrorList)
         form = ReservationForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
@@ -92,7 +92,6 @@ def location(request, place_name='T2'):
 
 def reservation(request):
     if request.method == 'POST':
-        # , error_class=ParagraphErrorList)
         form = ReservationForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
@@ -147,7 +146,7 @@ def calendar(request, place_name):
     booked_dates = Reservation.objects.all()
     bookings = [
         booking for booking in booked_dates if booking.place.name == place_name]
-    # print(place_name)
+    # synchronize_calendars(sys.argv)
     context = {
         'place_name': place_name,
         'bookings': bookings

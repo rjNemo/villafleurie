@@ -1,17 +1,17 @@
 import sys
 from googleapiclient import sample_tools
 import datetime
-# from __future__ import print_function
+from rental.pricing import get_reservation_price
+from django.shortcuts import get_object_or_404
+from rental.models import Reservation, Place
 
+# from __future__ import print_function
 # from google.auth.transport.requests import Request
 # from google_auth_oauthlib.flow import InstalledAppFlow
 # from googleapiclient.discovery import build
 # import os.path
 # import pickle
-
 # from oauth2client import client
-
-# from rental.models import Reservation
 
 
 def get_bookings(place):
@@ -33,10 +33,11 @@ def check_availability(place, start_date, end_date):
     return True
 
 
-def main1(argv):
+def synchronize_calendars(argv):
     """
     Simple command-line sample for the Calendar API.
-    Command-line application that retrieves the list of the user's calendars."""
+    Command-line application that retrieves the list of calendars' events
+    """
     service, _ = sample_tools.init(
         argv, 'calendar', 'v3', __doc__, __file__,
         scope='https://www.googleapis.com/auth/calendar.readonly')
@@ -53,7 +54,7 @@ def main1(argv):
         events_result = service.events().list(
             calendarId=calendars[calendar],
             timeMin=now,
-            maxResults=10, singleEvents=True,
+            singleEvents=True,
             orderBy='startTime').execute()
         events = events_result.get('items', [])
         reservation = {}
@@ -70,7 +71,19 @@ def main1(argv):
                 'end': event['end'].get('dateTime', event['end'].get('date'))
             }
             print(reservation[index])
+            place = get_object_or_404(Place, name=calendar)
+            price = get_reservation_price(
+                place, reservation['start'], reservation['end'])
+            guest = Guest.objects.create(name=reservation['guest'])
+
+            Reservation.objects.create(
+                place=place,
+                guest=guest,
+                start=start,
+                end=end,
+                price=price
+            )
 
 
 if __name__ == '__main__':
-    main1(sys.argv)
+    synchronize_calendars(sys.argv)

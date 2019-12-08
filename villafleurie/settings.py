@@ -10,7 +10,13 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'villafleurie.herokuapp.com']
+# DEBUG = False
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'villafleurie.herokuapp.com'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,28 +71,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'villafleurie.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'villafleurie',
-#         'USER': 'nemausat',
-#         'PASSWORD': '',
-#         'HOST': '',
-#         'PORT': '5432',
-#         'ATOMIC_REQUESTS': True
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
+        'NAME': 'villafleurie',
+        'USER': 'nemausat',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '5432',
         'ATOMIC_REQUESTS': True
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'HOST': 'db',
+#         'PORT': '5432',
+#         'ATOMIC_REQUESTS': True
+#     }
+# }
 
 if os.environ.get('ENV') == 'PRODUCTION':
     # Heroku
