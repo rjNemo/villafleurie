@@ -1,13 +1,14 @@
 import datetime
 from rental.pricing import get_reservation_price
 from django.shortcuts import get_object_or_404
-from rental.models import Reservation, Place
+from rental.models import Reservation, Place, Guest
 import datetime
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 import os.path
 import pickle
+from villafleurie.settings import BASE_DIR
 
 
 def get_bookings(place):
@@ -49,8 +50,9 @@ def synchronize_calendars():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'client_secrets.json', scopes=SCOPES, redirect_uri="http://localhost:8080/")
+            SECRETS = os.path.join(BASE_DIR, 'rental/client_secrets.json')
+            flow = InstalledAppFlow.from_client_secrets_file(SECRETS, scopes=SCOPES,
+                                                             redirect_uri="http://localhost:8080/")
             creds = flow.run_local_server()
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
@@ -74,32 +76,38 @@ def synchronize_calendars():
         if not events:
             print('No upcoming events found.')
         else:
-            reservation = {}
-            for index, event in enumerate(events):
-                reservation[index] = {
+            # reservation = {}
+            for event in events:
+                reservation = {
                     'place': calendar,
                     'guest': event['summary'],
                     'start': event['start'].get('dateTime', event['start'].get('date')),
                     'end': event['end'].get('dateTime', event['end'].get('date'))
                 }
-                print(reservation[index])
+                print(reservation)
 
 # if booking not in db -> create
 # if booking in db and modification_date_cal > update_date_db -> update
-
-                place = get_object_or_404(Place, name=calendar)
-                price = get_reservation_price(
-                    place, reservation['start'], reservation['end'])
-                # trouver si guest existe déjà, créer sinon
-                guest = Guest.objects.create(name=reservation['guest'])
-
-                Reservation.objects.create(
-                    place=place,
-                    guest=guest,
-                    start=start,
-                    end=end,
-                    price=price
-                )
+# try : create/update
+# except : send a log message
+                try:
+                    place = get_object_or_404(Place, name=calendar)
+                    price = get_reservation_price(
+                        place, reservation['start'], reservation['end'])
+                    # trouver si guest existe déjà, créer sinon
+                    guest = Guest.objects.create(name=reservation['guest'])
+                    start = reservation['start']
+                    end = reservation['end']
+                    Reservation.objects.create(
+                        place=place,
+                        guest=guest,
+                        start=start,
+                        end=end,
+                        price=price
+                    )
+                except:
+                    print(
+                        f"######## ERROR ! Can't create {guest} reservation ########")
 
 
 if __name__ == '__main__':

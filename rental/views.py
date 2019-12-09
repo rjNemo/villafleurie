@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from .forms import ReservationForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
-from rental.bookings import check_availability  # , synchronize_calendars
+from rental.bookings import check_availability, synchronize_calendars
 # import sys
 
 
@@ -143,6 +143,7 @@ def calendar(request, place_name):
     """
     returns a list of all related place reservations
     """
+    synchronize_calendars()
     booked_dates = Reservation.objects.all()
     bookings = [
         booking for booking in booked_dates if booking.place.name == place_name]

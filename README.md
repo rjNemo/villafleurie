@@ -96,3 +96,5 @@ Le visiteur doit pouvoir :
   \_ nettoyer les statics files. Garder que les définitions utiles
 
 ## BUGS
+
+- La synchro ne gère pas les heures dans le calendriers.

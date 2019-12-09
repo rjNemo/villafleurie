@@ -121,10 +121,10 @@
     },
     {
         "model": "sessions.session",
-        "pk": "pe2dvr7dfkqagrcs2trec5aj7ep57rvz",
+        "pk": "v9w10z63mcilrzwa1asqd6fq4sdhoula",
         "fields": {
-            "session_data": "OTc5Y2U3Zjc1YWQzOTAxNjA0MjQ1NTI3MDk0NTkxYjlmM2YyNDMxNDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjMjE1MTliMGU3ODIwYTkwMjIzNjIwZjE3MWU0MmM1ZGFhZGE3YjBiIn0=",
-            "expire_date": "2019-12-18T13:11:01.964Z"
+            "session_data": "NzhmMTE3YWExMjExY2FjZDI4NDI4MmQxNDI1MjQwYzViZjczM2Q3Mjp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1NTkwY2NlZjM1YzFhNDhiNjE4ZGJiNWI3YjZkZWUwZjFmYjU0NjYyIn0=",
+            "expire_date": "2019-12-23T17:27:03.312Z"
         }
     },
     {
@@ -221,6 +221,7 @@
             "beds": 1,
             "max_occupation": 2,
             "thumbnail": 1,
+            "calendar": "https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=America%2FMartinique&amp;src=YnVyaWs3YWNsdmhjN3ZzYm9oMDZjMTc5dW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23DD4477&amp;showTitle=0&amp;showCalendars=0&amp;showTabs=1&amp;showPrint=0&amp;showDate=1&amp;showNav=1",
             "images": [
                 7,
                 6,
@@ -246,6 +247,7 @@
             "beds": 2,
             "max_occupation": 4,
             "thumbnail": 10,
+            "calendar": "https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=America%2FMartinique&amp;showTitle=0&amp;showCalendars=0&amp;showTabs=1&amp;showPrint=0&amp;showDate=1&amp;showNav=1&amp;src=ZnU3aDMwcDBnazRhMnA0bnZvN25zYmdwb2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233366CC",
             "images": [
                 7,
                 6,
@@ -761,14 +763,22 @@
         }
     },
     {
+        "model": "auth.group",
+        "pk": 1,
+        "fields": {
+            "name": "Clients",
+            "permissions": []
+        }
+    },
+    {
         "model": "auth.user",
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$150000$FUvMBlxIZy6y$HmwSAxQAdPaOve3XwCYfDx/3Oklh2WtG2QJewPcrO+s=",
-            "last_login": "2019-12-03T12:22:52.850Z",
+            "last_login": "2019-12-03T12:22:52Z",
             "is_superuser": true,
             "username": "admin",
-            "first_name": "Ruidy",
+            "first_name": "Nilka",
             "last_name": "Nemausat",
             "email": "location.villafleurie@gmail.com",
             "is_staff": true,
@@ -780,6 +790,10 @@
                 26,
                 27,
                 28,
+                49,
+                50,
+                51,
+                52,
                 29,
                 30,
                 31,
@@ -799,18 +813,71 @@
         "model": "auth.user",
         "pk": 2,
         "fields": {
-            "password": "pbkdf2_sha256$150000$Bm05RbDiL5KK$ok0/kUpbommwOCOo6TeY4De7mVSrOnONdmdN2fvWFV4=",
-            "last_login": "2019-12-04T13:11:01.941Z",
+            "password": "pbkdf2_sha256$180000$0vN9vhsYeNft$6ema2p7l0l6muwDnPcpNO6dxJQc4qG7hIoyvzcBBAXc=",
+            "last_login": "2019-12-09T17:27:30Z",
             "is_superuser": true,
             "username": "ruidy",
-            "first_name": "",
-            "last_name": "",
+            "first_name": "Ruidy",
+            "last_name": "NEMAUSAT",
             "email": "ruidy.nemausat@gmail.com",
             "is_staff": true,
             "is_active": true,
-            "date_joined": "2019-12-04T13:10:55.470Z",
+            "date_joined": "2019-12-04T13:10:55Z",
             "groups": [],
-            "user_permissions": []
+            "user_permissions": [
+                1,
+                2,
+                3,
+                4,
+                9,
+                10,
+                11,
+                12,
+                5,
+                6,
+                7,
+                8,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                45,
+                46,
+                47,
+                48,
+                25,
+                26,
+                27,
+                28,
+                49,
+                50,
+                51,
+                52,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                21,
+                22,
+                23,
+                24,
+                41,
+                42,
+                43,
+                44
+            ]
         }
     },
     {
@@ -2109,6 +2176,162 @@
             "content_type": 7,
             "object_id": "28",
             "object_repr": "Ruidy Nemausat",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 101,
+        "fields": {
+            "action_time": "2019-12-06T12:17:40.493Z",
+            "user": 2,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "T2",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Calendar\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 102,
+        "fields": {
+            "action_time": "2019-12-06T12:18:15.553Z",
+            "user": 2,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "T3",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Calendar\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 103,
+        "fields": {
+            "action_time": "2019-12-06T12:19:44.349Z",
+            "user": 2,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "T3",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 104,
+        "fields": {
+            "action_time": "2019-12-06T12:27:10.747Z",
+            "user": 2,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "T2",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 105,
+        "fields": {
+            "action_time": "2019-12-06T12:27:35.355Z",
+            "user": 2,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "T3",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 106,
+        "fields": {
+            "action_time": "2019-12-09T17:27:42.217Z",
+            "user": 2,
+            "content_type": 4,
+            "object_id": "2",
+            "object_repr": "ruidy",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"User permissions\", \"Last login\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 107,
+        "fields": {
+            "action_time": "2019-12-09T17:28:38.006Z",
+            "user": 2,
+            "content_type": 4,
+            "object_id": "1",
+            "object_repr": "admin",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"User permissions\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 108,
+        "fields": {
+            "action_time": "2019-12-09T17:29:31.434Z",
+            "user": 2,
+            "content_type": 3,
+            "object_id": "1",
+            "object_repr": "Clients",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 109,
+        "fields": {
+            "action_time": "2019-12-09T17:30:49.765Z",
+            "user": 2,
+            "content_type": 7,
+            "object_id": "40",
+            "object_repr": "Thomas Price",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 110,
+        "fields": {
+            "action_time": "2019-12-09T17:30:49.768Z",
+            "user": 2,
+            "content_type": 7,
+            "object_id": "39",
+            "object_repr": "John Doe",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 111,
+        "fields": {
+            "action_time": "2019-12-09T17:30:49.769Z",
+            "user": 2,
+            "content_type": 7,
+            "object_id": "38",
+            "object_repr": "Nilka",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 112,
+        "fields": {
+            "action_time": "2019-12-09T17:30:49.771Z",
+            "user": 2,
+            "content_type": 7,
+            "object_id": "37",
+            "object_repr": "NEMAUSAT Ruidy",
             "action_flag": 3,
             "change_message": ""
         }

@@ -39,7 +39,7 @@ class Guest(models.Model):
         return self.name
 
     name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=False)
     phone = models.CharField(max_length=30, blank=True)
 
 
