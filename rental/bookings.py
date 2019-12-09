@@ -1,17 +1,13 @@
-import sys
-from googleapiclient import sample_tools
 import datetime
 from rental.pricing import get_reservation_price
 from django.shortcuts import get_object_or_404
 from rental.models import Reservation, Place
-
-# from __future__ import print_function
-# from google.auth.transport.requests import Request
-# from google_auth_oauthlib.flow import InstalledAppFlow
-# from googleapiclient.discovery import build
-# import os.path
-# import pickle
-# from oauth2client import client
+import datetime
+from google.auth.transport.requests import Request
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+import os.path
+import pickle
 
 
 def get_bookings(place):
@@ -33,20 +29,38 @@ def check_availability(place, start_date, end_date):
     return True
 
 
-def synchronize_calendars(argv):
+def synchronize_calendars():
     """
-    Simple command-line sample for the Calendar API.
-    Command-line application that retrieves the list of calendars' events
+    Get a complete list of existing bookings in calendar
+    Creates reservation if not in db, update if already in db
+    Delete from db reservation deleted from cal
     """
-    service, _ = sample_tools.init(
-        argv, 'calendar', 'v3', __doc__, __file__,
-        scope='https://www.googleapis.com/auth/calendar.readonly')
+    creds = None
+    # If modifying these scopes, delete the file token.pickle.
+    SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'client_secrets.json', scopes=SCOPES, redirect_uri="http://localhost:8080/")
+            creds = flow.run_local_server()
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
 
+    service = build('calendar', 'v3', credentials=creds)
     calendars = {
         'T2': "burik7aclvhc7vsboh06c179uo@group.calendar.google.com",
         'T3': "fu7h30p0gk4a2p4nvo7nsbgpok@group.calendar.google.com"
     }
-
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
     for calendar in calendars:
@@ -57,33 +71,36 @@ def synchronize_calendars(argv):
             singleEvents=True,
             orderBy='startTime').execute()
         events = events_result.get('items', [])
-        reservation = {}
         if not events:
             print('No upcoming events found.')
-        for index, event in enumerate(events):
-            # start = event['start'].get('dateTime', event['start'].get('date'))
-            # end = event['end'].get('dateTime', event['end'].get('date'))
-            # print(start, end, event['summary'])
-            reservation[index] = {
-                'place': calendar,
-                'guest': event['summary'],
-                'start': event['start'].get('dateTime', event['start'].get('date')),
-                'end': event['end'].get('dateTime', event['end'].get('date'))
-            }
-            print(reservation[index])
-            place = get_object_or_404(Place, name=calendar)
-            price = get_reservation_price(
-                place, reservation['start'], reservation['end'])
-            guest = Guest.objects.create(name=reservation['guest'])
+        else:
+            reservation = {}
+            for index, event in enumerate(events):
+                reservation[index] = {
+                    'place': calendar,
+                    'guest': event['summary'],
+                    'start': event['start'].get('dateTime', event['start'].get('date')),
+                    'end': event['end'].get('dateTime', event['end'].get('date'))
+                }
+                print(reservation[index])
 
-            Reservation.objects.create(
-                place=place,
-                guest=guest,
-                start=start,
-                end=end,
-                price=price
-            )
+# if booking not in db -> create
+# if booking in db and modification_date_cal > update_date_db -> update
+
+                place = get_object_or_404(Place, name=calendar)
+                price = get_reservation_price(
+                    place, reservation['start'], reservation['end'])
+                # trouver si guest existe déjà, créer sinon
+                guest = Guest.objects.create(name=reservation['guest'])
+
+                Reservation.objects.create(
+                    place=place,
+                    guest=guest,
+                    start=start,
+                    end=end,
+                    price=price
+                )
 
 
 if __name__ == '__main__':
-    synchronize_calendars(sys.argv)
+    synchronize_calendars()

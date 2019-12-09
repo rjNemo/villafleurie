@@ -80,17 +80,19 @@ Le visiteur doit pouvoir :
 
 - Page service : navette + location
 - Gestion du calendrier
-  ..\_ Synchroniser avec Google calendar
-  ..\_ Afficher les disponibilités
+  ..\_ Synchroniser avec Google calendar (qd Calendar mis à jour => update db et quand db mise à jour => update calendrier)
+  ..\_ Afficher les disponibilités (Présentation à la hauteur)
+  ..\_ Ajouter un date picker dans le formulaire de réservation
 - Envoyer devis réservation par mail et notification aux hôtes
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
 - changer la couleur des liens hypertextes
-- changer l'adresse de l'admin
+- changer l'adresse de l'admin, personnaliser le back-end
 - ajouter un diaporama en bas de page de location ?
 - deploy on Heroku or somewhere else … don't care
 - change placeholders for dates, add a date picker
 - factoriser le code de réservation
-- formulaire de réservation : les apparts sont hard codés rendre ça dynamique
+- formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
+  \_ nettoyer les statics files. Garder que les définitions utiles
 
 ## BUGS
