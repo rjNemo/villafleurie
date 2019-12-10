@@ -76,7 +76,6 @@ def synchronize_calendars():
         if not events:
             print('No upcoming events found.')
         else:
-            # reservation = {}
             for event in events:
                 reservation = {
                     'place': calendar,
@@ -94,17 +93,37 @@ def synchronize_calendars():
                     place = get_object_or_404(Place, name=calendar)
                     price = get_reservation_price(
                         place, reservation['start'], reservation['end'])
-                    # trouver si guest existe déjà, créer sinon
-                    guest = Guest.objects.create(name=reservation['guest'])
+
+                    guest = Guest.objects.filter(name=reservation['guest'])
+                    if not guest.exists():
+                        guest = Guest.objects.create(name=reservation['guest'])
+
                     start = reservation['start']
                     end = reservation['end']
-                    Reservation.objects.create(
-                        place=place,
-                        guest=guest,
-                        start=start,
-                        end=end,
-                        price=price
-                    )
+
+                    # print("here")
+
+                    # db_booking = Reservation.objects.filter(
+                    #     guest=guest,
+                    #     # place=place,
+                    #     # start=start
+                    # )
+                    # print("there")
+                    db_booking = None
+                    if not db_booking.exists():
+                        print("yo")
+                        Reservation.objects.create(
+                            place=place,
+                            guest=guest,
+                            start=start,
+                            end=end,
+                            price=price)
+                    else:
+                        db_booking = Reservation.objects.filter(
+                            guest=reservation['guest'],
+                            place=place,
+                            start=start
+                        )
                 except:
                     print(
                         f"######## ERROR ! Can't create {guest} reservation ########")

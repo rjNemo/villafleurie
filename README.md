@@ -94,6 +94,9 @@ Le visiteur doit pouvoir :
 - factoriser le code de réservation
 - formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
   \_ nettoyer les statics files. Garder que les définitions utiles
+- Mixpanel et Google Analytics
+- Récrire les mentions légales
+- configure nginx server to serve media files
 
 ## BUGS
 

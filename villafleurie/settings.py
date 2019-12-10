@@ -3,14 +3,54 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # Heroku
+    # db_from_env = dj_database_url.config(conn_max_age=500)
+    # DATABASES['default'].update(db_from_env)
+    # Docker
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db',
+            'PORT': '5432',
+            'ATOMIC_REQUESTS': True
+        }
+    }
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
+    # Extra places for collectstatic to find static files.
+    STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+    os.makedirs(STATIC_TMP, exist_ok=True)
+    os.makedirs(STATIC_ROOT, exist_ok=True)
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    CONN_MAX_AGE = 500
 else:
     DEBUG = True
-
-# DEBUG = False
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'villafleurie',
+            'USER': 'nemausat',
+            'PASSWORD': '',
+            'HOST': '',
+            # 'NAME': 'postgres',
+            # 'USER': 'postgres',
+            # 'HOST': 'db',
+            'PORT': '5432',
+            'ATOMIC_REQUESTS': True
+        }
+    }
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "rental", "static", "rental"), ]
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -42,13 +82,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware'
 ]
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    # STATICFILES_STORAGE = 'storage.WhiteNoiseStaticFilesStorage'
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
-
 INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'villafleurie.urls'
@@ -57,7 +90,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -65,51 +98,18 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                ('django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ]),
+            ],
         },
     },
 ]
 
+
 WSGI_APPLICATION = 'villafleurie.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'villafleurie',
-        'USER': 'nemausat',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '5432',
-        'ATOMIC_REQUESTS': True
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'db',
-#         'PORT': '5432',
-#         'ATOMIC_REQUESTS': True
-#     }
-# }
-
-if os.environ.get('ENV') == 'PRODUCTION':
-    # Heroku
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-    # Docker
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'postgres',
-    #         'USER': 'postgres',
-    #         'HOST': 'db',
-    #         'PORT': '5432',
-    #         'ATOMIC_REQUESTS': True
-    #     }
-    # }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
@@ -125,26 +125,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "rental", "static", "rental"), ]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
-
-if os.environ.get('ENV') == 'PRODUCTION':
-
-    # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-    STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
-
-    # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
-    )
-
-    os.makedirs(STATIC_TMP, exist_ok=True)
-    os.makedirs(STATIC_ROOT, exist_ok=True)
-
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')

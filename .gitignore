@@ -6,9 +6,6 @@ villafleurie/__pycache__/
 rental/static/
 .DS_Store
 .vscode/
-Procfile
-heroku.yml
 rental/client_secrets.json
-calendar.dat
 token.pickle
-villafleurie.pgsql
+prod.env

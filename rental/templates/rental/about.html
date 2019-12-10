@@ -1,278 +1,97 @@
-{% extends 'rental/base.html'%}
-{% load static %}
+{% extends 'rental/base.html'%} {% load static %} {% block content %}
 
-{% block content %}
-
-  <!--/ Intro Single star /-->
-  <section class="intro-single">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box">
-            <h1 class="title-single">En vacances comme à la maison</h1>
-          </div>
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">En vacances comme à la maison</h1>
         </div>
-        <div class="col-md-12 col-lg-4">
-          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="{% url 'rental:index' %}">Accueil</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                À propos
-              </li>
-            </ol>
-          </nav>
-        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:index' %}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              À propos
+            </li>
+          </ol>
+        </nav>
       </div>
     </div>
-  </section>
-  <!--/ Intro Single End /-->
+  </div>
+</section>
 
-  <!--/ About Star /-->
-  <section class="section-about">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="about-img-box">
-            <img src="{% static 'img/slide-about-1.jpg' %}" alt="" class="img-fluid">
-          </div>
-          <div class="sinse-box">
-            <h3 class="sinse-title">VillaFleurie
-              <span></span>
-              <br> Depuis 2011</h3>
-            <p>Location & Vacances</p>
-          </div>
+<section class="section-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="about-img-box">
+          <img
+            src="{% static 'rental/img/slide-about-1.jpg' %}"
+            alt=""
+            class="img-fluid"
+          />
         </div>
-        <div class="col-md-12 section-t8">
-          <div class="row">
-            <div class="col-md-6 col-lg-5">
-              <img src="{% static 'img/about-2.jpg' %}" alt="" class="img-fluid">
-            </div>
-            <div class="col-lg-2  d-none d-lg-block">
-              <div class="title-vertical d-flex justify-content-start">
-                <span>VillaFleurie Exclusive</span>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-5 section-md-t3">
-              <div class="title-box-d">
-                <h3 class="title-d">Notre
-                  <br><span class="color-d">Histoire</span> </h3>
-              </div>
-              <p class="color-text-a">
-                Depuis 2010, VillaFleurie propose ses services au cœur de la belle ville du Gosier de notre bel archipel Guadeloupéen. Depuis 2015, nous nous sommes spécialisés et étendus aux voyageurs de tous les horizons aussi bien à l’échelle locale, nationale ou encore internationale. Les services proposés sont multiples :
-                location de vacance de type T2,
-                location de vacance de type T3,
-                location de voiture,
-                navette (aéroport, gare maritime, etc.),
-                visite guidée de l’Archipel (sur demande)
-                C’est toujours un réel plaisir de savoir nos clients pleinement satisfaits de leur séjour. Ainsi, nous mettons tout en œuvre en vue que votre séjour se déroule pour le mieux.
-                Nous nous engageons à répondre à vos questions dans les plus brefs délais car nous savons que les vacances s’organisent à l’avance. Nous vous accompagnons afin de préparer vos vacances en toute quiétude.
-              </p>
-              <p class="color-text-a">
-                N’hésitez donc plus et venez profiter de vos vacances chez VillaFleurie.
-              </p>
-            </div>
-          </div>
+        <div class="sinse-box">
+          <h3 class="sinse-title">
+            VillaFleurie
+            <span></span>
+            <br />
+            Depuis 2011
+          </h3>
+          <p>Location & Vacances</p>
         </div>
       </div>
-    </div>
-  </section>
-  <!--/ About End /-->
-
-  <!--/ Team Star /-->
-  <!-- <section class="section-agents section-t8">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
-              <h2 class="title-a">Une équipe à votre service</h2>
+      <div class="col-md-12 section-t8">
+        <div class="row">
+          <div class="col-md-6 col-lg-5">
+            <img
+              src="{% static 'rental/img/about-2.jpg' %}"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="col-lg-2  d-none d-lg-block">
+            <div class="title-vertical d-flex justify-content-start">
+              <span>VillaFleurie Exclusive</span>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="{% static 'img/agent-7.jpg' %}" alt="" class="img-d img-fluid">
+          <div class="col-md-6 col-lg-5 section-md-t3">
+            <div class="title-box-d">
+              <h3 class="title-d">
+                Notre <br /><span class="color-d">Histoire</span>
+              </h3>
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Margaret Sotillo
-                      <br> Escala</a>
-                  </h3>
-                </div>
-              </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
-                </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="{% static 'img/agent-6.jpg' %}" alt="" class="img-d img-fluid">
-            </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Stiven Spilver
-                      <br> Darw</a>
-                  </h3>
-                </div>
-              </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
-                </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="{% static 'img/agent-5.jpg' %}" alt="" class="img-d img-fluid">
-            </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Emma Toledo
-                      <br> Cascada</a>
-                  </h3>
-                </div>
-              </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
-                </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <p class="color-text-a">
+              Depuis 2010, VillaFleurie propose ses services au cœur de la belle
+              ville du Gosier de notre bel archipel Guadeloupéen. Depuis 2015,
+              nous nous sommes spécialisés et étendus aux voyageurs de tous les
+              horizons aussi bien à l’échelle locale, nationale ou encore
+              internationale. Les services proposés sont multiples : location de
+              vacance de type T2, location de vacance de type T3, location de
+              voiture, navette (aéroport, gare maritime, etc.), visite guidée de
+              l’Archipel (sur demande) C’est toujours un réel plaisir de savoir
+              nos clients pleinement satisfaits de leur séjour. Ainsi, nous
+              mettons tout en œuvre en vue que votre séjour se déroule pour le
+              mieux. Nous nous engageons à répondre à vos questions dans les
+              plus brefs délais car nous savons que les vacances s’organisent à
+              l’avance. Nous vous accompagnons afin de préparer vos vacances en
+              toute quiétude.
+            </p>
+            <p class="color-text-a">
+              N’hésitez donc plus et venez profiter de vos vacances chez
+              VillaFleurie.
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </section> -->
-  <!--/ Team End /-->
-
+  </div>
+</section>
 {% endblock %}

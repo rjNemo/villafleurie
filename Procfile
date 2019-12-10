@@ -1,1 +1,0 @@
-web: gunicorn villafleurie.wsgi
