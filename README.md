@@ -98,7 +98,7 @@ Le visiteur doit pouvoir :
 - Gestion du calendrier
   ..\_ Tester la synchro avec Google calendar
   ..\_ Ajouter un date picker dans le formulaire de réservation (j'ai pas envie de jouer avec JQuery)
-- Envoyer devis réservation par mail et notification aux hôtes
+- Envoyer devis réservation par mail et notification aux hôtes (put it in a background process, personnaliser les htmails)
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
 - changer la couleur des liens hypertextes

@@ -3,11 +3,11 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Testimonial, Reservation, Guest, Place
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
-from .forms import ReservationForm
+from .forms import ReservationForm, ContactForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
 from rental.bookings import check_availability, synchronize_calendars, update_calendar
-# import sys
+from rental.mailing import send_confirmation_mail, send_notification, send_quotation
 
 
 def index(request):
@@ -123,10 +123,12 @@ def reservation(request):
                         end=end,
                         price=price
                     )
+                    send_quotation(reservation)
                     update_calendar(reservation)
                     context = {
                         'reservation': reservation
                     }
+
                     return render(request, 'rental/merci.html', context)
                 else:
                     context = {'form': form}
@@ -155,8 +157,21 @@ def calendar(request, place_name):
     return render(request, 'rental/calendar.html', context)
 
 
-class Contact(TemplateView):
-    template_name = 'rental/contact.html'
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+
+            send_confirmation_mail(name, email)
+            send_notification(subject, name, message)
+    else:
+        form = ContactForm()
+    context = {'form': form}
+    return render(request, 'rental/contact.html', context)
 
 
 class Legal(TemplateView):

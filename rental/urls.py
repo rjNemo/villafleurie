@@ -7,10 +7,8 @@ from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 app_name = 'rental'
 
 urlpatterns = [
-    # path('', views.Accueil.as_view(), name='index'),
     path('', views.index, name='index'),
     path('hebergements/', views.liste_location, name='list_place'),
-    # path('<place_name>/', views.Location.as_view(), name='detail_place'),
     path('<place_name>/', views.location, name='detail_place'),
     path('calendar/<place_name>/', views.calendar, name='calendar')
 ]

@@ -3,6 +3,11 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ADMINS = [
+    ("Ruidy", "ruidy.nemausat@gmail.com"),
+    ("VillaFleurie", "location.villafleurie@gmail.com")
+]
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
 
@@ -130,3 +135,12 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_SUBJECT_PREFIX = "[VillaFleurieGuadeloupe] "
+DEFAULT_FROM_EMAIL = "'Nilka, VillaFleurie' <location.villaFleurie@gmail.com>"
+EMAIL_HOST_USER = "location.villafleurie@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ.get('SECRET_KEY')
+EMAIL_HOST_PASSWORD = "location229818"
