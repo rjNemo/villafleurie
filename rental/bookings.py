@@ -11,26 +11,7 @@ import pickle
 from villafleurie.settings import BASE_DIR
 
 
-def get_bookings(place):
-    """
-    returns a list of all related place reservations
-    """
-    booked_dates = Reservation.objects.all()
-    return [booking for booking in booked_dates if booking.place.name == f"{place.name}"]
-
-
-def check_availability(place, start_date, end_date):
-    """
-    check if the related place is available during a given period
-    """
-    bookings = get_bookings(place)
-    for booking in bookings:
-        if (booking.start <= start_date <= booking.end) or (booking.start <= end_date <= booking.end):
-            return False
-    return True
-
-
-def synchronize_calendars():
+def synchronize_calendars(place):
     """
     Get a complete list of existing bookings in calendar
     Creates reservation if not in db, update if already in db
@@ -59,74 +40,85 @@ def synchronize_calendars():
             pickle.dump(creds, token)
 
     service = build('calendar', 'v3', credentials=creds)
+    calendar = place.name
     calendars = {
         'T2': "burik7aclvhc7vsboh06c179uo@group.calendar.google.com",
         'T3': "fu7h30p0gk4a2p4nvo7nsbgpok@group.calendar.google.com"
     }
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
-    for calendar in calendars:
-        print(f"Upcoming {calendar} events:")
-        events_result = service.events().list(
-            calendarId=calendars[calendar],
-            timeMin=now,
-            singleEvents=True,
-            orderBy='startTime').execute()
-        events = events_result.get('items', [])
-        if not events:
-            print('No upcoming events found.')
-        else:
-            for event in events:
-                reservation = {
-                    'place': calendar,
-                    'guest': event['summary'],
-                    'start': event['start'].get('dateTime', event['start'].get('date')),
-                    'end': event['end'].get('dateTime', event['end'].get('date'))
-                }
-                print(reservation)
+    # for calendar in calendars:
+    events_result = service.events().list(
+        calendarId=calendars[calendar],
+        timeMin=now,
+        singleEvents=True,
+        orderBy='startTime'
+    ).execute()
+    events = events_result.get('items', [])
+    if not events:
+        print('No upcoming events found.')
+    else:
+        for event in events:
+            reservation = {
+                'place': calendar.strip(),
+                'guest': event['summary'].strip(),
+                'start': event['start'].get('dateTime', event['start'].get('date')).strip(),
+                'end': event['end'].get('dateTime', event['end'].get('date')).strip()
+            }
 
-# if booking not in db -> create
-# if booking in db and modification_date_cal > update_date_db -> update
-# try : create/update
-# except : send a log message
-                try:
-                    place = get_object_or_404(Place, name=calendar)
-                    price = get_reservation_price(
-                        place, reservation['start'], reservation['end'])
+            place = get_object_or_404(Place, name=calendar)
+            price = get_reservation_price(
+                place, reservation['start'], reservation['end'])
+            start = reservation['start']
+            end = reservation['end']
 
-                    guest = Guest.objects.filter(name=reservation['guest'])
-                    if not guest.exists():
-                        guest = Guest.objects.create(name=reservation['guest'])
+            guest = Guest.objects.filter(name=reservation['guest'])
+            if not guest.exists():
+                guest = Guest.objects.create(name=reservation['guest'])
+            else:
+                # guest = guest[0]
+                guest = guest.first()
 
-                    start = reservation['start']
-                    end = reservation['end']
+            db_booking = Reservation.objects.filter(
+                guest=guest
+            )
 
-                    # print("here")
+            if not db_booking.exists():
+                Reservation.objects.create(
+                    place=place,
+                    guest=guest,
+                    start=start,
+                    end=end,
+                    price=price
+                )
+            else:
+                db_booking.place = place,
+                db_booking.guest = guest,
+                db_booking.start = start,
+                db_booking.end = end,
+                db_booking.price = price
 
-                    # db_booking = Reservation.objects.filter(
-                    #     guest=guest,
-                    #     # place=place,
-                    #     # start=start
-                    # )
-                    # print("there")
-                    db_booking = None
-                    if not db_booking.exists():
-                        print("yo")
-                        Reservation.objects.create(
-                            place=place,
-                            guest=guest,
-                            start=start,
-                            end=end,
-                            price=price)
-                    else:
-                        db_booking = Reservation.objects.filter(
-                            guest=reservation['guest'],
-                            place=place,
-                            start=start
-                        )
-                except:
-                    print(
-                        f"######## ERROR ! Can't create {guest} reservation ########")
+
+def get_bookings(place):
+    """
+    Synchronize with Master calendar via a call to synchronize_calendar
+    Returns a list of all related place reservations
+    """
+    synchronize_calendars(place)
+    booked_dates = Reservation.objects.filter(place=place)
+    # if booking.place.name == f"{place.name}"]
+    return [booking for booking in booked_dates]
+
+
+def check_availability(place, start_date, end_date):
+    """
+    check if the related place is available during a given period
+    """
+    bookings = get_bookings(place)
+    for booking in bookings:
+        if (booking.start <= start_date <= booking.end) or (booking.start <= end_date <= booking.end):
+            return False
+    return True
 
 
 if __name__ == '__main__':

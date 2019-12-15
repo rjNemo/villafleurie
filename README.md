@@ -86,7 +86,7 @@ Le visiteur doit pouvoir :
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
 - changer la couleur des liens hypertextes
-- changer l'adresse de l'admin, personnaliser le back-end
+- changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
 - ajouter un diaporama en bas de page de location ?
 - deploy on Heroku or somewhere else … don't care
 - change placeholders for dates, add a date picker
@@ -98,8 +98,11 @@ Le visiteur doit pouvoir :
 - configure nginx server to serve media files
 - Centrer Bouton "Reserver" page location
 - Ajouter un titre "Disponibilités" au dessus du calendrier
-- page réservation : égayer avec des petites photos …
+- page réservation/services : égayer avec des petites photos …
+- Are guest unique ?
 
 ## BUGS
 
 - La synchro ne gère pas les heures dans le calendriers.
+
+élminer les variables inutiles dans synchro_calendar

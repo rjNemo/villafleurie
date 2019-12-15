@@ -143,11 +143,10 @@ def calendar(request, place_name):
     """
     returns a list of all related place reservations
     """
-    synchronize_calendars()
+    # synchronize_calendars()
     booked_dates = Reservation.objects.all()
     bookings = [
         booking for booking in booked_dates if booking.place.name == place_name]
-    # synchronize_calendars(sys.argv)
     context = {
         'place_name': place_name,
         'bookings': bookings

@@ -5,9 +5,10 @@ def get_reservation_price(place, start, end):
     """
     Compute booking price as a function of place and dates
     """
-    start = datetime.strptime(start, '%Y-%m-%d')
-    end = datetime.strptime(end, '%Y-%m-%d')
-
+    if type(start) == str:
+        start = datetime.strptime(start, '%Y-%m-%d')
+    if type(end) == str:
+        end = datetime.strptime(end, '%Y-%m-%d')
     nights = (end - start).days
     return place.price * nights
 
