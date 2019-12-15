@@ -31,6 +31,7 @@ Le visiteur doit pouvoir :
 - `PostgreSQL`
 - `Docker`
 - `NginX`
+- Google Calendar API
 
 ### Hébergement
 
@@ -95,8 +96,8 @@ Le visiteur doit pouvoir :
 ## TO DO
 
 - Gestion du calendrier
-  ..\_ Synchroniser avec Google calendar (qd Calendar mis à jour => update db et quand db mise à jour => update calendrier) service worker ?
-  ..\_ Ajouter un date picker dans le formulaire de réservation
+  ..\_ Tester la synchro avec Google calendar
+  ..\_ Ajouter un date picker dans le formulaire de réservation (j'ai pas envie de jouer avec JQuery)
 - Envoyer devis réservation par mail et notification aux hôtes
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
