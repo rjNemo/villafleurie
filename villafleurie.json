@@ -131,7 +131,7 @@
         "model": "rental.image",
         "pk": 1,
         "fields": {
-            "img": "img/villafleurie_t2_salon_1_wl81yXI.jpg",
+            "img": "img/villafleurie_t2_salon_1.jpg",
             "alt": "villafleurie T2 salon"
         }
     },
@@ -147,7 +147,7 @@
         "model": "rental.image",
         "pk": 3,
         "fields": {
-            "img": "img/villafleurie_t2_sallle_de_bain.jpg",
+            "img": "img/villafleurie_t2_salle_de_bain.jpg",
             "alt": "villafleurie T2 sallle de bain"
         }
     },

@@ -1,6 +1,5 @@
 from django import forms
 from .models import Reservation, Place, Guest
-# from _field.modelfields import Field
 
 
 class ReservationForm(forms.Form):
@@ -10,12 +9,16 @@ class ReservationForm(forms.Form):
         max_length=100,
         min_length=4,
         widget=forms.TextInput(attrs={
-                               'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Nom *'}),
+            'class': 'form-control form-control-lg form-control-a',
+            'placeholder': 'Nom *'
+        }),
         required=True)
     email = forms.EmailField(
         label='',
         widget=forms.EmailInput(attrs={
-                                'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Email *'}),
+            'class': 'form-control form-control-lg form-control-a',
+            'placeholder': 'Email *'
+        }),
         required=True
     )
     phone = forms.CharField(
@@ -23,7 +26,9 @@ class ReservationForm(forms.Form):
         max_length=30,
         min_length=4,
         widget=forms.TextInput(attrs={
-                               'class': 'form-control form-control-lg form-control-a', 'placeholder': 'Téléphone *'}),
+            'class': 'form-control form-control-lg form-control-a',
+            'placeholder': 'Téléphone *'
+        }),
         required=True)
     place = forms.ChoiceField(
         label='',
@@ -36,7 +41,11 @@ class ReservationForm(forms.Form):
         # max_length=100,
         min_length=4,
         widget=forms.Textarea(attrs={
-                              'class': 'form-control', 'cols': '45', 'rows': '8', 'placeholder': 'Message *'}),
+            'class': 'form-control',
+            'cols': '45',
+            'rows': '8',
+            'placeholder': 'Message *'
+        }),
         required=True)
     start = forms.DateField(
         label='',

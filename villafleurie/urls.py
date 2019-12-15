@@ -12,6 +12,7 @@ urlpatterns = [
     path('reservation/', views.reservation, name='reservation'),
     path('legal/', views.Legal.as_view(), name='legal'),
     path('partenaires/', views.Partners.as_view(), name='partners'),
+    path('services/', views.Services.as_view(), name='services'),
     path('', include('rental.urls', namespace='rental')),
 ]
 

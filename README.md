@@ -46,6 +46,7 @@ Le visiteur doit pouvoir :
 
 5. Page contact
 6. Page légale
+7. Page services
 
 ### Données
 
@@ -78,10 +79,8 @@ Le visiteur doit pouvoir :
 
 ## TO DO
 
-- Page service : navette + location
 - Gestion du calendrier
-  ..\_ Synchroniser avec Google calendar (qd Calendar mis à jour => update db et quand db mise à jour => update calendrier)
-  ..\_ Afficher les disponibilités (Présentation à la hauteur)
+  ..\_ Synchroniser avec Google calendar (qd Calendar mis à jour => update db et quand db mise à jour => update calendrier) service worker ?
   ..\_ Ajouter un date picker dans le formulaire de réservation
 - Envoyer devis réservation par mail et notification aux hôtes
 - Ajout page/module de paiement
@@ -97,6 +96,9 @@ Le visiteur doit pouvoir :
 - Mixpanel et Google Analytics
 - Récrire les mentions légales
 - configure nginx server to serve media files
+- Centrer Bouton "Reserver" page location
+- Ajouter un titre "Disponibilités" au dessus du calendrier
+- page réservation : égayer avec des petites photos …
 
 ## BUGS
 

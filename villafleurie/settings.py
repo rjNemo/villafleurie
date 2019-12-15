@@ -1,9 +1,10 @@
-import dj_database_url
+# import dj_database_url
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
@@ -119,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'fr'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Guadeloupe'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
