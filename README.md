@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/fhinkel/create-download-link.svg?branch=master)](https://travis-ci.org/fhinkel/create-download-link)
-
 # Villafleurie : moteur de réservation autonome
 
 `V 0.1 Le site est structuré. Il reste à appliquer le contenu et les visuels`
@@ -116,6 +114,7 @@ Le visiteur doit pouvoir :
 - Centrer Bouton "Reserver" page location
 - Ajouter un titre "Disponibilités" au dessus du calendrier
 - page réservation/services : égayer avec des petites photos …
+- Internationalisation
 
 ## BUGS
 

@@ -138,10 +138,23 @@ def update_calendar(reservation):
     # authenticate and build service
     # event.insert(calendarId, summary="Guest", description="Message", end, start )
     service, calendars = build_calendar_api_service()
+    start = reservation.start.strftime('%Y-%m-%d')
+    end = reservation.end.strftime('%Y-%m-%d')
+
     service.events().insert(
         calendarId=calendars[reservation.place.name],
-        summary=reservation.guest.name,
-        description=reservation.message,
-        end=reservation.end,
-        start=reservation.start
+        body={
+            "summary": reservation.guest.name,
+            "description": reservation.message,
+            "start": {
+                "date": start
+            },
+            "end": {
+                "date": end
+            },
+        }
     )
+
+
+if __name__ == "__main__":
+    update_calendar(reservation)
