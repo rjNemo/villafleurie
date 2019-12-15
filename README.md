@@ -19,9 +19,26 @@ Le visiteur doit pouvoir :
 - pouvoir contacter les propriétaires,
 - et pouvoir réserver
 
-## Structure
+## Architecture
 
-### Pages
+### Front-end
+
+- `Bootstrap 4`
+- `Javascript`
+- `JQuery`
+
+### Back-end
+
+- `Django 3.0`
+- `PostgreSQL`
+- `Docker`
+- `NginX`
+
+### Hébergement
+
+- Virtual Private Server
+
+## Pages
 
 1. Page d'accueil
 
@@ -48,7 +65,7 @@ Le visiteur doit pouvoir :
 6. Page légale
 7. Page services
 
-### Données
+## Données
 
 1. Logement :
 
@@ -99,10 +116,7 @@ Le visiteur doit pouvoir :
 - Centrer Bouton "Reserver" page location
 - Ajouter un titre "Disponibilités" au dessus du calendrier
 - page réservation/services : égayer avec des petites photos …
-- Are guest unique ?
 
 ## BUGS
 
 - La synchro ne gère pas les heures dans le calendriers.
-
-élminer les variables inutiles dans synchro_calendar
