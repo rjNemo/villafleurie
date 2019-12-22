@@ -2,6 +2,8 @@
 
 `V 0.1 Le site est structuré. Il reste à appliquer le contenu et les visuels`
 
+Auteur : Ruidy Nemausat
+
 ## Projet
 
 Créer un site vitrine présentant l'activité de Villafleurie :

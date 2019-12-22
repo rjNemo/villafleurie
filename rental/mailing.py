@@ -1,8 +1,12 @@
 from django.core.mail import send_mail, mail_admins
 from villafleurie.settings import EMAIL_HOST_USER, BASE_DIR
 import os
+# from celery import Celery
+
+# app = Celery('mailing', brocker='amqp://localhost/')
 
 
+# @app.task
 def send_confirmation_mail(name, email, template="ticket"):
     """
     Send confirmation message to customer

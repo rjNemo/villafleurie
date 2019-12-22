@@ -148,7 +148,7 @@
         "pk": 3,
         "fields": {
             "img": "img/villafleurie_t2_salle_de_bain.jpg",
-            "alt": "villafleurie T2 sallle de bain"
+            "alt": "villafleurie T2 salle de bain"
         }
     },
     {
@@ -1382,7 +1382,7 @@
             "user": 1,
             "content_type": 13,
             "object_id": "3",
-            "object_repr": "villafleurie T2 sallle de bain",
+            "object_repr": "villafleurie T2 salle de bain",
             "action_flag": 1,
             "change_message": "[{\"added\": {}}]"
         }
@@ -1408,7 +1408,7 @@
             "user": 1,
             "content_type": 13,
             "object_id": "3",
-            "object_repr": "villafleurie T2 sallle de bain",
+            "object_repr": "villafleurie T2 salle de bain",
             "action_flag": 2,
             "change_message": "[{\"changed\": {\"fields\": [\"place\"]}}]"
         }
@@ -1564,7 +1564,7 @@
             "user": 1,
             "content_type": 13,
             "object_id": "3",
-            "object_repr": "villafleurie T2 sallle de bain",
+            "object_repr": "villafleurie T2 salle de bain",
             "action_flag": 2,
             "change_message": "[{\"changed\": {\"fields\": [\"place\"]}}]"
         }
@@ -1577,7 +1577,7 @@
             "user": 1,
             "content_type": 13,
             "object_id": "3",
-            "object_repr": "villafleurie T2 sallle de bain",
+            "object_repr": "villafleurie T2 salle de bain",
             "action_flag": 2,
             "change_message": "[]"
         }
