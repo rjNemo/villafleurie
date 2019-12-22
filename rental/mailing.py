@@ -47,5 +47,5 @@ def send_quotation(reservation):
     Send quotation to customer
     """
     name = reservation.guest.name
-    email = reservation.guest.email
+    email = list(reservation.guest.email)
     send_confirmation_mail(name, email, template="welcome")

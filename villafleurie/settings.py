@@ -13,7 +13,7 @@ SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     # Heroku
     # db_from_env = dj_database_url.config(conn_max_age=500)
     # DATABASES['default'].update(db_from_env)
@@ -43,13 +43,13 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'villafleurie',
-            'USER': 'nemausat',
-            'PASSWORD': '',
-            'HOST': '',
-            # 'NAME': 'postgres',
-            # 'USER': 'postgres',
-            # 'HOST': 'db',
+            # 'NAME': 'villafleurie',
+            # 'USER': 'nemausat',
+            # 'PASSWORD': '',
+            # 'HOST': '',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db',
             'PORT': '5432',
             'ATOMIC_REQUESTS': True
         }
@@ -142,5 +142,5 @@ EMAIL_PORT = 587
 EMAIL_SUBJECT_PREFIX = "[VillaFleurieGuadeloupe] "
 DEFAULT_FROM_EMAIL = "'Nilka, VillaFleurie' <location.villaFleurie@gmail.com>"
 EMAIL_HOST_USER = "location.villafleurie@gmail.com"
-EMAIL_HOST_PASSWORD = os.environ.get('SECRET_KEY')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_PASSWORD = "location229818"
