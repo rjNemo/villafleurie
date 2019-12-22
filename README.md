@@ -118,6 +118,7 @@ Le visiteur doit pouvoir :
 - Ajouter un titre "Disponibilités" au dessus du calendrier
 - page réservation/services : égayer avec des petites photos …
 - Internationalisation
+- T2 Corail, T3 Azur
 
 ## BUGS
 
