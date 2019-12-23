@@ -99,15 +99,13 @@ Le visiteur doit pouvoir :
 
 - Gestion du calendrier
   ..\_ Tester la synchro avec Google calendar
-  ..\_ Ajouter un date picker dans le formulaire de réservation (j'ai pas envie de jouer avec JQuery)
+  ..\_ Ajouter un date picker dans le formulaire de réservation, changer les placeholders (j'ai pas envie de jouer avec JQuery)
 - Envoyer devis réservation par mail et notification aux hôtes (put it in a background process, personnaliser les htmails : contact, admin et réservation)
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
 - changer la couleur des liens hypertextes
 - changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
 - ajouter un diaporama en bas de page de location ?
-- deploy on Heroku or somewhere else … don't care
-- change placeholders for dates, add a date picker
 - factoriser le code de réservation
 - formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
   \_ nettoyer les statics files. Garder que les définitions utiles
@@ -122,4 +120,3 @@ Le visiteur doit pouvoir :
 ## BUGS
 
 - La synchro ne gère pas les heures dans le calendriers
-- le chargement du calendrier est lent …

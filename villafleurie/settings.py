@@ -9,7 +9,7 @@ ADMINS = [
 ]
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
+# SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
@@ -58,11 +58,14 @@ else:
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'villafleurie.herokuapp.com'
-]
+
+if os.environ.get('ENV') == 'PRODUCTION':
+    ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
+else:
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+        'localhost'
+    ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
