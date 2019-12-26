@@ -111,11 +111,13 @@ Le visiteur doit pouvoir :
   \_ nettoyer les statics files. Garder que les définitions utiles
 - Mixpanel et Google Analytics
 - Récrire les mentions légales
-- configure nginx server to serve media files
+- configure nginx reverse-proxy to serve static/media files
 - Centrer Bouton "Reserver" page location
 - Ajouter un titre "Disponibilités" au dessus du calendrier
 - page réservation/services : égayer avec des petites photos …
 - Internationalisation
+- Connect to domain name
+- Système de facturation: CRUD Réservations et envoi. Automatisation si possible
 
 ## BUGS
 
