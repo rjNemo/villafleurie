@@ -8,5 +8,5 @@ villafleurie/staticfiles/
 .vscode/
 rental/client_secrets.json
 token.pickle
-prod.env
+*.env
 *.tar

@@ -103,9 +103,7 @@ Le visiteur doit pouvoir :
 - Envoyer devis réservation par mail et notification aux hôtes (put it in a background process, personnaliser les htmails : contact, admin et réservation)
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
-- changer la couleur des liens hypertextes
 - changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
-- ajouter un diaporama en bas de page de location ?
 - factoriser le code de réservation
 - formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
   \_ nettoyer les statics files. Garder que les définitions utiles
@@ -118,6 +116,8 @@ Le visiteur doit pouvoir :
 - Internationalisation
 - Connect to domain name
 - Système de facturation: CRUD Réservations et envoi. Automatisation si possible
+- Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
+- Vider le contenu du folder root ?
 
 ## BUGS
 

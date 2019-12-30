@@ -1,4 +1,3 @@
-# import dj_database_url
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -9,15 +8,10 @@ ADMINS = [
 ]
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-# SECRET_KEY = 'q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$'
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    # Heroku
-    # db_from_env = dj_database_url.config(conn_max_age=500)
-    # DATABASES['default'].update(db_from_env)
-    # Docker
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -28,16 +22,19 @@ if os.environ.get('ENV') == 'PRODUCTION':
             'ATOMIC_REQUESTS': True
         }
     }
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-    STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
-    # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-    os.makedirs(STATIC_TMP, exist_ok=True)
-    os.makedirs(STATIC_ROOT, exist_ok=True)
+    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    # STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
+    # # Extra places for collectstatic to find static files.
+    # STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+    # os.makedirs(STATIC_TMP, exist_ok=True)
+    # os.makedirs(STATIC_ROOT, exist_ok=True)
+    STATIC_ROOT = "/static_files/"
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CONN_MAX_AGE = 500
+
+
 else:
     DEBUG = True
     DATABASES = {
@@ -55,17 +52,22 @@ else:
         }
     }
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "rental", "static", "rental"), ]
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost'
+]
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
-else:
-    ALLOWED_HOSTS = [
-        '127.0.0.1',
-        'localhost'
-    ]
+# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
+# # Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+# os.makedirs(STATIC_TMP, exist_ok=True)
+# os.makedirs(STATIC_ROOT, exist_ok=True)
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -81,7 +83,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -146,4 +148,3 @@ EMAIL_SUBJECT_PREFIX = "[VillaFleurieGuadeloupe] "
 DEFAULT_FROM_EMAIL = "'Nilka, VillaFleurie' <location.villaFleurie@gmail.com>"
 EMAIL_HOST_USER = "location.villafleurie@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_PASSWORD = "location229818"

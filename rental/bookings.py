@@ -81,7 +81,10 @@ def synchronize_calendars(place):
 
     place = get_object_or_404(Place, name=place.name)
     price = get_reservation_price(
-        place, reservation['start'], reservation['end'])
+        place,
+        reservation['start'],
+        reservation['end']
+    )
     start = reservation['start']
     end = reservation['end']
 
