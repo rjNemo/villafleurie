@@ -10,7 +10,7 @@ services:
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py loaddata villafleurie.json && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
-    container_name: villafleurie
+    # container_name: villafleurie
     volumes:
       - .:/villafleurie
       - static_files:/static_files
@@ -29,3 +29,5 @@ services:
       - 80:80
     volumes:
       - static_files:/static_files
+    depends_on:
+      - web

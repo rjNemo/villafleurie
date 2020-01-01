@@ -29,7 +29,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     # STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
     # os.makedirs(STATIC_TMP, exist_ok=True)
     # os.makedirs(STATIC_ROOT, exist_ok=True)
-    STATIC_ROOT = "/static_files/"
+    STATIC_ROOT = "/static/"
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CONN_MAX_AGE = 500
@@ -56,6 +56,7 @@ else:
     # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 ALLOWED_HOSTS = [
+    '0.0.0.0',
     '127.0.0.1',
     'localhost'
 ]
