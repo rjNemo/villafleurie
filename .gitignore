@@ -3,7 +3,7 @@
 env/
 __pycache__/
 rental/__pycache__/
-rental/migrations/
+# rental/migrations/
 villafleurie/__pycache__/
 villafleurie/staticfiles/
 villafleurie/static_files/

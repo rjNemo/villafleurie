@@ -1,16 +1,25 @@
 version: "3"
 
 volumes:
+  dbdata:
   static_files:
   media:
 
 services:
   db:
     image: postgres
-
+    environment:
+      POSTGRES_USER: villafleurie
+      POSTGRES_DB: villafleurie
+      POSTGRES_PASS: villafleurie
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
   web:
     build: .
-    command: bash -c "python manage.py migrate && python manage.py loaddata villafleurie.json && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
+    # command: bash -c "python manage.py migrate && python manage.py loaddata villafleurie.json && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
     volumes:
       - .:/villafleurie
       - static_files:/static_files
@@ -20,7 +29,6 @@ services:
     depends_on:
       - db
     env_file: prod.env
-
   nginx:
     build:
       context: .

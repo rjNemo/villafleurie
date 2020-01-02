@@ -7,25 +7,25 @@ ADMINS = [
     ("VillaFleurie", "location.villafleurie@gmail.com")
 ]
 
-# os.environ.get('SECRET_KEY')
-SECRET_KEY = "q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$"
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
+            'NAME': 'villafleurie',
+            'USER': 'villafleurie',
+            'PASSWORD': os.environ.get("PASSWORD"),
             'HOST': 'db',
             'PORT': '5432',
             'ATOMIC_REQUESTS': True
         }
     }
-    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+    ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+    # CSRF_COOKIE_SECURE = True
+    # SESSION_COOKIE_SECURE = True
     CONN_MAX_AGE = 500
 
     LOGGING = {
@@ -65,10 +65,10 @@ else:
     }
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "rental", "static", "rental"), ]
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost'
-]
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+        'localhost'
+    ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
