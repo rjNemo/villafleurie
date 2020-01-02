@@ -21,12 +21,30 @@ if os.environ.get('ENV') == 'PRODUCTION':
             'ATOMIC_REQUESTS': True
         }
     }
-
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CONN_MAX_AGE = 500
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, "debug.log")
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    }
 
 else:
     DEBUG = True
@@ -47,7 +65,6 @@ else:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "rental", "static", "rental"), ]
 
 ALLOWED_HOSTS = [
-    '0.0.0.0',
     '127.0.0.1',
     'localhost'
 ]

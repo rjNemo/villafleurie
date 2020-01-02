@@ -11,3 +11,4 @@ rental/client_secrets.json
 token.pickle
 *.env
 *.tar
+debug.log

@@ -109,15 +109,15 @@ Le visiteur doit pouvoir :
   \_ nettoyer les statics files. Garder que les définitions utiles
 - Mixpanel et Google Analytics
 - Récrire les mentions légales
-- configure nginx reverse-proxy to serve static/media files
 - Centrer Bouton "Reserver" page location
 - Ajouter un titre "Disponibilités" au dessus du calendrier
 - page réservation/services : égayer avec des petites photos …
 - Internationalisation
-- Connect to domain name
+- Push docker to Vultr. Connect to domain name
 - Système de facturation: CRUD Réservations et envoi. Automatisation si possible
 - Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
 - Vider le contenu du folder root ?
+- Confirmation message contact envoyé
 
 ## BUGS
 
