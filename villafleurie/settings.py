@@ -7,7 +7,8 @@ ADMINS = [
     ("VillaFleurie", "location.villafleurie@gmail.com")
 ]
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# os.environ.get('SECRET_KEY')
+SECRET_KEY = "q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$"
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
@@ -51,14 +52,14 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            # 'NAME': 'villafleurie',
-            # 'USER': 'nemausat',
-            # 'PASSWORD': '',
-            # 'HOST': '',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'HOST': 'db',
-            'PORT': '5432',
+            'NAME': 'villafleurie',
+            'USER': 'nemausat',
+            'PASSWORD': '',
+            'HOST': '',
+            # 'NAME': 'postgres',
+            # 'USER': 'postgres',
+            # 'HOST': 'db',
+            # 'PORT': '5432',
             'ATOMIC_REQUESTS': True
         }
     }

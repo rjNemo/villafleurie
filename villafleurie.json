@@ -105,6 +105,14 @@
     },
     {
         "model": "sessions.session",
+        "pk": "1r44csdyewb0boocembq7t5ki79vpzt8",
+        "fields": {
+            "session_data": "NzhmMTE3YWExMjExY2FjZDI4NDI4MmQxNDI1MjQwYzViZjczM2Q3Mjp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1NTkwY2NlZjM1YzFhNDhiNjE4ZGJiNWI3YjZkZWUwZjFmYjU0NjYyIn0=",
+            "expire_date": "2020-01-16T17:09:55.157Z"
+        }
+    },
+    {
+        "model": "sessions.session",
         "pk": "5kwgp6mr5umgt78man1s629lokcyagcp",
         "fields": {
             "session_data": "YjEwNmVhMzBlZTI5NDhiMWQyZDQ4YjkxZjFjMDQ0NWU2ZDc1NjkzZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhZjNhMTFhZWVmY2ViNjFiMGZjYjZhOGU1Yzg2NjBjMzA3MTAwZmQwIn0=",
@@ -1179,7 +1187,7 @@
         "pk": 2,
         "fields": {
             "password": "pbkdf2_sha256$180000$0vN9vhsYeNft$6ema2p7l0l6muwDnPcpNO6dxJQc4qG7hIoyvzcBBAXc=",
-            "last_login": "2019-12-15T07:51:13.763Z",
+            "last_login": "2020-01-02T17:09:55.143Z",
             "is_superuser": true,
             "username": "ruidy",
             "first_name": "Ruidy",
