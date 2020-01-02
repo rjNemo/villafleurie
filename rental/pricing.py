@@ -2,9 +2,7 @@ from datetime import datetime
 
 
 def get_reservation_price(place, start, end):
-    """
-    Compute booking price as a function of place and dates
-    """
+    """ Compute booking price as a function of place and dates """
     if type(start) == str:
         start = datetime.strptime(start, '%Y-%m-%d')
     if type(end) == str:

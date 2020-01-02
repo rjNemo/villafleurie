@@ -11,7 +11,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -22,18 +21,12 @@ if os.environ.get('ENV') == 'PRODUCTION':
             'ATOMIC_REQUESTS': True
         }
     }
-    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-    # STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
-    # # Extra places for collectstatic to find static files.
-    # STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-    # os.makedirs(STATIC_TMP, exist_ok=True)
-    # os.makedirs(STATIC_ROOT, exist_ok=True)
-    STATIC_ROOT = "/static/"
+
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CONN_MAX_AGE = 500
-
 
 else:
     DEBUG = True
@@ -52,23 +45,12 @@ else:
         }
     }
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "rental", "static", "rental"), ]
-    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
     'localhost'
 ]
-
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-# STATIC_TMP = os.path.join(PROJECT_ROOT, 'static')
-# # Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-# os.makedirs(STATIC_TMP, exist_ok=True)
-# os.makedirs(STATIC_ROOT, exist_ok=True)
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -84,7 +66,6 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,7 +101,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'villafleurie.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -137,10 +117,11 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/static_files/"
 
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True

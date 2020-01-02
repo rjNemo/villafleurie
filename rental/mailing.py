@@ -8,9 +8,7 @@ import os
 
 # @app.task
 def send_confirmation_mail(name, email, template="ticket"):
-    """
-    Send confirmation message to customer
-    """
+    """ Send confirmation message to customer """
     subject = "Nous avons reçu votre message"
     message = f" Merci {name}, Bien reçu nous revenons vers vous rapidement ! - HtmlMessage"
 
@@ -28,9 +26,7 @@ def send_confirmation_mail(name, email, template="ticket"):
 
 
 def send_notification(subject, name, message, template="activation"):
-    """
-    Send notification to admins
-    """
+    """ Send notification to admins """
     html_path = os.path.join(BASE_DIR, 'rental/templates/rental/html/')
     with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
         html_message = html.read()
@@ -43,9 +39,7 @@ def send_notification(subject, name, message, template="activation"):
 
 
 def send_quotation(reservation):
-    """
-    Send quotation to customer
-    """
+    """ Send quotation to customer """
     name = reservation.guest.name
     email = list(reservation.guest.email)
     send_confirmation_mail(name, email, template="welcome")

@@ -12,9 +12,8 @@ from villafleurie.settings import BASE_DIR
 
 
 def build_calendar_api_service():
-    """
-    Build Google Calendar API service and returns calendar list and service
-    """
+    """ Build Google Calendar API service and returns calendar list and service """
+
     creds = None
     # If modifying these scopes, delete the file token.pickle.
     SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -72,13 +71,11 @@ def get_calendar_reservations(place):
 
 
 def synchronize_calendars(place):
-    """
-    Get a complete list of existing bookings in calendar
+    """ Get a complete list of existing bookings in calendar
     Creates reservation if not in db, update if already in db
-    Delete from db reservation deleted from cal
-    """
-    reservation = get_calendar_reservations(place)
+    Delete from db reservation deleted from cal """
 
+    reservation = get_calendar_reservations(place)
     place = get_object_or_404(Place, name=place.name)
     price = get_reservation_price(
         place,
@@ -115,10 +112,9 @@ def synchronize_calendars(place):
 
 
 def get_bookings(place):
-    """
-    Synchronize with Master calendar via a call to synchronize_calendar
-    Returns a list of all related place reservations
-    """
+    """ Synchronize with Master calendar via a call to synchronize_calendar
+    Returns a list of all related place reservations """
+
     synchronize_calendars(place)
     booked_dates = Reservation.objects.filter(place=place)
     # if booking.place.name == f"{place.name}"]
@@ -126,9 +122,8 @@ def get_bookings(place):
 
 
 def check_availability(place, start_date, end_date):
-    """
-    check if the related place is available during a given period
-    """
+    """ check if the related place is available during a given period """
+
     bookings = get_bookings(place)
     for booking in bookings:
         if (booking.start <= start_date <= booking.end) or (booking.start <= end_date <= booking.end):
