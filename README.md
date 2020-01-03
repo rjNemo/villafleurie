@@ -99,8 +99,8 @@ Le visiteur doit pouvoir :
 
 ## TO DO
 
-- Ajouter un date picker dans le formulaire de réservation, changer les placeholders (j'ai pas envie de jouer avec JQuery)
-- Envoyer devis réservation par mail et notification aux hôtes (put it in a background process, personnaliser les htmails : contact, admin et réservation)
+- Ajouter un date picker dans le formulaire de réservation
+- Envoyer devis réservation par mail et notification aux hôtes (personnaliser les htmails : contact, admin et réservation)
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
 - changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)

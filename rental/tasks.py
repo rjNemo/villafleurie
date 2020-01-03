@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from django.core.mail import send_mail, mail_admins
+from django.shortcuts import render
 from villafleurie.settings import EMAIL_HOST_USER, BASE_DIR
 from rental.bookings import build_calendar_api_service
 import os
@@ -11,16 +12,24 @@ def send_confirmation_mail(name, email, template="ticket"):
     """ Send confirmation message to customer """
     subject = "Nous avons reçu votre message"
     message = f" Merci {name}, Bien reçu nous revenons vers vous rapidement ! - HtmlMessage"
-
     html_path = os.path.join(BASE_DIR, 'rental/templates/rental/html/')
     with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
         html_message = html.read()
+    # html_path = os.path.join(
+    #     'rental/templates/rental/mails/', f"{template}.html")
+    # context = {
+    #     "name": name,
+    #     "email": email,
+    #     "message": message
+    # }
+    # html_message = render(request, html_path, context)
 
     send_mail(
         subject,
         message,
         EMAIL_HOST_USER,
         [email],
+        # html_message=html_message.content
         html_message=html_message
     )
 
