@@ -123,12 +123,11 @@ def reservation(request):
                         end=end,
                         price=price
                     )
-                    send_quotation.delay(reservation)
-                    update_calendar(reservation)  # add to celery tasks too
+                    send_quotation.delay(name, email)
+                    update_calendar(reservation)
                     context = {
                         'reservation': reservation
                     }
-
                     return render(request, 'rental/merci.html', context)
                 else:
                     context = {'form': form}

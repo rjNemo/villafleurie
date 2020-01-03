@@ -54,14 +54,14 @@ class ReservationForm(forms.Form):
         # min_length=4,
         widget=forms.DateInput(attrs={
             'class': 'form-control form-control-lg form-control-a',
-            'placeholder': 'Début *'}),
+            'placeholder': '01/01/2020 *'}),
         required=True)
     end = forms.DateField(
         label='',
         input_formats=['%d/%m/%Y'],
         widget=forms.DateInput(attrs={
             'class': 'form-control form-control-lg form-control-a',
-            'placeholder': 'Fin *'}),
+            'placeholder': '31/12/2020 *'}),
         required=True)
 
 

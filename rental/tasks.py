@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from django.core.mail import send_mail, mail_admins
 from villafleurie.settings import EMAIL_HOST_USER, BASE_DIR
+from rental.bookings import build_calendar_api_service
 import os
 
 
@@ -30,7 +31,6 @@ def send_notification(subject, name, message, template="activation"):
     html_path = os.path.join(BASE_DIR, 'rental/templates/rental/html/')
     with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
         html_message = html.read()
-
     mail_admins(
         f"{name} a envoyé un message",
         f"Sujet : {subject}\nMessage : {message}",
@@ -39,8 +39,6 @@ def send_notification(subject, name, message, template="activation"):
 
 
 @shared_task
-def send_quotation(reservation):
+def send_quotation(name, email):
     """ Send quotation to customer """
-    name = reservation.guest.name
-    email = list(reservation.guest.email)
     send_confirmation_mail(name, email, template="welcome")

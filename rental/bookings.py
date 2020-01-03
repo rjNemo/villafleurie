@@ -16,7 +16,10 @@ def build_calendar_api_service():
 
     creds = None
     # If modifying these scopes, delete the file token.pickle.
-    SCOPES = ['https://www.googleapis.com/auth/calendar']
+    SCOPES = [
+        'https://www.googleapis.com/auth/calendar',
+        'https://www.googleapis.com/auth/calendar.events'
+    ]
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
@@ -42,7 +45,6 @@ def build_calendar_api_service():
         'T2': "burik7aclvhc7vsboh06c179uo@group.calendar.google.com",
         'T3': "fu7h30p0gk4a2p4nvo7nsbgpok@group.calendar.google.com"
     }
-
     return service, calendars
 
 
@@ -117,7 +119,6 @@ def get_bookings(place):
 
     synchronize_calendars(place)
     booked_dates = Reservation.objects.filter(place=place)
-    # if booking.place.name == f"{place.name}"]
     return [booking for booking in booked_dates]
 
 
@@ -134,7 +135,6 @@ def check_availability(place, start_date, end_date):
 def update_calendar(reservation):
     """ push new reservation to master calendar """
     # authenticate and build service
-    # event.insert(calendarId, summary="Guest", description="Message", end, start )
     service, calendars = build_calendar_api_service()
     start = reservation.start.strftime('%Y-%m-%d')
     end = reservation.end.strftime('%Y-%m-%d')
@@ -151,8 +151,8 @@ def update_calendar(reservation):
                 "date": end
             },
         }
-    )
+    ).execute()
 
 
-if __name__ == "__main__":
-    update_calendar(reservation)
+# if __name__ == "__main__":
+#     update_calendar(reservation)

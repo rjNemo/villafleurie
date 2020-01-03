@@ -1,6 +1,6 @@
 # Villafleurie : moteur de réservation autonome
 
-`V 0.1 Le site est structuré. Il reste à appliquer le contenu et les visuels`
+`V 1.0 Le site est prêt à l'emploi`
 
 Auteur : Ruidy Nemausat
 
@@ -46,7 +46,7 @@ Le visiteur doit pouvoir :
 1. Page d'accueil
 
 - Landing page
-- CTA = "Réserver maintenant"
+- CTA = "Réserver"
 
 2. Page logement
 
@@ -99,8 +99,6 @@ Le visiteur doit pouvoir :
 
 ## TO DO
 
-- Gestion du calendrier
-- Tester la synchro avec Google calendar
 - Ajouter un date picker dans le formulaire de réservation, changer les placeholders (j'ai pas envie de jouer avec JQuery)
 - Envoyer devis réservation par mail et notification aux hôtes (put it in a background process, personnaliser les htmails : contact, admin et réservation)
 - Ajout page/module de paiement
@@ -119,7 +117,7 @@ Le visiteur doit pouvoir :
 - Système de facturation: CRUD Réservations et envoi. Automatisation si possible
 - Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
 - Vider le contenu du folder root ?
-- Page confirmation message contact envoyé
+- Pages confirmation message contact envoyé, reservations réussies ou non (expliquer pourquoi)
 - SSL certificate
 
 ## BUGS
