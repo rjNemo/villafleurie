@@ -29,15 +29,17 @@ Le visiteur doit pouvoir :
 
 ### Back-end
 
-- `Django 3.0`
-- `PostgreSQL`
+- `Django 3.0` python based web application
+- `PostgreSQL` object-relational database
+- `Celery` asynchronous task queue
+- `RabbitMQ` messaging broker
+- `NginX` reverse-proxy & static files server
 - `Docker`
-- `NginX`
 - Google Calendar API
 
 ### Hébergement
 
-- Virtual Private Server
+- VPS on [Vultr](https://my.vultr.com/subs/?SUBID=32140017)
 
 ## Pages
 
@@ -98,8 +100,8 @@ Le visiteur doit pouvoir :
 ## TO DO
 
 - Gestion du calendrier
-  ..\_ Tester la synchro avec Google calendar
-  ..\_ Ajouter un date picker dans le formulaire de réservation, changer les placeholders (j'ai pas envie de jouer avec JQuery)
+- Tester la synchro avec Google calendar
+- Ajouter un date picker dans le formulaire de réservation, changer les placeholders (j'ai pas envie de jouer avec JQuery)
 - Envoyer devis réservation par mail et notification aux hôtes (put it in a background process, personnaliser les htmails : contact, admin et réservation)
 - Ajout page/module de paiement
 - ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
@@ -117,8 +119,10 @@ Le visiteur doit pouvoir :
 - Système de facturation: CRUD Réservations et envoi. Automatisation si possible
 - Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
 - Vider le contenu du folder root ?
-- Confirmation message contact envoyé
+- Page confirmation message contact envoyé
+- SSL certificate
 
 ## BUGS
 
 - La synchro ne gère pas les heures dans le calendriers
+- Bouton réserver dans la Navbar …

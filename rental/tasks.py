@@ -1,12 +1,11 @@
+from __future__ import absolute_import, unicode_literals
+from celery import shared_task
 from django.core.mail import send_mail, mail_admins
 from villafleurie.settings import EMAIL_HOST_USER, BASE_DIR
 import os
-# from celery import Celery
-
-# app = Celery('mailing', brocker='amqp://localhost/')
 
 
-# @app.task
+@shared_task
 def send_confirmation_mail(name, email, template="ticket"):
     """ Send confirmation message to customer """
     subject = "Nous avons reçu votre message"
@@ -25,6 +24,7 @@ def send_confirmation_mail(name, email, template="ticket"):
     )
 
 
+@shared_task
 def send_notification(subject, name, message, template="activation"):
     """ Send notification to admins """
     html_path = os.path.join(BASE_DIR, 'rental/templates/rental/html/')
@@ -38,6 +38,7 @@ def send_notification(subject, name, message, template="activation"):
     )
 
 
+@shared_task
 def send_quotation(reservation):
     """ Send quotation to customer """
     name = reservation.guest.name

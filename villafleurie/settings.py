@@ -137,7 +137,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = "/static_files/"
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/media/'
 
@@ -148,3 +147,5 @@ EMAIL_SUBJECT_PREFIX = "[VillaFleurieGuadeloupe] "
 DEFAULT_FROM_EMAIL = "'Nilka, VillaFleurie' <location.villaFleurie@gmail.com>"
 EMAIL_HOST_USER = "location.villafleurie@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+CELERY_BROKER_URL = "amqp://rabbitmq"

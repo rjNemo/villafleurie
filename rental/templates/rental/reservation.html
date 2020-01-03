@@ -1,83 +1,118 @@
-{% extends 'rental/base.html'%}
-{% load static %}
+{% extends 'rental/base.html'%} {% load static %} {% block content %}
 
-{% block content %}
-
-  <!--/ Intro Single star /-->
-  <section class="intro-single">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box">
-            <h1 class="title-single">Réservation</h1>
-            <span class="color-text-a">Vous souhaiter effectuer une demande de réservation ?
-            Vous avez des questions, des suggestions d’amélioration ou des commentaires ?
-            <br>Laissez-nous un message !</span>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-4">
-          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="{% url 'rental:index' %}">Accueil</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Réservation
-              </li>
-            </ol>
-          </nav>
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Réservation</h1>
+          <span class="color-text-a"
+            >Vous souhaiter effectuer une demande de réservation ? Vous avez des
+            questions, des suggestions d’amélioration ou des commentaires ?
+            <br />Laissez-nous un message !</span
+          >
         </div>
       </div>
+      <div class="col-md-12 col-lg-4">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:index' %}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Réservation
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
-  </section>
-  <!--/ Intro Single End /-->
+  </div>
+</section>
 
-  <section class="property-single nav-arrow-b">
-    <div class="container">
-      <div class="col-md-12">
-        <p><strong>Réservez</strong>&nbsp;votre séjour au coeur de la station balnéaire du Gosier à deux pas des plages à un tarif sympa<strong>.</strong></p>
-        <p >Notre établissement propose à la location un <strong><a href="/T2/">cosy T2</a></strong> et un <strong><a href="/T3/">spacieux T3</a></strong>. Il est <strong>idéalement situé</strong> dans le bourg du Gosier. Ainsi profitez des <strong>plages et activités</strong> de la dynamique et chaleureuse ville du Gosier tout en bénéficiant du <strong>calme</strong> nécessaire à vos séances de&nbsp;<i>farniente.</i></p>
-        <p ><strong>Excellent rapport qualité/prix</strong> et une situation géographique qui convient parfaitement aux <strong>séjours touristiques et d’affaires</strong>.<br>Possibilité de location mensuelle de moins de 4 mois à tarifs dégressifs.</p>
-
-
+<section class="property-single nav-arrow-b">
+  <div class="container">
+    <div class="col-md-12">
+      <p>
+        <strong>Réservez</strong>&nbsp;votre séjour au coeur de la station
+        balnéaire du Gosier à deux pas des plages à un tarif sympa<strong
+          >.</strong
+        >
+      </p>
+      <p>
+        Notre établissement propose à la location un
+        <strong><a href="/T2/">cosy T2</a></strong> et un
+        <strong><a href="/T3/">spacieux T3</a></strong
+        >. Il est <strong>idéalement situé</strong> dans le bourg du Gosier.
+        Ainsi profitez des <strong>plages et activités</strong> de la dynamique
+        et chaleureuse ville du Gosier tout en bénéficiant du
+        <strong>calme</strong> nécessaire à vos séances de&nbsp;<i
+          >farniente.</i
+        >
+      </p>
+      <p>
+        <strong>Excellent rapport qualité/prix</strong> et une situation
+        géographique qui convient parfaitement aux
+        <strong>séjours touristiques et d’affaires</strong>.<br />Possibilité de
+        location mensuelle de moins de 4 mois à tarifs dégressifs.
+      </p>
 
       <div class="row">
         <div class="col-md-6 col-lg-6">
           <div class="title-box-d">
             <h2 class="title-d">Tarifs T2</h2>
           </div>
-          <ul >
+          <ul>
             <li>55 € la nuit</li>
             <li>350 € la semaine (au lieu de 385 €)</li>
             <li>645 € pour 2 semaines (au lieu de 825 €)</li>
             <li>960 € le mois (au lieu de 1650 €)</li>
           </ul>
-          <p><a href="#reservation"><button class="btn btn-a">Réserver le Cosy T2</button></a></p>
+          <p>
+            <a href="#reservation"
+              ><button class="btn btn-a">Réserver le Cosy T2</button></a
+            >
+          </p>
         </div>
         <div class="col-md-6 col-lg-6">
           <div class="title-box-d">
             <h2 class="title-d">Tarifs T3</h2>
           </div>
-          <ul >
+          <ul>
             <li>60 € la nuit</li>
             <li>385 € la semaine (au lieu de 420 €)</li>
             <li>705 € pour 2 semaines (au lieu de 900 €)</li>
             <li>1050 € le mois (au lieu de 1800 €)</li>
           </ul>
-          <p><a href="#reservation"><button class="btn btn-a">Réserver le Spacieux T3</button></a></p>
+          <p>
+            <a href="#reservation"
+              ><button class="btn btn-a">Réserver le Spacieux T3</button></a
+            >
+          </p>
         </div>
       </div>
 
-        <p>Vous êtes intéressés ? <br/>Vérifiez les disponibilités à l'aide du calendrier ci-contre et en bas de page.</p>
+      <p>
+        Vous êtes intéressés ? <br />Vérifiez les disponibilités à l'aide du
+        calendrier ci-contre et en bas de page.
+      </p>
 
-        <hr>
-        <p ><em>Les tarifs ci-dessus concernent une réservation pour <strong>2 personnes</strong>. <br/> Prévoir un coût additionnel de <strong>15 € par personnes</strong> au-delà de 2 personnes. <br/>Les enfant bénéficient d'un tarif préférentiel, <strong>5 €</strong> seulement par <strong>enfant de moins de 10 ans</strong>.</em></p>
+      <hr />
+      <p>
+        <em
+          >Les tarifs ci-dessus concernent une réservation pour
+          <strong>2 personnes</strong>. <br />
+          Prévoir un coût additionnel de
+          <strong>15 € par personnes</strong> au-delà de 2 personnes. <br />Les
+          enfant bénéficient d'un tarif préférentiel,
+          <strong>5 €</strong> seulement par
+          <strong>enfant de moins de 10 ans</strong>.</em
+        >
+      </p>
     </div>
   </div>
 </section>
 
-
-  {% include 'rental/reservation_form.html' %}
-
-
-{% endblock %}
+{% include 'rental/reservation_form.html' %} {% endblock %}

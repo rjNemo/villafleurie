@@ -7,7 +7,7 @@ volumes:
 
 services:
   db:
-    image: postgres
+    image: postgres:alpine
     environment:
       POSTGRES_USER: villafleurie
       POSTGRES_DB: villafleurie
@@ -16,7 +16,8 @@ services:
       - dbdata:/var/lib/postgresql/data
     ports:
       - 5432:5432
-  web:
+
+  web: &web
     build: .
     # command: bash -c "python manage.py migrate && python manage.py loaddata villafleurie.json && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
     command: bash -c "python manage.py migrate && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
@@ -28,7 +29,10 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - rabbitmq
+      - celery
     env_file: prod.env
+
   nginx:
     build:
       context: .
@@ -40,3 +44,14 @@ services:
       - media:/media
     depends_on:
       - web
+
+  celery:
+    <<: *web
+    command: celery -A villafleurie worker --loglevel=info
+    ports: []
+    depends_on:
+      - rabbitmq
+      - db
+
+  rabbitmq:
+    image: rabbitmq:alpine

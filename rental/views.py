@@ -7,7 +7,7 @@ from .forms import ReservationForm, ContactForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
 from rental.bookings import check_availability, synchronize_calendars, update_calendar
-from rental.mailing import send_confirmation_mail, send_notification, send_quotation
+from rental.tasks import send_confirmation_mail, send_notification, send_quotation
 
 
 def index(request):
@@ -123,8 +123,8 @@ def reservation(request):
                         end=end,
                         price=price
                     )
-                    send_quotation(reservation)
-                    update_calendar(reservation)
+                    send_quotation.delay(reservation)
+                    update_calendar(reservation)  # add to celery tasks too
                     context = {
                         'reservation': reservation
                     }
@@ -166,8 +166,8 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
 
-            send_confirmation_mail(name, email)
-            send_notification(subject, name, message)
+            send_confirmation_mail.delay(name, email)
+            send_notification.delay(subject, name, message)
     else:
         form = ContactForm()
     context = {'form': form}
