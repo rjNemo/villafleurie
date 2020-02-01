@@ -22,14 +22,7 @@ def index(request):
 
 def liste_location(request):
     places = Place.objects.all()
-    images = []
-    for place in places:
-        imgs = place.images.all()
-        images.append(imgs)
-    context = {
-        'places': places,
-        'images': images
-    }
+    context = {'places': places}
     return render(request, 'rental/list_place.html', context)
 
 
@@ -40,57 +33,19 @@ def location(request, place_name='T2'):
         'place': place,
         'images': images
     }
-    if request.method == 'POST':
-        form = ReservationForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
-            place_name = form.cleaned_data['place']
-            start = form.cleaned_data['start']
-            end = form.cleaned_data['end']
-            try:
-                guest = Guest.objects.filter(email=email)
-                if not guest.exists():
-                    guest = Guest.objects.create(
-                        email=email,
-                        name=name,
-                        phone=phone
-                    )
-                else:
-                    guest = guest.first()
 
-                place = get_object_or_404(Place, name=place_name)
-                available = check_availability(place, start, end)
-                if available:
-                    price = get_reservation_price(place, start, end)
-                    reservation = Reservation.objects.create(
-                        guest=guest,
-                        place=place,
-                        message=message,
-                        start=start,
-                        end=end,
-                        price=price
-                    )
-                    context = {
-                        'reservation': reservation
-                    }
-                    return render(request, 'rental/merci.html', context)
-                else:
-                    context = {'form': form}
-                    return render(request, 'rental/reservation.html', context)
-            except IntegrityError:
-                form.errors['internal'] = "Une erreur interne est apparue. \
-                Merci de recommencer votre requête."
-    else:
-        form = ReservationForm()
-    context['form'] = form
-    context['errors'] = form.errors.items()
-    return render(request, 'rental/detail_place.html', context)
+    context, template = handle_reservation_form(
+        request, context, init_template='rental/detail_place.html')
+
+    return render(request, template, context)
 
 
 def reservation(request):
+    context, template = handle_reservation_form(request)
+    return render(request, template, context)
+
+
+def handle_reservation_form(request, context={}, init_template='rental/reservation.html'):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
@@ -128,17 +83,20 @@ def reservation(request):
                     context = {
                         'reservation': reservation
                     }
-                    return render(request, 'rental/merci.html', context)
+                    template = 'rental/merci.html'
+                    return context, template
                 else:
                     context = {'form': form}
-                    return render(request, 'rental/reservation.html', context)
+                    template = 'rental/reservation.html'
+                    return context, template
             except IntegrityError:
                 form.errors['internal'] = "Une erreur interne est apparue. Merci de recommencer votre requête."
     else:
         form = ReservationForm()
-    context = {'form': form}
+    context['form'] = form
     context['errors'] = form.errors.items()
-    return render(request, 'rental/reservation.html', context)
+    template = init_template
+    return context, template
 
 
 def calendar(request, place_name):
