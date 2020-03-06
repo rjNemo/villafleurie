@@ -119,6 +119,7 @@ Le visiteur doit pouvoir :
 - Vider le contenu du folder root ?
 - Pages confirmation message contact envoyé, reservations réussies ou non (expliquer pourquoi)
 - SSL certificate
+- Cookie bar
 
 ## BUGS
 
