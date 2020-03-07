@@ -12,3 +12,4 @@ token.pickle
 *.env
 *.tar
 debug.log
+rental/templates/rental/mails

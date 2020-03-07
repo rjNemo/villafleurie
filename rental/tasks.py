@@ -8,46 +8,38 @@ import os
 
 
 @shared_task
-def send_confirmation_mail(name, email, template="ticket"):
+def send_confirmation_mail(name, email):  # , template="ticket"):
     """ Send confirmation message to customer """
     subject = "Nous avons reçu votre message"
-    message = f" Merci {name}, Bien reçu nous revenons vers vous rapidement ! - HtmlMessage"
-    html_path = os.path.join(BASE_DIR, 'rental/templates/rental/html/')
-    with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
-        html_message = html.read()
-    # html_path = os.path.join(
-    #     'rental/templates/rental/mails/', f"{template}.html")
-    # context = {
-    #     "name": name,
-    #     "email": email,
-    #     "message": message
-    # }
-    # html_message = render(request, html_path, context)
+    message = f" Merci {name}, Bien reçu nous revenons vers vous rapidement !"
+    # html_path = os.path.join(BASE_DIR, 'rental/templates/rental/mails/')
+    # with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
+    #     html_message = html.read()
 
     send_mail(
         subject,
         message,
         EMAIL_HOST_USER,
-        [email],
+        [email]  # ,
         # html_message=html_message.content
-        html_message=html_message
+        # html_message=html_message
     )
 
 
 @shared_task
-def send_notification(subject, name, message, template="activation"):
+def send_notification(subject, name, message):  # , template="activation"):
     """ Send notification to admins """
-    html_path = os.path.join(BASE_DIR, 'rental/templates/rental/html/')
-    with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
-        html_message = html.read()
+    # html_path = os.path.join(BASE_DIR, 'rental/templates/rental/mails/')
+    # with open(os.path.join(html_path, f"{template}.html"), 'r') as html:
+    #     html_message = html.read()
     mail_admins(
         f"{name} a envoyé un message",
-        f"Sujet : {subject}\nMessage : {message}",
-        html_message=html_message
+        f"Sujet : {subject}\nDe : {name}\nMessage : {message}"  # ,
+        # html_message=html_message
     )
 
 
 @shared_task
 def send_quotation(name, email):
     """ Send quotation to customer """
-    send_confirmation_mail(name, email, template="welcome")
+    send_confirmation_mail(name, email):  # , template="welcome")
