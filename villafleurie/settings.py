@@ -8,7 +8,6 @@ ADMINS = [
 ]
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-SECRET_KEY = "q00_4wqdc^n=7)p2lm)!gy&fms8md_b4#1aqysllvqq==2c9!$"
 
 
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -147,8 +146,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_SUBJECT_PREFIX = "[VillaFleurieGuadeloupe] "
 DEFAULT_FROM_EMAIL = "'Nilka, VillaFleurie' <location.villaFleurie@gmail.com>"
-EMAIL_HOST_USER = "location.villafleurie@gmail.com"
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_PASSWORD = "location229818"
 
 CELERY_BROKER_URL = "amqp://rabbitmq"

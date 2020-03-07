@@ -42,4 +42,4 @@ def send_notification(subject, name, message):  # , template="activation"):
 @shared_task
 def send_quotation(name, email):
     """ Send quotation to customer """
-    send_confirmation_mail(name, email):  # , template="welcome")
+    send_confirmation_mail(name, email)  # :   , template="welcome")
