@@ -25,7 +25,7 @@ def send_confirmation(name, email):
         "from_name": DEFAULT_FROM_EMAIL,
         "reply_to": EMAIL_HOST_USER,
         "subject": f"[VillaFleurie] - {name}, nous avons reçu votre message",
-        "body": f"Merci {name}, nous avons bien reçu votre message, nous revenons vers vous rapidement !"
+        "body": f"Merci {name}, nous avons bien reçu votre message, nous revenons vers vous rapidement !\nCordialement,\nNilka (VillaFleurie)"
     }
 
     resp = requests.post(URL, data=payload)
@@ -42,7 +42,7 @@ def send_notification(name, email, subject, message, date):
         "from_name": DEFAULT_FROM_EMAIL,
         "reply_to": EMAIL_HOST_USER,
         "subject": f"{name} a envoyé un message",
-        "body": f"Sujet : {subject}\nDe : {name}, {email}\nLe : {date}\nMessage : {message}"
+        "body": f"Sujet : {subject}\nDe : {name}, {email}\nLe : {date}\nMessage : {message}\nCordialement,\nNilka (VillaFleurie)"
     }
 
     resp = requests.post(URL, data=payload)

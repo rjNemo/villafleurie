@@ -123,7 +123,8 @@ Le visiteur doit pouvoir :
 - [ ] Cookie bar
 - [ ] Booking refs on landing page
 - [ ] CD/CI build flow from master to Production
-- [ ] configure zapier webhooks
+- [x] configure zapier webhooks
+- [ ] Fuseau horaire
 
 ## BUGS
 
