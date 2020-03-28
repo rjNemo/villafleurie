@@ -1,5 +1,7 @@
 # Villafleurie : moteur de réservation autonome
 
+[![Travis](https://travis-ci.com/rjNemo/villafleurie.svg?branch=master)](https://travis-ci.com/rjNemo/villafleurie.svg?branch=master)
+
 `V 1.0 Le site est prêt à l'emploi`
 
 Auteur : Ruidy Nemausat
