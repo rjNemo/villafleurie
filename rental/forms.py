@@ -1,9 +1,10 @@
 from django import forms
 from .models import Reservation, Place, Guest
+from .enums import PlaceNames
 
 
 class ReservationForm(forms.Form):
-    PLACES = (('T2', 'T2'), ('T3', 'T3'),)
+
     name = forms.CharField(
         label="",
         max_length=100,
@@ -13,6 +14,7 @@ class ReservationForm(forms.Form):
             'placeholder': 'Nom *'
         }),
         required=True)
+
     email = forms.EmailField(
         label='',
         widget=forms.EmailInput(attrs={
@@ -21,6 +23,7 @@ class ReservationForm(forms.Form):
         }),
         required=True
     )
+
     phone = forms.CharField(
         label='',
         max_length=30,
@@ -30,12 +33,16 @@ class ReservationForm(forms.Form):
             'placeholder': 'Téléphone *'
         }),
         required=True)
+
     place = forms.ChoiceField(
         label='',
         widget=forms.Select(
             attrs={'class': 'form-control form-control-lg form-control-a'}),
         required=True,
-        choices=PLACES)
+        choices=PlacesNames.choices,
+        default=PlacesNames.T2
+    )
+
     message = forms.CharField(
         label='',
         # max_length=100,
@@ -47,6 +54,7 @@ class ReservationForm(forms.Form):
             'placeholder': 'Message *'
         }),
         required=True)
+
     start = forms.DateField(
         label='',
         input_formats=['%d/%m/%Y'],
@@ -56,6 +64,7 @@ class ReservationForm(forms.Form):
             'class': 'form-control form-control-lg form-control-a',
             'placeholder': '01/01/2020 *'}),
         required=True)
+
     end = forms.DateField(
         label='',
         input_formats=['%d/%m/%Y'],
@@ -66,6 +75,7 @@ class ReservationForm(forms.Form):
 
 
 class ContactForm(forms.Form):
+
     name = forms.CharField(
         label='',
         widget=forms.TextInput(attrs={
@@ -74,6 +84,7 @@ class ContactForm(forms.Form):
         }),
         required=True,
     )
+
     email = forms.EmailField(
         label='',
         widget=forms.EmailInput(attrs={
@@ -82,6 +93,7 @@ class ContactForm(forms.Form):
         }),
         required=True,
     )
+
     subject = forms.CharField(
         label='',
         widget=forms.TextInput(attrs={
@@ -90,6 +102,7 @@ class ContactForm(forms.Form):
         }),
         required=True,
     )
+
     message = forms.CharField(
         label='',
         # max_length=100,

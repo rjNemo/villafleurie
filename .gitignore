@@ -1,15 +1,11 @@
+.gitignore
 .DS_Store
 .vscode/
 env/
-__pycache__/
-rental/__pycache__/
-# rental/migrations/
-villafleurie/__pycache__/
-villafleurie/staticfiles/
+**/__pycache__
 villafleurie/static_files/
 rental/client_secrets.json
 token.pickle
 *.env
-*.tar
 debug.log
 rental/templates/rental/mails

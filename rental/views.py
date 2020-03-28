@@ -1,36 +1,37 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Testimonial, Reservation, Guest, Place
-from django.urls import reverse_lazy
-from django.views.generic.base import TemplateView
-from .forms import ReservationForm, ContactForm
 from django.db import IntegrityError
+from django.views.generic.base import TemplateView
+from rental.forms import ReservationForm, ContactForm
+from rental.models import Testimonial, Reservation, Guest, Place, Contact
 from rental.pricing import get_reservation_price
 from rental.bookings import check_availability, synchronize_calendars, update_calendar
-# send_confirmation_mail, send_notification, send_quotation
-from rental.tasks.apiMailer import *  # gMailer
-from rental.models import Contact
+from rental.tasks.apiMailer import *  # or gMailer
 
 
 def index(request):
     places = Place.objects.all()
     temoignages = Testimonial.objects.all()
+
     context = {
         'places': places,
         'temoignages': temoignages
     }
+
     return render(request, 'rental/index.html', context)
 
 
 def liste_location(request):
     places = Place.objects.all()
+
     context = {'places': places}
+
     return render(request, 'rental/list_place.html', context)
 
 
 def location(request, place_name='T2'):
     place = get_object_or_404(Place, name=place_name)
     images = place.images.all()
+
     context = {
         'place': place,
         'images': images
@@ -44,6 +45,7 @@ def location(request, place_name='T2'):
 
 def reservation(request):
     context, template = handle_reservation_form(request)
+
     return render(request, template, context)
 
 
@@ -58,6 +60,7 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
             place_name = form.cleaned_data['place']
             start = form.cleaned_data['start']
             end = form.cleaned_data['end']
+
             try:
                 guest = Guest.objects.filter(email=email)
                 if not guest.exists():
@@ -68,6 +71,7 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                     )
                 else:
                     guest = guest.first()
+
                 place = get_object_or_404(Place, name=place_name)
                 available = check_availability(place, start, end)
                 price = get_reservation_price(place, start, end)
@@ -91,13 +95,16 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                     context = {'form': form}
                     template = 'rental/reservation.html'
                     return context, template
+
             except IntegrityError:
                 form.errors['internal'] = "Une erreur interne est apparue. Merci de recommencer votre requête."
     else:
         form = ReservationForm()
+
     context['form'] = form
     context['errors'] = form.errors.items()
     template = init_template
+
     return context, template
 
 
@@ -113,6 +120,7 @@ def calendar(request, place_name):
         'place_name': place_name,
         'bookings': bookings
     }
+
     return render(request, 'rental/calendar.html', context)
 
 
