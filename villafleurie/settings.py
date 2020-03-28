@@ -49,6 +49,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     }
 
 else:
+    SECRET_KEY = "not_so_secret_key"
     DEBUG = True
     DATABASES = {
         'default': {

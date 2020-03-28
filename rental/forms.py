@@ -39,8 +39,7 @@ class ReservationForm(forms.Form):
         widget=forms.Select(
             attrs={'class': 'form-control form-control-lg form-control-a'}),
         required=True,
-        choices=PlacesNames.choices,
-        default=PlacesNames.T2
+        choices=PlaceNames.choices
     )
 
     message = forms.CharField(
