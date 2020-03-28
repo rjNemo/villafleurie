@@ -125,6 +125,9 @@ def contact(request):
 
             send_confirmation_mail.delay(name, email)
             send_notification.delay(subject, name, message)
+
+            return render(request, 'rental/contact_merci.html', {})
+
     else:
         form = ContactForm()
     context = {'form': form}
