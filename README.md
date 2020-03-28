@@ -117,10 +117,13 @@ Le visiteur doit pouvoir :
 - [ ] Système de facturation: CRUD Réservations et envoi. Automatisation si possible
 - [ ] Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
 - [x] Vider le contenu du folder root ?
-- [ ] Pages confirmation message contact envoyé, reservations réussies ou non (expliquer pourquoi)
+- [x] Pages confirmation message contact envoyé,
+- [ ]reservations réussies ou non (expliquer pourquoi)
 - [ ] SSL certificate
 - [ ] Cookie bar
 - [ ] Booking refs on landing page
+- [ ] CD/CI build flow from master to Production
+- [ ] configure zapier webhooks
 
 ## BUGS
 

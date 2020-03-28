@@ -7,7 +7,9 @@ from .forms import ReservationForm, ContactForm
 from django.db import IntegrityError
 from rental.pricing import get_reservation_price
 from rental.bookings import check_availability, synchronize_calendars, update_calendar
-from rental.tasks import send_confirmation_mail, send_notification, send_quotation
+# send_confirmation_mail, send_notification, send_quotation
+from rental.tasks.apiMailer import *  # gMailer
+from rental.models import Contact
 
 
 def index(request):
@@ -118,13 +120,21 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
+            contact = Contact.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                subject=form.cleaned_data['subject'],
+                message=form.cleaned_data['message']
+            )
 
-            send_confirmation_mail.delay(name, email)
-            send_notification.delay(subject, name, message)
+            send_confirmation.delay(contact.name, contact.email)
+            send_notification.delay(
+                contact.name,
+                contact.email,
+                contact.subject,
+                contact.message,
+                contact.date
+            )
 
             return render(request, 'rental/contact_merci.html', {})
 
