@@ -1,85 +1,100 @@
-{% extends 'rental/base.html' %}
-{% load static %}
-
-{% block content %}
-  <section class="intro-single">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box">
-            <h1 class="title-single">Nos propriétés</h1>
-            <span class="color-text-a">VillaFleurie</span>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-4">
-          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="{% url 'rental:index' %}">Accueil</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Hébergements
-              </li>
-            </ol>
-          </nav>
+{% extends 'rental/base.html' %} {% load static %} {% block content %}
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Nos propriétés</h1>
+          <span class="color-text-a">VillaFleurie</span>
         </div>
       </div>
+      <div class="col-md-12 col-lg-4">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:index' %}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Hébergements
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="property-grid grid">
-    <div class="container">
-      <div class="row">
-        {% for place in places %}
-        <div class="col-md-6">
-          <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="{{ place.thumbnail.img.url }}" alt="{{ place.name }}" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="{% url 'rental:detail_place' place_name=place.name %}"> {{ place.subname }}
-                      <br /> {{ place.name }}</a>
-                  </h2>
+<section class="property-grid grid">
+  <div class="container">
+    <div class="row">
+      {% for place in places %}
+      <div class="col-md-6">
+        <div class="card-box-a card-shadow">
+          <div class="img-box-a">
+            <img
+              src="{{ place.thumbnail.img.url }}"
+              alt="{{ place.name }}"
+              class="img-a img-fluid"
+            />
+          </div>
+          <div class="card-overlay">
+            <div class="card-overlay-a-content">
+              <div class="card-header-a">
+                <h2 class="card-title-a">
+                  <a
+                    href="{% url 'rental:detail_place' place_name=place.name %}"
+                  >
+                    {{ place.subname }} <br />
+                    {{ place.name }}</a
+                  >
+                </h2>
+              </div>
+              <div class="card-body-a">
+                <div class="price-box d-flex">
+                  <span class="price-a">Dès {{ place.price }} </span>
                 </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Dès {{ place.price }} </span>
-                  </div>
-                  <a href="{% url 'rental:detail_place' place_name=place.name %}" class="link-a">Plus de détails
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Surface</h4>
-                      <span> {{ place.surface}}
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Lits</h4>
-                      <span>{{place.beds}}</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Max voyageurs</h4>
-                      <span>{{place.max_occupation}}</span>
-                    </li>
-                    <!-- <li>
+                <a
+                  href="{% url 'rental:detail_place' place_name=place.name %}"
+                  class="link-a"
+                  >Plus de détails
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              </div>
+              <div class="card-footer-a">
+                <ul class="card-info d-flex justify-content-around">
+                  <li>
+                    <h4 class="card-info-title">Surface</h4>
+                    <span>
+                      {{ place.surface}}
+                      <sup>2</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title">Lits</h4>
+                    <span>{{place.beds}}</span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title">Max voyageurs</h4>
+                    <span>{{place.max_occupation}}</span>
+                  </li>
+                  <!-- <li>
                       <h4 class="card-info-title">Garages</h4>
                       <span>1</span>
                     </li> -->
-                  </ul>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>
+<script>
+  mixpanel.track("View Listing Page");
+</script>
 {% endblock %}

@@ -106,10 +106,10 @@ Le visiteur doit pouvoir :
 - [ ] Ajout page/module de paiement
 - [ ] Ajouter les témoignages depuis Booking, AirBnb, ajouter le lien. Créer une page dédiée.
 - [ ] Changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
-- [ ] Factoriser le code de réservation
-- [ ] Formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
+- [x] Factoriser le code de réservation
+- [x] Formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
 - [x] Nettoyer les statics files. Garder que les définitions utiles
-- [ ] Mixpanel et Google Analytics
+- [x] Mixpanel et Google Analytics
 - [ ] Récrire les mentions légales
 - [ ] Centrer Bouton "Reserver" page location
 - [ ] Ajouter un titre "Disponibilités" au dessus du calendrier
@@ -127,7 +127,8 @@ Le visiteur doit pouvoir :
 - [ ] CD/CI build flow from master to Production
 - [x] configure zapier webhooks
 - [ ] Fuseau horaire
-- [ ] Calendar API
+- [x] Calendar API
+- [ ] Blog
 
 ## BUGS
 
