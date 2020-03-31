@@ -1,14 +1,13 @@
-import datetime
 from rental.pricing import get_reservation_price
 from django.shortcuts import get_object_or_404
 from rental.models import Reservation, Place, Guest
+from villafleurie.settings import BASE_DIR
 import datetime
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 import os.path
 import pickle
-from villafleurie.settings import BASE_DIR
 
 
 def build_calendar_api_service():
@@ -151,3 +150,7 @@ def update_calendar(reservation):
             },
         }
     ).execute()
+
+
+if __name__ == '__main__':
+    s, c = build_calendar_api_service()

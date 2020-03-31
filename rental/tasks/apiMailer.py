@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from villafleurie.settings import EMAIL_HOST_USER,  DEFAULT_FROM_EMAIL
 import requests
+from datetime import datetime
 
 """ Mailer Service used to send messages using API WebHooks.
     All Mailers must implement the following methods:
@@ -51,4 +52,13 @@ def send_notification(name, email, subject, message, date):
 @shared_task
 def send_quotation(name, email):
     """ Send quotation to customer """
+
+    send_notification(
+        name,
+        email,
+        "Nouvelle demande de réservation",
+        "Depuis le site",
+        datetime.now()
+    )
+
     send_confirmation(name, email)

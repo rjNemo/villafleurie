@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
+from django.utils.translation import gettext_lazy as _
 from rental.forms import ReservationForm, ContactForm
 from rental.models import Testimonial, Reservation, Guest, Place, Contact
 from rental.pricing import get_reservation_price
@@ -92,6 +94,10 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                     template = 'rental/merci.html'
                     return context, template
                 else:
+                    form.add_error(None,  ValidationError(
+                        _("Cet hébergement n'est pas disponible aux dates indiquées."),
+                        code='invalid'
+                    ))
                     context = {'form': form}
                     template = 'rental/reservation.html'
                     return context, template
