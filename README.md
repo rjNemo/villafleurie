@@ -1,6 +1,6 @@
 # Villafleurie : moteur de réservation autonome
 
-[![Travis](https://travis-ci.com/rjNemo/villafleurie.svg?branch=master)](https://travis-ci.com/rjNemo/villafleurie.svg?branch=master)
+<!-- [![Travis](https://travis-ci.com/rjNemo/villafleurie.svg?branch=master)](https://travis-ci.com/rjNemo/villafleurie.svg?branch=master) -->
 
 `V 1.0 Le site est prêt à l'emploi`
 
@@ -104,29 +104,30 @@ Le visiteur doit pouvoir :
 - [ ] Ajouter un date picker dans le formulaire de réservation
 - [ ] Envoyer devis réservation par mail et notification aux hôtes (personnaliser les htmails : contact, admin et réservation)
 - [ ] Ajout page/module de paiement
-- [ ] ajouter les témoignages depuis Booking, AirBnb, ajouter le lien
-- [ ] changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
-- [ ] factoriser le code de réservation
-- [ ] formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
-- [x] nettoyer les statics files. Garder que les définitions utiles
+- [ ] Ajouter les témoignages depuis Booking, AirBnb, ajouter le lien. Créer une page dédiée.
+- [ ] Changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
+- [ ] Factoriser le code de réservation
+- [ ] Formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
+- [x] Nettoyer les statics files. Garder que les définitions utiles
 - [ ] Mixpanel et Google Analytics
 - [ ] Récrire les mentions légales
 - [ ] Centrer Bouton "Reserver" page location
 - [ ] Ajouter un titre "Disponibilités" au dessus du calendrier
-- [ ] page réservation/services : égayer avec des petites photos …
+- [ ] Page réservation/services : égayer avec des petites photos …
 - [ ] Internationalisation
 - [x] Push docker to Vultr. Connect to domain name
 - [ ] Système de facturation: CRUD Réservations et envoi. Automatisation si possible
 - [ ] Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
 - [x] Vider le contenu du folder root ?
 - [x] Pages confirmation message contact envoyé,
-- [ ]reservations réussies ou non (expliquer pourquoi)
+- [ ] reservations réussies ou non (expliquer pourquoi)
 - [ ] SSL certificate
 - [ ] Cookie bar
 - [ ] Booking refs on landing page
 - [ ] CD/CI build flow from master to Production
 - [x] configure zapier webhooks
 - [ ] Fuseau horaire
+- [ ] Calendar API
 
 ## BUGS
 

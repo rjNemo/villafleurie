@@ -65,10 +65,11 @@ class Testimonial(models.Model):
     def __str__(self):
         return f"Témoignage de {self.author}"
 
-    author = models.CharField(max_length=100)
-    text = models.TextField()
-    picture = models.ImageField(upload_to='img/', null=True, blank=True)
-    link = models.URLField(null=True, blank=True)
+    author = models.CharField(max_length=200)
+    text = models.TextField(max_length=1000)
+    picture = models.ImageField(
+        max_length=200, upload_to='img/', null=True, blank=True)
+    link = models.URLField(max_length=200, null=True, blank=True)
     guest = models.OneToOneField(
         Guest, on_delete=models.CASCADE, blank=True, null=True)
     reservation = models.OneToOneField(
