@@ -6,12 +6,9 @@ import os.path
 import pickle
 from villafleurie.settings import BASE_DIR
 from django.shortcuts import get_object_or_404
-from rental.models.contact import Contact
 from rental.models.guest import Guest
-from rental.models.picture import Picture
-from rental.models.place import Place
-from rental.models.testimonial import Testimonial
-from rental.models.booking import Booking
+import rental.models.place as _place
+import rental.models.booking as _booking
 
 
 def build_calendar_api_service():
@@ -76,11 +73,11 @@ def get_calendar_reservations(place):
 
 def synchronize_calendars(place):
     """ Get a complete list of existing bookings in calendar
-    Creates reservation if not in db, update if already in db
-    Delete from db reservation deleted from cal """
+        Creates reservation if not in db, update if already in db
+        Delete from db reservation deleted from cal """
 
     reservation = get_calendar_reservations(place)
-    place = get_object_or_404(Place, name=place.name)
+    place = get_object_or_404(_place.Place, name=place.name)
 
     start = reservation['start']
     end = reservation['end']
@@ -90,11 +87,11 @@ def synchronize_calendars(place):
         guest = Guest.objects.create(name=reservation['guest'])
     else:
         guest = guest.first()
-    db_booking = Booking.objects.filter(
+    db_booking = _booking.Booking.objects.filter(
         guest=guest
     )
     if not db_booking.exists():
-        Booking.objects.create_booking(
+        _booking.Booking.objects.create_booking(
             place=place,
             guest=guest,
             start=start,
@@ -112,7 +109,7 @@ def get_bookings(place):
     Returns a list of all related place reservations """
 
     synchronize_calendars(place)
-    booked_dates = Booking.objects.filter(place=place)
+    booked_dates = _booking.Booking.objects.filter(place=place)
 
     return [booking for booking in booked_dates]
 

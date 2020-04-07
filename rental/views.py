@@ -79,9 +79,9 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                     guest = guest.first()
 
                 place = get_object_or_404(Place, name=place_name)
-                available = check_availability(place, start, end)
+                # available = check_availability(place, )
 
-                if available:
+                if place.is_available(start, end):
                     reservation = Booking.objects.create_booking(
                         guest=guest,
                         place=place,

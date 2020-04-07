@@ -2,7 +2,7 @@ from datetime import datetime
 from django.db import models
 from rental.models.guest import Guest
 from rental.models.place import Place
-# from rental.services.calendar import update_calendar
+import rental.services.calendar as calendar
 
 
 class BookingManager(models.Manager):
@@ -15,7 +15,7 @@ class BookingManager(models.Manager):
             updates the remote calendar. """
         booking = self.create(**kwargs)
         booking.price = booking.get_price()
-        # update_calendar(booking)
+        calendar.update_calendar(booking)
         return booking
 
 

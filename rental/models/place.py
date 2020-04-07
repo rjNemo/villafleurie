@@ -1,5 +1,6 @@
 from django.db import models
 from rental.models.picture import Picture
+import rental.services.calendar as calendar
 
 
 class Place(models.Model):
@@ -22,3 +23,6 @@ class Place(models.Model):
         Picture, on_delete=models.CASCADE, blank=True, null=True)
     images = models.ManyToManyField(Picture, related_name="places", blank=True)
     calendar = models.CharField(max_length=350, blank=True, null=True)
+
+    def is_available(self, start, end):
+        return calendar.check_availability(self, start, end)
