@@ -1,0 +1,37 @@
+# TO DO
+
+- [ ] Ajouter un date picker dans le formulaire de réservation
+- [ ] Envoyer devis réservation par mail et notification aux hôtes (personnaliser les htmails : contact, admin et réservation)
+- [ ] Ajout page/module de paiement
+- [ ] Ajouter les témoignages depuis Booking, AirBnb, ajouter le lien. Créer une page dédiée.
+  - [ ] [airbnb](https://www.airbnb.fr/users/show/61243908)
+  - [ ] [booking](https://admin.booking.com/hotel/hoteladmin/extranet_ng/manage/reviews.html?hotel_id=2676858&ses=ced617702afff2f5502228792134173d&lang=fr)
+  - [ ] [google](https://business.google.com/reviews/l/12730223123039085540)
+- [ ] Changer l'adresse de l'admin, personnaliser le back-end (design et les infos displayed per model)
+- [x] Factoriser le code de réservation
+- [x] Formulaire de réservation : les apparts sont hard codés rendre ça dynamique (use choicefields)
+- [x] Nettoyer les statics files. Garder que les définitions utiles
+- [x] Mixpanel et Google Analytics
+- [ ] Récrire les mentions légales
+- [ ] Centrer Bouton "Reserver" page location
+- [ ] Ajouter un titre "Disponibilités" au dessus du calendrier
+- [ ] Page réservation/services : égayer avec des petites photos …
+- [ ] Internationalisation
+- [x] Push docker to Vultr. Connect to domain name
+- [ ] Système de facturation: CRUD Réservations et envoi. Automatisation si possible
+- [ ] Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
+- [x] Vider le contenu du folder root ?
+- [x] Pages confirmation message contact envoyé,
+- [ ] reservations réussies ou non (expliquer pourquoi)
+- [ ] SSL certificate
+  - [ ] [github](https://github.com/linuxserver/docker-letsencrypt)
+  - [ ] [medium](https://medium.com/@gardenvariety/easy-https-with-letsencrypt-and-docker-compose-168df411e2d2)
+  - [ ] [docker-nginx](https://github.com/KyleAMathews/docker-nginx)
+  - [ ] [docker-nginx-ssl-secure](https://github.com/MarvAmBass/docker-nginx-ssl-secure)
+- [ ] Cookie bar
+- [ ] Booking refs on landing page
+- [ ] CD/CI build flow from master to Production
+- [x] configure zapier webhooks
+- [ ] Fuseau horaire
+- [ ] Calendar API: [docs](https://github.com/googleapis/google-api-python-client/blob/master/docs/start.md)
+- [ ] Blog
