@@ -4,8 +4,13 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.utils.translation import gettext_lazy as _
 from rental.forms import ReservationForm, ContactForm
-from rental.models import Testimonial, Reservation, Guest, Place, Contact
-from rental.pricing import get_reservation_price
+from rental.models.booking import Booking
+from rental.models.contact import Contact
+from rental.models.guest import Guest
+from rental.models.picture import Picture
+from rental.models.place import Place
+from rental.models.testimonial import Testimonial
+
 from rental.bookings import check_availability, synchronize_calendars, update_calendar
 from rental.tasks.apiMailer import *  # or gMailer
 
@@ -78,7 +83,7 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                 available = check_availability(place, start, end)
                 price = get_reservation_price(place, start, end)
                 if available:
-                    reservation = Reservation.objects.create(
+                    reservation = Booking.objects.create(
                         guest=guest,
                         place=place,
                         message=message,
@@ -119,7 +124,7 @@ def calendar(request, place_name):
     returns a list of all related place reservations
     """
     # synchronize_calendars()
-    booked_dates = Reservation.objects.all()
+    booked_dates = Booking.objects.all()
     bookings = [
         booking for booking in booked_dates if booking.place.name == place_name]
     context = {

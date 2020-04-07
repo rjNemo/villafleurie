@@ -1,7 +1,12 @@
 from django.urls import path
 from . import views
 from villafleurie import settings
-from .models import Testimonial, Reservation, Guest, Place
+from rental.models.booking import Booking
+from rental.models.contact import Contact
+from rental.models.guest import Guest
+from rental.models.picture import Picture
+from rental.models.place import Place
+from rental.models.testimonial import Testimonial
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 
 app_name = 'rental'

@@ -1,6 +1,11 @@
 from django import forms
-from .models import Reservation, Place, Guest
-from .enums import PlaceNames
+from rental.models.booking import Booking
+from rental.models.contact import Contact
+from rental.models.guest import Guest
+from rental.models.picture import Picture
+from rental.models.place import Place
+from rental.models.testimonial import Testimonial
+from rental.enums import PlaceNames
 
 
 class ReservationForm(forms.Form):

@@ -1,10 +1,15 @@
 from django.contrib import admin
-from .models import Testimonial, Reservation, Guest, Place, Image, Contact
+from rental.models.booking import Booking
+from rental.models.contact import Contact
+from rental.models.guest import Guest
+from rental.models.picture import Picture
+from rental.models.place import Place
+from rental.models.testimonial import Testimonial
 
 
-admin.site.register(Contact)
+admin.site.register(Booking)
 admin.site.register(Guest)
-admin.site.register(Image)
 admin.site.register(Place)
-admin.site.register(Reservation)
+admin.site.register(Contact)
+admin.site.register(Picture)
 admin.site.register(Testimonial)

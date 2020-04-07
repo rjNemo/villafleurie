@@ -1,6 +1,10 @@
-from rental.pricing import get_reservation_price
 from django.shortcuts import get_object_or_404
-from rental.models import Reservation, Place, Guest
+from rental.models.booking import Booking
+from rental.models.contact import Contact
+from rental.models.guest import Guest
+from rental.models.picture import Picture
+from rental.models.place import Place
+from rental.models.testimonial import Testimonial
 from villafleurie.settings import BASE_DIR
 import datetime
 from google.auth.transport.requests import Request
@@ -77,11 +81,14 @@ def synchronize_calendars(place):
 
     reservation = get_calendar_reservations(place)
     place = get_object_or_404(Place, name=place.name)
-    price = get_reservation_price(
-        place,
-        reservation['start'],
-        reservation['end']
-    )
+
+    # After refactoring models, Move this method to the Booking model and get price later by calling Booking method
+    # price = get_reservation_price(
+    #     place,
+    #     reservation['start'],
+    #     reservation['end']
+    # )
+
     start = reservation['start']
     end = reservation['end']
 
@@ -90,23 +97,23 @@ def synchronize_calendars(place):
         guest = Guest.objects.create(name=reservation['guest'])
     else:
         guest = guest.first()
-    db_booking = Reservation.objects.filter(
+    db_booking = Booking.objects.filter(
         guest=guest
     )
     if not db_booking.exists():
-        Reservation.objects.create(
+        Booking.objects.create(
             place=place,
             guest=guest,
             start=start,
             end=end,
-            price=price
+            # price=price
         )
     else:
         db_booking.place = place,
         db_booking.guest = guest,
         db_booking.start = start,
         db_booking.end = end,
-        db_booking.price = price
+        # db_booking.price = price
 
 
 def get_bookings(place):
@@ -114,7 +121,7 @@ def get_bookings(place):
     Returns a list of all related place reservations """
 
     synchronize_calendars(place)
-    booked_dates = Reservation.objects.filter(place=place)
+    booked_dates = Booking.objects.filter(place=place)
 
     return [booking for booking in booked_dates]
 
