@@ -10,8 +10,7 @@ from rental.models.guest import Guest
 from rental.models.picture import Picture
 from rental.models.place import Place
 from rental.models.testimonial import Testimonial
-
-from rental.bookings import check_availability, synchronize_calendars, update_calendar
+from rental.services.calendar import check_availability, synchronize_calendars, update_calendar
 from rental.tasks.apiMailer import *  # or gMailer
 
 
@@ -81,15 +80,14 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
 
                 place = get_object_or_404(Place, name=place_name)
                 available = check_availability(place, start, end)
-                price = get_reservation_price(place, start, end)
+
                 if available:
                     reservation = Booking.objects.create_booking(
                         guest=guest,
                         place=place,
                         message=message,
                         start=start,
-                        end=end,
-                        price=price
+                        end=end
                     )
                     send_quotation.delay(name, email)
                     update_calendar(reservation)

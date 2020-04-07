@@ -1,17 +1,17 @@
-from django.shortcuts import get_object_or_404
-from rental.models.booking import Booking
-from rental.models.contact import Contact
-from rental.models.guest import Guest
-from rental.models.picture import Picture
-from rental.models.place import Place
-from rental.models.testimonial import Testimonial
-from villafleurie.settings import BASE_DIR
 import datetime
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 import os.path
 import pickle
+from villafleurie.settings import BASE_DIR
+from django.shortcuts import get_object_or_404
+from rental.models.contact import Contact
+from rental.models.guest import Guest
+from rental.models.picture import Picture
+from rental.models.place import Place
+from rental.models.testimonial import Testimonial
+from rental.models.booking import Booking
 
 
 def build_calendar_api_service():
@@ -151,4 +151,20 @@ def update_calendar(reservation):
 
 
 if __name__ == '__main__':
+
     s, c = build_calendar_api_service()
+
+    from google_auth_oauthlib.flow import Flow
+
+    SCOPES = [
+        'https://www.googleapis.com/auth/calendar',
+        'https://www.googleapis.com/auth/calendar.events'
+    ]
+
+    SECRETS = '/client_secrets.json'
+
+    flow = Flow.from_client_secrets_file(
+        SECRETS,
+        scopes=SCOPES,
+        redirect_uri='http://localhost:8080/'
+    )
