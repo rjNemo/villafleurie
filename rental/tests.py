@@ -12,6 +12,7 @@ class BookingTestCase(TestCase):
             name='TX',
             price=100
         )
+
         self.guest = Guest.objects.create(
             name="Ruidy",
             email="r@mail.com",
@@ -23,11 +24,11 @@ class BookingTestCase(TestCase):
 
     def test_BookingPrice(self):
         # place = Place.objects.get(name='TX')
-        booking = Booking.objects.create(
+        booking = Booking.objects.create_booking(
             place=self.place,
             start=self.start,
             end=self.end,
             guest=self.guest
         )
 
-        self.assertEqual(booking.price(), 600)
+        self.assertEqual(booking.price, 600)

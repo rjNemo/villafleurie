@@ -83,7 +83,7 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                 available = check_availability(place, start, end)
                 price = get_reservation_price(place, start, end)
                 if available:
-                    reservation = Booking.objects.create(
+                    reservation = Booking.objects.create_booking(
                         guest=guest,
                         place=place,
                         message=message,

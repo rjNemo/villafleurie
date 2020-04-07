@@ -82,13 +82,6 @@ def synchronize_calendars(place):
     reservation = get_calendar_reservations(place)
     place = get_object_or_404(Place, name=place.name)
 
-    # After refactoring models, Move this method to the Booking model and get price later by calling Booking method
-    # price = get_reservation_price(
-    #     place,
-    #     reservation['start'],
-    #     reservation['end']
-    # )
-
     start = reservation['start']
     end = reservation['end']
 
@@ -101,19 +94,17 @@ def synchronize_calendars(place):
         guest=guest
     )
     if not db_booking.exists():
-        Booking.objects.create(
+        Booking.objects.create_booking(
             place=place,
             guest=guest,
             start=start,
-            end=end,
-            # price=price
+            end=end
         )
     else:
         db_booking.place = place,
         db_booking.guest = guest,
         db_booking.start = start,
-        db_booking.end = end,
-        # db_booking.price = price
+        db_booking.end = end
 
 
 def get_bookings(place):

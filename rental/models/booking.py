@@ -4,12 +4,27 @@ from rental.models.guest import Guest
 from rental.models.place import Place
 
 
+class BookingManager(models.Manager):
+    """ BookingManager is the interface through which database query operations
+        are provided to Django models.
+    """
+
+    def create_booking(self, **kwargs):
+        """ create_booking creates a Booking instance. """
+        booking = self.create(**kwargs)
+        booking.price = booking.get_price()
+
+        return booking
+
+
 class Booking(models.Model):
     class Meta:
         verbose_name = 'Réservation'
 
     def __str__(self):
         return "Réservation du {} par {}".format(self.place, self.guest)
+
+    objects = BookingManager()
 
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
@@ -18,7 +33,7 @@ class Booking(models.Model):
     end = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
-    def price(self):
+    def get_price(self):
         """ Compute booking price as a function of place and dates """
 
         if type(self.start) == str:
