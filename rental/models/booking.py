@@ -15,7 +15,7 @@ class BookingManager(models.Manager):
             updates the remote calendar. """
         booking = self.create(**kwargs)
         booking.price = booking.get_price()
-        calendar.update_calendar(booking)
+        calendar.update(booking)
         return booking
 
 

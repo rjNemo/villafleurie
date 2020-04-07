@@ -7,11 +7,11 @@ import pickle
 from villafleurie.settings import BASE_DIR
 from django.shortcuts import get_object_or_404
 from rental.models.guest import Guest
-import rental.models.place as _place
-import rental.models.booking as _booking
+import rental.models.place as m_place
+import rental.models.booking as m_booking
 
 
-def build_calendar_api_service():
+def build_service():
     """ Build Google Calendar API service and returns calendar list and service """
 
     creds = None
@@ -46,8 +46,8 @@ def build_calendar_api_service():
     return service, calendars
 
 
-def get_calendar_reservations(place):
-    service, calendars = build_calendar_api_service()
+def get_bookings(place):
+    service, calendars = build_service()
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
     events_result = service.events().list(
         calendarId=calendars[place.name],
@@ -71,27 +71,29 @@ def get_calendar_reservations(place):
     return reservation
 
 
-def synchronize_calendars(place):
+def synchronize(place):
     """ Get a complete list of existing bookings in calendar
         Creates reservation if not in db, update if already in db
         Delete from db reservation deleted from cal """
 
-    reservation = get_calendar_reservations(place)
-    place = get_object_or_404(_place.Place, name=place.name)
+    reservation = get_bookings(place)
+    place = get_object_or_404(m_place.Place, name=place.name)
 
     start = reservation['start']
     end = reservation['end']
+    price = reservation['price']
 
     guest = Guest.objects.filter(name=reservation['guest'])
     if not guest.exists():
         guest = Guest.objects.create(name=reservation['guest'])
     else:
         guest = guest.first()
-    db_booking = _booking.Booking.objects.filter(
+
+    db_booking = m_booking.Booking.objects.filter(
         guest=guest
     )
     if not db_booking.exists():
-        _booking.Booking.objects.create_booking(
+        m_booking.Booking.objects.create_booking(
             place=place,
             guest=guest,
             start=start,
@@ -102,14 +104,15 @@ def synchronize_calendars(place):
         db_booking.guest = guest,
         db_booking.start = start,
         db_booking.end = end
+        db_booking.price = price
 
 
 def get_bookings(place):
     """ Synchronize with Master calendar via a call to synchronize_calendar
     Returns a list of all related place reservations """
 
-    synchronize_calendars(place)
-    booked_dates = _booking.Booking.objects.filter(place=place)
+    synchronize(place)
+    booked_dates = m_booking.Booking.objects.filter(place=place)
 
     return [booking for booking in booked_dates]
 
@@ -125,10 +128,10 @@ def check_availability(place, start_date, end_date):
     return True
 
 
-def update_calendar(reservation):
+def update(reservation):
     """ push new reservation to master calendar """
     # authenticate and build service
-    service, calendars = build_calendar_api_service()
+    service, calendars = build_service()
     start = reservation.start.strftime('%Y-%m-%d')
     end = reservation.end.strftime('%Y-%m-%d')
 
@@ -149,7 +152,7 @@ def update_calendar(reservation):
 
 if __name__ == '__main__':
 
-    s, c = build_calendar_api_service()
+    s, c = build_service()
 
     from google_auth_oauthlib.flow import Flow
 

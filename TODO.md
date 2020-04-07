@@ -35,4 +35,4 @@
 - [ ] Fuseau horaire
 - [ ] Calendar API: [docs](https://github.com/googleapis/google-api-python-client/blob/master/docs/start.md)
 - [ ] Blog
-- [ ] Call update_calendar from BookingManager. SOlve circular dependencies
+- [x] Call update_calendar from BookingManager. SOlve circular dependencies

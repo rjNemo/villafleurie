@@ -1,8 +1,8 @@
 from __future__ import absolute_import, unicode_literals
+from datetime import datetime
+import requests
 from celery import shared_task
 from villafleurie.settings import EMAIL_HOST_USER,  DEFAULT_FROM_EMAIL
-import requests
-from datetime import datetime
 
 """ Mailer Service used to send messages using API WebHooks.
     All Mailers must implement the following methods:

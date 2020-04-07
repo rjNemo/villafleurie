@@ -10,7 +10,7 @@ from rental.models.guest import Guest
 from rental.models.picture import Picture
 from rental.models.place import Place
 from rental.models.testimonial import Testimonial
-from rental.services.calendar import check_availability, synchronize_calendars, update_calendar
+from rental.services.calendar import check_availability, synchronize_calendars, update
 from rental.tasks.apiMailer import *  # or gMailer
 
 
@@ -90,7 +90,7 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                         end=end
                     )
                     send_quotation.delay(name, email)
-                    update_calendar(reservation)
+
                     context = {
                         'reservation': reservation
                     }
