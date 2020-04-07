@@ -19,6 +19,7 @@ services:
 
   web: &web
     build: .
+    restart: always
     command: bash -c "python manage.py migrate && gunicorn -w 4 villafleurie.wsgi -b 0.0.0.0:8000"
     volumes:
       - .:/villafleurie
@@ -33,14 +34,23 @@ services:
     env_file: prod.env
 
   nginx:
-    build:
-      context: .
-      dockerfile: nginx/Dockerfile
+    image: linuxserver/letsencrypt
+    restart: unless-stopped
     ports:
       - 80:80
+      - 443:443
     volumes:
       - static_files:/static_files
       - media:/media
+      - ./config/letsencrypt:/config
+      # - ./nginx/villafleurie.conf:/config/nginx/site-confs/default
+    environment:
+      - EMAIL=ruidy.nemausat@gmail.com
+      - URL=villafleuriegp.com
+      - VALIDATION=http
+      # - VALIDATION=dns
+      - PUID=1001
+      - PGID=1001
     depends_on:
       - web
 
