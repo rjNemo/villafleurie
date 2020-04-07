@@ -5,15 +5,8 @@ from rental.models.place import Place
 from rental.models.booking import Booking
 from rental.models.guest import Guest
 
-place_name = 'T2'
-place = get_object_or_404(Place, name=place_name)
 
-
-x = get_reservation_price(place_name, start, end)
-print(x)
-
-
-class TestBooking(TestCase):
+class BookingTestCase(TestCase):
     def setUp(self):
         self.place = Place.objects.create(
             name='TX',
@@ -28,7 +21,7 @@ class TestBooking(TestCase):
         self.start = datetime(2019, 11, 14)
         self.end = datetime(2019, 11, 20)
 
-    def test_bookingPrice(self):
+    def test_BookingPrice(self):
         # place = Place.objects.get(name='TX')
         booking = Booking.objects.create(
             place=self.place,
@@ -37,4 +30,4 @@ class TestBooking(TestCase):
             guest=self.guest
         )
 
-        self.assertEqual(booking.get_reservation_price())
+        self.assertEqual(booking.price(), 600)

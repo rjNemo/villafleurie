@@ -18,13 +18,13 @@ class Booking(models.Model):
     end = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
-    def get_reservation_price(place, start, end):
+    def price(self):
         """ Compute booking price as a function of place and dates """
 
-        if type(start) == str:
-            start = datetime.strptime(start, '%Y-%m-%d')
-        if type(end) == str:
-            end = datetime.strptime(end, '%Y-%m-%d')
-        nights = (end - start).days
+        if type(self.start) == str:
+            self.start = datetime.strptime(self.start, '%Y-%m-%d')
+        if type(self.end) == str:
+            self.end = datetime.strptime(self.end, '%Y-%m-%d')
+        nights = (self.end - self.start).days
 
-        return place.price * nights
+        return self.place.price * nights
