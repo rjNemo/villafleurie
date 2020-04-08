@@ -3,7 +3,8 @@ from django.db import IntegrityError
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.utils.translation import gettext_lazy as _
-from rental.forms import ReservationForm, ContactForm
+from rental.forms.booking import BookingForm
+from rental.forms.contact import ContactForm
 from rental.models.booking import Booking
 from rental.models.contact import Contact
 from rental.models.guest import Guest
@@ -54,7 +55,7 @@ def reservation(request):
 
 def handle_reservation_form(request, context={}, init_template='rental/reservation.html'):
     if request.method == 'POST':
-        form = ReservationForm(request.POST)
+        form = BookingForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -105,7 +106,7 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
             except IntegrityError:
                 form.errors['internal'] = "Une erreur interne est apparue. Merci de recommencer votre requête."
     else:
-        form = ReservationForm()
+        form = BookingForm()
 
     context['form'] = form
     context['errors'] = form.errors.items()
