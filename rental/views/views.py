@@ -1,7 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.shortcuts import render, get_object_or_404
-from django.views.generic.base import TemplateView
 from django.utils.translation import gettext_lazy as _
 from rental.forms.booking import BookingForm
 from rental.forms.contact import ContactForm
@@ -152,26 +151,3 @@ def contact(request):
     context = {'form': form}
     return render(request, 'rental/contact.html', context)
 
-
-class Legal(TemplateView):
-    template_name = 'rental/legal.html'
-
-
-class About(TemplateView):
-    template_name = 'rental/about.html'
-
-
-class Partners(TemplateView):
-    template_name = 'rental/partners.html'
-
-
-class Services(TemplateView):
-    template_name = 'rental/service.html'
-
-
-def handler404(request, exception):
-    return render(request, 'rental/404.html', status=404)
-
-
-def handler500(request):
-    return render(request, 'rental/500.html', status=500)

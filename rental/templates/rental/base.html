@@ -186,17 +186,19 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'services' %}">Services</a>
+              <a class="nav-link" href="{% url 'rental:services' %}"
+                >Services</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">À propos</a>
+              <a class="nav-link" href="{% url 'rental:about' %}">À propos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              <a class="nav-link" href="{% url 'rental:contact' %}">Contact</a>
             </li>
           </ul>
         </div>
-        <a class="btn btn-b" href="{% url 'reservation' %}">
+        <a class="btn btn-b" href="{% url 'rental:reservation' %}">
           Réserver
         </a>
       </div>
@@ -250,14 +252,16 @@
                   <ul class="list-unstyled">
                     <li class="item-list-a">
                       <i class="fa fa-angle-right"></i>
-                      <a href="{% url 'legal' %}">Mentions légales</a>
+                      <a href="{% url 'rental:legal' %}">Mentions légales</a>
                     </li>
                     <li class="item-list-a">
                       <i class="fa fa-angle-right"></i> <a href="#">Jobs</a>
                     </li>
                     <li class="item-list-a">
                       <i class="fa fa-angle-right"></i>
-                      <a href="{% url 'partners' %}">Espace partenaires</a>
+                      <a href="{% url 'rental:partners' %}"
+                        >Espace partenaires</a
+                      >
                     </li>
                   </ul>
                 </div>
@@ -280,13 +284,13 @@
                   <a href="{% url 'rental:list_place' %}">Hébergements</a>
                 </li>
                 <li class="list-inline-item">
-                  <a href="{% url 'reservation' %}">Réservation</a>
+                  <a href="{% url 'rental:reservation' %}">Réservation</a>
                 </li>
                 <li class="list-inline-item">
-                  <a href="{% url 'about' %}">À propos</a>
+                  <a href="{% url 'rental:about' %}">À propos</a>
                 </li>
                 <li class="list-inline-item">
-                  <a href="{% url 'contact' %}">Contact</a>
+                  <a href="{% url 'rental:contact' %}">Contact</a>
                 </li>
               </ul>
             </nav>
