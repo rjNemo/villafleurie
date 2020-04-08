@@ -1,58 +1,19 @@
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.shortcuts import render, get_object_or_404
-from django.utils.translation import gettext_lazy as _
 from rental.forms.booking import BookingForm
-from rental.forms.contact import ContactForm
 from rental.models.booking import Booking
-from rental.models.contact import Contact
 from rental.models.guest import Guest
 from rental.models.place import Place
-from rental.models.testimonial import Testimonial
 
 
-def index(request):
-    places = Place.objects.all()
-    temoignages = Testimonial.objects.all()
-
-    context = {
-        'places': places,
-        'temoignages': temoignages
-    }
-
-    return render(request, 'rental/index.html', context)
-
-
-def liste_location(request):
-    places = Place.objects.all()
-
-    context = {'places': places}
-
-    return render(request, 'rental/list_place.html', context)
-
-
-def location(request, place_name='T2'):
-    place = get_object_or_404(Place, name=place_name)
-    images = place.images.all()
-
-    context = {
-        'place': place,
-        'images': images
-    }
-
-    context, template = handle_reservation_form(
-        request, context, init_template='rental/detail_place.html')
+def view(request):
+    context, template = handle_booking_form(request)
 
     return render(request, template, context)
 
 
-def reservation(request):
-    context, template = handle_reservation_form(request)
-
-    return render(request, template, context)
-
-
-def handle_reservation_form(request, context={}, init_template='rental/reservation.html'):
+def handle_booking_form(request, context={}, init_template='rental/reservation.html'):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -112,42 +73,3 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
     template = init_template
 
     return context, template
-
-
-def calendar(request, place_name):
-    """
-    returns a list of all related place reservations
-    """
-    # synchronize_calendars()
-    booked_dates = Booking.objects.all()
-    bookings = [
-        booking for booking in booked_dates if booking.place.name == place_name]
-    context = {
-        'place_name': place_name,
-        'bookings': bookings
-    }
-
-    return render(request, 'rental/calendar.html', context)
-
-
-def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            contact = Contact.objects.create(
-                name=form.cleaned_data['name'],
-                email=form.cleaned_data['email'],
-                subject=form.cleaned_data['subject'],
-                message=form.cleaned_data['message']
-            )
-
-            contact.send_confirmation()
-            contact.send_notification()
-
-            return render(request, 'rental/contact_merci.html', {})
-
-    else:
-        form = ContactForm()
-    context = {'form': form}
-    return render(request, 'rental/contact.html', context)
-
