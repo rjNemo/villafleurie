@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rental.forms.contact import ContactForm
+from rental.models.contact import Contact
 
 
 def view(request):

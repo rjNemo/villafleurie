@@ -81,7 +81,6 @@ def synchronize(place):
 
     start = reservation['start']
     end = reservation['end']
-    price = reservation['price']
 
     guest = Guest.objects.filter(name=reservation['guest'])
     if not guest.exists():
@@ -104,10 +103,10 @@ def synchronize(place):
         db_booking.guest = guest,
         db_booking.start = start,
         db_booking.end = end
-        db_booking.price = price
+        # db_booking.price = price
 
 
-def get_bookings(place):
+def get_bookings_from_db(place):
     """ Synchronize with Master calendar via a call to synchronize_calendar
     Returns a list of all related place reservations """
 
@@ -120,7 +119,7 @@ def get_bookings(place):
 def check_availability(place, start_date, end_date):
     """ check if the related place is available during a given period """
 
-    bookings = get_bookings(place)
+    bookings = get_bookings_from_db(place)
     for booking in bookings:
         if (booking.start <= start_date <= booking.end) or (booking.start <= end_date <= booking.end):
             return False

@@ -22,7 +22,7 @@
 - [ ] Réservation page : Ajouter des photos. Renvoyer vers la page Location onClick sur Réserver TX. Proposer Upsells : navette + location voiture.
 - [x] Vider le contenu du folder root ?
 - [x] Pages confirmation message contact envoyé,
-- [ ] reservations réussies ou non (expliquer pourquoi)
+- [x] reservations réussies ou non (expliquer pourquoi)
 - [ ] SSL certificate
   - [ ] [github](https://github.com/linuxserver/docker-letsencrypt)
   - [ ] [medium](https://medium.com/@gardenvariety/easy-https-with-letsencrypt-and-docker-compose-168df411e2d2)
@@ -36,3 +36,4 @@
 - [ ] Calendar API: [docs](https://github.com/googleapis/google-api-python-client/blob/master/docs/start.md)
 - [ ] Blog
 - [x] Call update_calendar from BookingManager. SOlve circular dependencies
+- [ ] Trigger booking price Update when booking modified (calendar.py l:100)
