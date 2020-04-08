@@ -1,5 +1,5 @@
 from django.db import models
-
+import rental.tasks.apiMailer as mailer  # or gMailer
 
 
 class Contact(models.Model):
@@ -12,3 +12,15 @@ class Contact(models.Model):
     subject = models.EmailField(max_length=50)
     message = models.TextField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
+
+    def send_confirmation(self):
+        mailer.send_confirmation.delay(self.name, self.email)
+
+    def send_notification(self):
+        mailer.send_notification.delay(
+            self.name,
+            self.email,
+            self.subject,
+            self.message,
+            self.date
+        )

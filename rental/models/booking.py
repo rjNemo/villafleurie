@@ -3,6 +3,7 @@ from django.db import models
 from rental.models.guest import Guest
 from rental.models.place import Place
 import rental.services.calendar as calendar
+import rental.tasks.apiMailer as mailer  # or gMailer
 
 
 class BookingManager(models.Manager):
@@ -45,3 +46,6 @@ class Booking(models.Model):
         nights = (self.end - self.start).days
 
         return self.place.price * nights
+
+    def send_quotation(self):
+        mailer.send_quotation.delay(self.guest.name, self.guest.email)

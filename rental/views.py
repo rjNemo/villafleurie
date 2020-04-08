@@ -7,11 +7,8 @@ from rental.forms import ReservationForm, ContactForm
 from rental.models.booking import Booking
 from rental.models.contact import Contact
 from rental.models.guest import Guest
-from rental.models.picture import Picture
 from rental.models.place import Place
 from rental.models.testimonial import Testimonial
-from rental.services.calendar import check_availability, synchronize_calendars, update
-from rental.tasks.apiMailer import *  # or gMailer
 
 
 def index(request):
@@ -79,7 +76,6 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                     guest = guest.first()
 
                 place = get_object_or_404(Place, name=place_name)
-                # available = check_availability(place, )
 
                 if place.is_available(start, end):
                     reservation = Booking.objects.create_booking(
@@ -89,7 +85,8 @@ def handle_reservation_form(request, context={}, init_template='rental/reservati
                         start=start,
                         end=end
                     )
-                    send_quotation.delay(name, email)
+
+                    reservation.send_quotation()
 
                     context = {
                         'reservation': reservation
@@ -144,14 +141,8 @@ def contact(request):
                 message=form.cleaned_data['message']
             )
 
-            send_confirmation.delay(contact.name, contact.email)
-            send_notification.delay(
-                contact.name,
-                contact.email,
-                contact.subject,
-                contact.message,
-                contact.date
-            )
+            contact.send_confirmation()
+            contact.send_notification()
 
             return render(request, 'rental/contact_merci.html', {})
 
