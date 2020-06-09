@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from rental.models.place import Place
 from rental.models.testimonial import Testimonial
+from rental.views.booking import handle_booking_form
 
 
 def index(request):
@@ -33,7 +34,7 @@ def view(request, place_name='T2'):
         'images': images
     }
 
-    context, template = handle_reservation_form(
+    context, template = handle_booking_form(
         request, context, init_template='rental/detail_place.html')
 
     return render(request, template, context)
