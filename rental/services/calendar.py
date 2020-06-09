@@ -1,8 +1,8 @@
 import datetime
 from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
+from google_auth_oauthlib.flow import InstalledAppFlow, Flow
 from googleapiclient.discovery import build
-import os.path
+import os
 import pickle
 from villafleurie.settings import BASE_DIR
 from django.shortcuts import get_object_or_404
@@ -31,8 +31,13 @@ def build_service():
         else:
             SECRETS = os.path.join(BASE_DIR, 'rental/client_secrets.json')
             flow = InstalledAppFlow.from_client_secrets_file(
+            # flow = Flow.from_client_secrets_file(
                 SECRETS, scopes=SCOPES, redirect_uri="http://localhost:8080/")
             creds = flow.run_local_server()
+            # creds = flow.run_console()
+
+            # auth_url, _ = flow.authorization_url(prompt='consent')
+            # print(auth_url)
 
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
