@@ -1,11 +1,13 @@
 import datetime
+import os
+
+import pickle
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow, Flow
 from googleapiclient.discovery import build
-import os
-import pickle
-from villafleurie.settings import BASE_DIR
 from django.shortcuts import get_object_or_404
+
+from villafleurie.settings import BASE_DIR
 from rental.models.guest import Guest
 import rental.models.place as m_place
 import rental.models.booking as m_booking
@@ -31,13 +33,8 @@ def build_service():
         else:
             SECRETS = os.path.join(BASE_DIR, 'rental/client_secrets.json')
             flow = InstalledAppFlow.from_client_secrets_file(
-            # flow = Flow.from_client_secrets_file(
                 SECRETS, scopes=SCOPES, redirect_uri="http://localhost:8080/")
             creds = flow.run_local_server()
-            # creds = flow.run_console()
-
-            # auth_url, _ = flow.authorization_url(prompt='consent')
-            # print(auth_url)
 
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
@@ -108,7 +105,7 @@ def synchronize(place):
         db_booking.guest = guest,
         db_booking.start = start,
         db_booking.end = end
-        # db_booking.price = price
+
 
 
 def get_bookings_from_db(place):
@@ -135,6 +132,7 @@ def check_availability(place, start_date, end_date):
 def update(reservation):
     """ push new reservation to master calendar """
     # authenticate and build service
+    
     service, calendars = build_service()
     start = reservation.start.strftime('%Y-%m-%d')
     end = reservation.end.strftime('%Y-%m-%d')

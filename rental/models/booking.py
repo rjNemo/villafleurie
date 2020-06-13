@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db import models
+
 from rental.models.guest import Guest
 from rental.models.place import Place
 import rental.services.calendar as calendar

@@ -1,7 +1,9 @@
 from __future__ import absolute_import, unicode_literals
 from datetime import datetime
-import requests
+
 from celery import shared_task
+import requests
+
 from villafleurie.settings import EMAIL_HOST_USER,  DEFAULT_FROM_EMAIL
 
 """ Mailer Service used to send messages using API WebHooks.
@@ -12,7 +14,7 @@ from villafleurie.settings import EMAIL_HOST_USER,  DEFAULT_FROM_EMAIL
     def send_notification(name, email, subject, message)->void
 
     def send_quotation(name, email)->void
-        """
+"""
 
 URL = "https://hooks.zapier.com/hooks/catch/4071838/o93celz/"
 
@@ -30,8 +32,7 @@ def send_confirmation(name, email):
     }
 
     resp = requests.post(URL, data=payload)
-    print(resp.text)
-    print(resp.json)
+
 
 
 @shared_task

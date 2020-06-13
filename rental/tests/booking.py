@@ -1,6 +1,8 @@
 from datetime import datetime
+
 from django.shortcuts import get_object_or_404
 from django.test import TestCase
+
 from rental.models.place import Place
 from rental.models.booking import Booking
 from rental.models.guest import Guest
@@ -23,7 +25,6 @@ class BookingTestCase(TestCase):
         self.end = datetime(2019, 11, 20)
 
     def test_BookingPrice(self):
-        # place = Place.objects.get(name='TX')
         booking = Booking.objects.create_booking(
             place=self.place,
             start=self.start,

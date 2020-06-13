@@ -1,4 +1,5 @@
 from django import forms
+
 from rental.models.booking import Booking
 from rental.models.place import Place
 from rental.enums import PlaceNames
@@ -45,7 +46,6 @@ class BookingForm(forms.Form):
 
     message = forms.CharField(
         label='',
-        # max_length=100,
         min_length=4,
         widget=forms.Textarea(attrs={
             'class': 'form-control',
@@ -58,8 +58,6 @@ class BookingForm(forms.Form):
     start = forms.DateField(
         label='',
         input_formats=['%d/%m/%Y'],
-        # max_length=100,
-        # min_length=4,
         widget=forms.DateInput(attrs={
             'class': 'form-control form-control-lg form-control-a',
             'placeholder': '01/01/2020 *'}),

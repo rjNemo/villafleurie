@@ -1,4 +1,5 @@
 from django.db import models
+
 from rental.models.booking import Booking
 from rental.models.guest import Guest
 

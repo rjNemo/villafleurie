@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Guest(models.Model):
     class Meta:
         verbose_name = "Voyageur"

@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from rental.models.booking import Booking
 from rental.models.contact import Contact
 from rental.models.guest import Guest
