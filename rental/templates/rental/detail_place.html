@@ -1,5 +1,45 @@
 {% extends 'rental/base.html'%} {% load static %} {% block content %}
 
+<link rel="stylesheet" href="{% static 'rental/lib/calendar/main.min.css' %}" />
+<link rel="stylesheet" href="{% static 'rental/lib/calendar/style.css' %}" />
+<script src="{% static 'rental/lib/calendar/main.min.js' %}"></script>
+<script src="{% static 'rental/lib/calendar/main.js' %}"></script>
+<script src="{% static 'rental/lib/calendar/locales/fr.js' %}"></script>
+
+<script>
+  mixpanel.track("View Home Page", { place: "{{place.name}}" });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const calendarEl = document.getElementById("calendar");
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: "prev,next",
+        right: "title",
+      },
+      locale: "fr",
+      firstDay: 1, // week start on Monday
+      displayEventTime: false, // don't show the time column in list view
+      googleCalendarApiKey: "AIzaSyC2Wcg2Q2sq071w_L6k5JfHnPptlseU16g",
+      events: { googleCalendarId: "{{place.calendar}}" },
+      // eventColor: "#378006",
+      contentHeight: "auto",
+      // don't navigate in main tab
+      eventClick: (arg) => {
+        arg.jsEvent.preventDefault();
+      },
+      themeSystem: "bootstrap",
+
+      loading: (bool) => {
+        document.getElementById("loading").style.display = bool
+          ? "block"
+          : "none";
+      },
+    });
+
+    calendar.render();
+  });
+</script>
+
 <section class="intro-single">
   <div class="container">
     <div class="row">
@@ -45,6 +85,7 @@
           </div>
           {% endfor %}
         </div>
+
         <div class="row justify-content-between">
           <div class="col-md-5 col-lg-4">
             <div class="property-price d-flex justify-content-center foo">
@@ -62,6 +103,8 @@
                 <a href="#reservation" class="btn btn-a">Réserver</a>
               </div>
             </div>
+            <div id="loading">loading...</div>
+            <div id="calendar"></div>
             <div class="property-summary">
               <div class="row">
                 <div class="col-sm-12">
@@ -98,14 +141,6 @@
                 </ul>
               </div>
             </div>
-            <iframe
-              src="{{place.calendar | safe}}"
-              style="border-width:0"
-              width="400"
-              height="400"
-              frameborder="0"
-              scrolling="no"
-            ></iframe>
           </div>
           <div class="col-md-7 col-lg-7 section-md-t3">
             <div class="row">
@@ -165,7 +200,7 @@
               width="100%"
               height="460"
               frameborder="0"
-              style="border:0;"
+              style="border: 0;"
               allowfullscreen=""
             ></iframe>
           </div>
@@ -176,8 +211,5 @@
     </div>
   </div>
 </section>
-<script>
-  mixpanel.track("View Home Page", { place: "{{place.name}}" });
-</script>
 
 {% endblock %}

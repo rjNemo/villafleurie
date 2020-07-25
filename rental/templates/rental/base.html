@@ -77,20 +77,28 @@
           />
           Villa<span class="color-b">Fleurie</span>
         </a>
+        <a
+          type="button"
+          class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none"
+          href="{% url 'rental:reservation' %}"
+          aria-expanded="false"
+        >
+          <span class="fa fa-cart-plus" aria-hidden="true"></span>
+        </a>
         <div
           class="navbar-collapse collapse justify-content-center"
           id="navbarDefault"
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'rental:list_place' %}"
-                >Hébergements</a
-              >
+              <a class="nav-link" href="{% url 'rental:list_place' %}">
+                Hébergements
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'rental:services' %}"
-                >Services</a
-              >
+              <a class="nav-link" href="{% url 'rental:services' %}">
+                Services
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'rental:about' %}">À propos</a>
@@ -100,7 +108,12 @@
             </li>
           </ul>
         </div>
-        <a class="btn btn-b" href="{% url 'rental:reservation' %}">
+        <a
+          type="button"
+          class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
+          aria-expanded="false"
+          href="{% url 'rental:reservation' %}"
+        >
           Réserver
         </a>
       </div>

@@ -54,12 +54,13 @@
               </div>
               <div class="card-body-a">
                 <div class="price-box d-flex">
-                  <span class="price-a">Dès {{ place.price }} </span>
+                  <span class="price-a">Dès {{ place.price }} €</span>
                 </div>
                 <a
                   href="{% url 'rental:detail_place' place_name=place.name %}"
                   class="link-a"
-                  >Plus de détails
+                >
+                  En savoir plus
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               </div>
@@ -80,10 +81,6 @@
                     <h4 class="card-info-title">Max voyageurs</h4>
                     <span>{{place.max_occupation}}</span>
                   </li>
-                  <!-- <li>
-                      <h4 class="card-info-title">Garages</h4>
-                      <span>1</span>
-                    </li> -->
                 </ul>
               </div>
             </div>

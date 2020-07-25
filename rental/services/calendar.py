@@ -1,7 +1,8 @@
 import datetime
 import os
-
+import logging
 import pickle
+
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow, Flow
 from googleapiclient.discovery import build
@@ -58,9 +59,9 @@ def get_bookings(place):
         orderBy='startTime'
     ).execute()
     events = events_result.get('items', [])
-
     if not events:
-        print('No upcoming events found.')
+        logging.info('No upcoming events found.')
+        reservation = None
     else:
         for event in events:
             reservation = {
@@ -79,6 +80,8 @@ def synchronize(place):
         Delete from db reservation deleted from cal """
 
     reservation = get_bookings(place)
+    if not reservation:
+        return
     place = get_object_or_404(m_place.Place, name=place.name)
 
     start = reservation['start']

@@ -1656,11 +1656,11 @@ footer .credits {
 .btn.btn-b-n {
   background-color: #5bc0de;
   color: #ffffff;
-  border-radius: 0;
+  border-radius: 8;
 }
 
 .btn.btn-b-n:hover {
-  background-color: #26a356;
+  background-color: #5bc0de;
   color: #ffffff;
 }
 
