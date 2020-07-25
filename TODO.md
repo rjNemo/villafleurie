@@ -37,3 +37,4 @@
 - [ ] Blog
 - [x] Call update_calendar from BookingManager. SOlve circular dependencies
 - [ ] Trigger booking price Update when booking modified (calendar.py l:100)
+- [ ] mixpanel cdn error
