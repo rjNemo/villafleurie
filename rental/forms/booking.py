@@ -1,11 +1,13 @@
 from django import forms
 
 from rental.enums import PlaceNames
-from rental.models.booking import Booking
-from rental.models.place import Place
 
 
 class BookingForm(forms.Form):
+    """
+    BookingForm serve to validate input and create a new booking.
+    doc: https://docs.djangoproject.com/fr/2.2/topics/forms/modelforms/
+    """
 
     name = forms.CharField(
         label="",

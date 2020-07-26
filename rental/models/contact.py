@@ -1,9 +1,12 @@
 from django.db import models
 
-import rental.tasks.apiMailer as mailer  # or gMailer
+import rental.tasks.api_mailer as mailer  # or g_mailer
 
 
 class Contact(models.Model):
+    """
+    Contact encapsulates communication with a customer.
+    """
 
     def __str__(self):
         return f"Message de {self.name}, le {self.date}"
@@ -15,9 +18,13 @@ class Contact(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def send_confirmation(self):
+        """ Notify that the message has been succesfully sent. """
+
         mailer.send_confirmation.delay(self.name, self.email)
 
     def send_notification(self):
+        """ Notify admins that a message has been sent. """
+
         mailer.send_notification.delay(
             self.name,
             self.email,

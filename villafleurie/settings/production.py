@@ -1,3 +1,5 @@
+""" Settings to be used in production """
+
 import os
 
 from .base import *

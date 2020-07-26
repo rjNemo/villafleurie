@@ -1,3 +1,5 @@
+""" URLs specifi to rental application """
+
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.urls import path
 
@@ -18,7 +20,7 @@ urlpatterns = [
 
     path('', place.index, name='index'),
     path('hebergements/', place.all, name='list_place'),
-    path('<place_name>/', place.view, name='detail_place')
+    path('<slug:place_name>/', place.view, name='detail_place')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -1,3 +1,5 @@
+""" Standard setting file to be imported by specific configurations """
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))

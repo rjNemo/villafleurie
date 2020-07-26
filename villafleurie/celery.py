@@ -1,3 +1,7 @@
+""" Celery is a distributed task queue used for real-time processing of 
+    asynchronous actions
+"""
+
 from __future__ import absolute_import, unicode_literals
 
 import os
@@ -12,4 +16,5 @@ app.autodiscover_tasks()
 
 @app.task(bind=True)
 def debug_task(self):
+    """ Print request. For debug purposes only. """
     print(f'Request: {self.request!r}')

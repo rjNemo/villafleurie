@@ -5,6 +5,8 @@ from rental.models.guest import Guest
 
 
 class Testimonial(models.Model):
+    """Testimonial represent a past customer testimony."""
+
     class Meta:
         verbose_name = "Témoignage"
 
@@ -14,9 +16,12 @@ class Testimonial(models.Model):
     author = models.CharField(max_length=200)
     text = models.TextField(max_length=1000)
     picture = models.ImageField(
-        max_length=200, upload_to='img/', null=True, blank=True)
+        max_length=200, upload_to='img/', null=True, blank=True
+    )
     link = models.URLField(max_length=200, null=True, blank=True)
     guest = models.OneToOneField(
-        Guest, on_delete=models.CASCADE, blank=True, null=True)
+        Guest, on_delete=models.CASCADE, blank=True, null=True
+    )
     reservation = models.OneToOneField(
-        Booking, on_delete=models.CASCADE, blank=True, null=True)
+        Booking, on_delete=models.CASCADE, blank=True, null=True
+    )

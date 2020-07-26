@@ -1,12 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
-from datetime import datetime
-
-import requests
-from celery import shared_task
-
-from villafleurie.settings import DEFAULT_FROM_EMAIL, EMAIL_HOST_USER
-
 """ Mailer Service used to send messages using API WebHooks.
     All Mailers must implement the following methods:
 
@@ -17,7 +8,18 @@ from villafleurie.settings import DEFAULT_FROM_EMAIL, EMAIL_HOST_USER
     def send_quotation(name, email)->void
 """
 
-URL = "https://hooks.zapier.com/hooks/catch/4071838/o93celz/"
+from __future__ import absolute_import, unicode_literals
+
+from datetime import datetime
+import os
+
+import requests
+from celery import shared_task
+
+from villafleurie.settings import DEFAULT_FROM_EMAIL, EMAIL_HOST_USER
+
+# get mailing hook URL from env
+URL = os.environ.get("MAIL_HOOK")
 
 
 @shared_task
@@ -32,8 +34,7 @@ def send_confirmation(name, email):
         "body": f"Merci {name}, nous avons bien reçu votre message, nous revenons vers vous rapidement !\nCordialement,\nNilka (VillaFleurie)"
     }
 
-    resp = requests.post(URL, data=payload)
-
+    requests.post(URL, data=payload)
 
 
 @shared_task
@@ -48,12 +49,12 @@ def send_notification(name, email, subject, message, date):
         "body": f"Sujet : {subject}\nDe : {name}, {email}\nLe : {date}\nMessage : {message}\nCordialement,\nNilka (VillaFleurie)"
     }
 
-    resp = requests.post(URL, data=payload)
+    requests.post(URL, data=payload)
 
 
 @shared_task
 def send_quotation(name, email):
-    """ Send quotation to customer """
+    """ Notify admins then send quotation to customer """
 
     send_notification(
         name,

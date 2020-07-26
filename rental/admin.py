@@ -1,3 +1,5 @@
+""" Register models and configure admin dashboard """
+
 from django.contrib import admin
 
 from rental.models.booking import Booking

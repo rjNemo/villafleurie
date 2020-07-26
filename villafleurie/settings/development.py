@@ -1,6 +1,8 @@
+""" Settings to be used in development """
+
 import os
 
-from .base import BASE_DIR
+from .base import *
 
 SECRET_KEY = "not_so_secret_key"
 DEBUG = True

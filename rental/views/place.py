@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render
-from django.utils.translation import gettext_lazy as _
 
 from rental.models.place import Place
 from rental.models.testimonial import Testimonial
@@ -7,6 +6,7 @@ from rental.views.booking import handle_booking_form
 
 
 def index(request):
+    """Display homePage."""
     places = Place.objects.all()
     temoignages = Testimonial.objects.all()
 
@@ -19,6 +19,7 @@ def index(request):
 
 
 def all(request):
+    """Handle places list page."""
     places = Place.objects.all()
 
     context = {'places': places}
@@ -27,6 +28,7 @@ def all(request):
 
 
 def view(request, place_name='T2'):
+    """Handle a specific place."""
     place = get_object_or_404(Place, name=place_name)
     images = place.images.all()
 

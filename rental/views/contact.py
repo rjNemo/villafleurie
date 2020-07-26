@@ -5,6 +5,8 @@ from rental.models.contact import Contact
 
 
 def view(request):
+    """Handle contactForm."""
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():

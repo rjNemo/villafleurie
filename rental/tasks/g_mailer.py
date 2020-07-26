@@ -1,11 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
-from celery import shared_task
-from django.core.mail import mail_admins, send_mail
-
-from villafleurie.settings import EMAIL_HOST_USER
-
-
 """ Mailer Service used to send messages using Gmail.
     All Mailers must implement the following methods:
 
@@ -14,12 +6,20 @@ from villafleurie.settings import EMAIL_HOST_USER
     def send_notification(name, email, subject, message)->void
 
     def send_quotation(name, email)->void
-    """
+"""
+
+from __future__ import absolute_import, unicode_literals
+
+from celery import shared_task
+from django.core.mail import mail_admins, send_mail
+
+from villafleurie.settings import EMAIL_HOST_USER
 
 
 @shared_task
 def send_confirmation(name, email):
     """ Send confirmation message to customer """
+
     subject = "Nous avons reçu votre message"
     message = f" Merci {name}, Bien reçu nous revenons vers vous rapidement !"
 
@@ -27,7 +27,7 @@ def send_confirmation(name, email):
         subject,
         message,
         EMAIL_HOST_USER,
-        [email]  
+        [email]
     )
 
 
@@ -44,4 +44,5 @@ def send_notification(name, email, subject, message):
 @shared_task
 def send_quotation(name, email):
     """ Send quotation to customer """
-    send_confirmation_mail(name, email)  
+
+    send_confirmation(name, email)
