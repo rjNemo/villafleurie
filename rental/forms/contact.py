@@ -1,4 +1,5 @@
 from django import forms
+
 from rental.models.contact import Contact
 from rental.models.place import Place
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.utils.translation import gettext_lazy as _
 
 from rental.models.place import Place

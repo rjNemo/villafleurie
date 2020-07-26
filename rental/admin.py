@@ -7,7 +7,6 @@ from rental.models.picture import Picture
 from rental.models.place import Place
 from rental.models.testimonial import Testimonial
 
-
 admin.site.register(Booking)
 admin.site.register(Guest)
 admin.site.register(Place)

@@ -1,8 +1,8 @@
 from django import forms
 
+from rental.enums import PlaceNames
 from rental.models.booking import Booking
 from rental.models.place import Place
-from rental.enums import PlaceNames
 
 
 class BookingForm(forms.Form):

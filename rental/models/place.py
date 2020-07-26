@@ -1,7 +1,7 @@
 from django.db import models
 
-from rental.models.picture import Picture
 import rental.services.calendar as calendar
+from rental.models.picture import Picture
 
 
 class Place(models.Model):
