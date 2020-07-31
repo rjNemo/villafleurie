@@ -16,66 +16,63 @@ def view(request):
     return render(request, template, context)
 
 
-def handle_booking_form(request, context={}, init_template='rental/reservation.html'):
-    """Validates form and checks if place availability a given period."""
+def handle_booking_form(request, context=None, init_template='rental/reservation.html'):
+    """
+    Validates booking form and checks place availability for a given period.
+    Returns the context and the template to be rendered.
+    """
 
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
-            place_name = form.cleaned_data['place']
-            start = form.cleaned_data['start']
-            end = form.cleaned_data['end']
+    if not context:
+        context = {}
 
-            try:
-                guest = Guest.objects.filter(email=email)
-                if not guest.exists():
-                    guest = Guest.objects.create(
-                        email=email,
-                        name=name,
-                        phone=phone
-                    )
-                else:
-                    guest = guest.first()
+    # create form and populate fields using post request data
+    form = BookingForm(
+        request.POST) if request.method == 'POST' else BookingForm()
 
-                place = get_object_or_404(Place, name=place_name)
+    # return is form is not valid, persist already inputed data
+    if not form.is_valid():
+        context['form'] = form
+        return context, init_template
 
-                if place.is_available(start, end):
-                    reservation = Booking.objects.create_booking(
-                        guest=guest,
-                        place=place,
-                        message=message,
-                        start=start,
-                        end=end
-                    )
+    # parse request data
+    name = form.cleaned_data['name']
+    email = form.cleaned_data['email']
+    phone = form.cleaned_data['phone']
+    message = form.cleaned_data['message']
+    place_name = form.cleaned_data['place']
+    start = form.cleaned_data['start']
+    end = form.cleaned_data['end']
 
-                    reservation.send_quotation()
-
-                    context = {
-                        'reservation': reservation
-                    }
-                    template = 'rental/merci.html'
-                    return context, template
-
-                form.add_error(None, ValidationError(
-                    _("Cet hébergement n'est pas disponible aux dates indiquées."),
-                    code='invalid'
-                ))
-                context = {'form': form}
-                template = 'rental/reservation.html'
-                return context, template
-
-            except IntegrityError:
-                form.errors['internal'] = """Une erreur interne est apparue.
-                Merci de recommencer votre requête."""
+    # get guest
+    guest = Guest.objects.filter(email=email)
+    if guest.exists():
+        guest = guest.first()
     else:
-        form = BookingForm()
+        guest = Guest.objects.create(
+            email=email,
+            name=name,
+            phone=phone
+        )
 
-    context['form'] = form
-    context['errors'] = form.errors.items()
-    template = init_template
+    # check place availability
+    place = get_object_or_404(Place, name=place_name)
 
-    return context, template
+    if not place.is_available(start, end):
+        form.add_error(None, ValidationError(
+            _("Cet hébergement n'est pas disponible aux dates indiquées."),
+            code='invalid'
+        ))
+        return {'form': form}, 'rental/reservation.html'
+
+    reservation = Booking.objects.create_booking(
+        guest=guest,
+        place=place,
+        message=message,
+        start=start,
+        end=end
+    )
+
+    reservation.send_quotation()
+    context['reservation'] = reservation
+
+    return context, 'rental/merci.html'

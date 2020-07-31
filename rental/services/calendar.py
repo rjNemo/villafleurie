@@ -15,7 +15,9 @@ from villafleurie.settings import BASE_DIR
 
 
 def build_service():
-    """ Build Google Calendar API service and returns calendar list and service """
+    """
+    Build Google Calendar API service and returns calendar list and service
+    """
 
     creds = None
 
@@ -75,9 +77,11 @@ def get_bookings(place):
 
 
 def synchronize(place):
-    """ Get a complete list of existing bookings in calendar
-        Creates reservation if not in db, update if already in db
-        Delete from db reservation deleted from cal """
+    """
+    Get a complete list of existing bookings in calendar
+    Creates reservation if not in db, update if already in db
+    Delete from db reservation deleted from cal
+    """
 
     reservation = get_bookings(place)
     if not reservation:
@@ -110,10 +114,11 @@ def synchronize(place):
         db_booking.end = end
 
 
-
 def get_bookings_from_db(place):
-    """ Synchronize with Master calendar via a call to synchronize_calendar
-    Returns a list of all related place reservations """
+    """
+    Synchronize with Master calendar via a call to synchronize_calendar
+    Returns a list of all related place reservations
+    """
 
     synchronize(place)
     booked_dates = m_booking.Booking.objects.filter(place=place)
@@ -122,7 +127,7 @@ def get_bookings_from_db(place):
 
 
 def check_availability(place, start_date, end_date):
-    """ check if the related place is available during a given period """
+    """Checks if the related place is available during a given period."""
 
     bookings = get_bookings_from_db(place)
     for booking in bookings:
@@ -133,9 +138,9 @@ def check_availability(place, start_date, end_date):
 
 
 def update(reservation):
-    """ push new reservation to master calendar """
+    """Push new reservation to master calendar."""
     # authenticate and build service
-    
+
     service, calendars = build_service()
     start = reservation.start.strftime('%Y-%m-%d')
     end = reservation.end.strftime('%Y-%m-%d')
@@ -153,23 +158,3 @@ def update(reservation):
             },
         }
     ).execute()
-
-
-if __name__ == '__main__':
-
-    s, c = build_service()
-
-    from google_auth_oauthlib.flow import Flow
-
-    SCOPES = [
-        'https://www.googleapis.com/auth/calendar',
-        'https://www.googleapis.com/auth/calendar.events'
-    ]
-
-    SECRETS = '/client_secrets.json'
-
-    flow = Flow.from_client_secrets_file(
-        SECRETS,
-        scopes=SCOPES,
-        redirect_uri='http://localhost:8080/'
-    )
