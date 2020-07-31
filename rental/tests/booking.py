@@ -3,9 +3,9 @@ from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.test import TestCase
 
-from rental.models.place import Place
 from rental.models.booking import Booking
 from rental.models.guest import Guest
+from rental.models.place import Place
 
 
 class BookingTestCase(TestCase):

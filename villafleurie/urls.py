@@ -1,11 +1,10 @@
+from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
-from django.conf import settings
-from django.conf.urls import include, url
-
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # change admin path for security purposes
+    path('dashboard/', admin.site.urls),
     path('', include('rental.urls', namespace='rental'))
 ]
 

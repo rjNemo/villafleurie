@@ -1,10 +1,12 @@
 from django.db import models
 
-from rental.models.picture import Picture
 import rental.services.calendar as calendar
+from rental.models.picture import Picture
 
 
 class Place(models.Model):
+    """Place encapsulates a loaction information."""
+
     class Meta:
         verbose_name = "Appartement"
 
@@ -21,9 +23,12 @@ class Place(models.Model):
     beds = models.IntegerField(null=True, blank=True)
     max_occupation = models.IntegerField(null=True, blank=True)
     thumbnail = models.ForeignKey(
-        Picture, on_delete=models.CASCADE, blank=True, null=True)
+        Picture, on_delete=models.CASCADE, blank=True, null=True
+    )
     images = models.ManyToManyField(Picture, related_name="places", blank=True)
     calendar = models.CharField(max_length=350, blank=True, null=True)
 
     def is_available(self, start, end):
+        """Check weither a location is available at a given time period."""
+
         return calendar.check_availability(self, start, end)

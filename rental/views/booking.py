@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.utils.translation import gettext_lazy as _
 
 from rental.forms.booking import BookingForm
@@ -10,12 +10,15 @@ from rental.models.place import Place
 
 
 def view(request):
+    """Return initial booking form."""
     context, template = handle_booking_form(request)
 
     return render(request, template, context)
 
 
 def handle_booking_form(request, context={}, init_template='rental/reservation.html'):
+    """Validates form and checks if place availability a given period."""
+
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -56,17 +59,18 @@ def handle_booking_form(request, context={}, init_template='rental/reservation.h
                     }
                     template = 'rental/merci.html'
                     return context, template
-                else:
-                    form.add_error(None,  ValidationError(
-                        _("Cet hébergement n'est pas disponible aux dates indiquées."),
-                        code='invalid'
-                    ))
-                    context = {'form': form}
-                    template = 'rental/reservation.html'
-                    return context, template
+
+                form.add_error(None, ValidationError(
+                    _("Cet hébergement n'est pas disponible aux dates indiquées."),
+                    code='invalid'
+                ))
+                context = {'form': form}
+                template = 'rental/reservation.html'
+                return context, template
 
             except IntegrityError:
-                form.errors['internal'] = "Une erreur interne est apparue. Merci de recommencer votre requête."
+                form.errors['internal'] = """Une erreur interne est apparue.
+                Merci de recommencer votre requête."""
     else:
         form = BookingForm()
 

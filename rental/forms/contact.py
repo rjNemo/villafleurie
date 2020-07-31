@@ -1,9 +1,11 @@
 from django import forms
-from rental.models.contact import Contact
-from rental.models.place import Place
 
 
 class ContactForm(forms.Form):
+    """
+    ContactForm serve to validate input and create a new contact.
+    doc: https://docs.djangoproject.com/fr/2.2/topics/forms/modelforms/
+    """
 
     name = forms.CharField(
         label='',

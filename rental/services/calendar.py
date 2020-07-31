@@ -1,17 +1,17 @@
 import datetime
-import os
 import logging
+import os
 import pickle
 
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow, Flow
-from googleapiclient.discovery import build
 from django.shortcuts import get_object_or_404
+from google.auth.transport.requests import Request
+from google_auth_oauthlib.flow import Flow, InstalledAppFlow
+from googleapiclient.discovery import build
 
-from villafleurie.settings import BASE_DIR
-from rental.models.guest import Guest
-import rental.models.place as m_place
 import rental.models.booking as m_booking
+import rental.models.place as m_place
+from rental.models.guest import Guest
+from villafleurie.settings import BASE_DIR
 
 
 def build_service():

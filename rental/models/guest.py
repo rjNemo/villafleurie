@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Guest(models.Model):
+    """ Guest summarizes customer information. """
     class Meta:
         verbose_name = "Voyageur"
 
