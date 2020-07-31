@@ -5,24 +5,29 @@ from rental.models.contact import Contact
 
 
 def view(request):
-    """Handle contactForm."""
+    """
+    Handle contact form submission after validation and redirect to success page.
+    """
 
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            contact = Contact.objects.create(
-                name=form.cleaned_data['name'],
-                email=form.cleaned_data['email'],
-                subject=form.cleaned_data['subject'],
-                message=form.cleaned_data['message']
-            )
+    # create blank form or populates fields using post request data
+    form = ContactForm(
+        request.POST) if request.method == 'POST' else ContactForm()
 
-            contact.send_confirmation()
-            contact.send_notification()
+    # simply display contact page, persist form values in case of errors
+    if request.method == 'GET' or not form.is_valid():
+        return render(request, 'rental/contact.html', {'form': form})
 
-            return render(request, 'rental/contact_merci.html', {})
+    # create contact object to db
+    contact = Contact.objects.create(
+        name=form.cleaned_data['name'],
+        email=form.cleaned_data['email'],
+        subject=form.cleaned_data['subject'],
+        message=form.cleaned_data['message']
+    )
 
-    else:
-        form = ContactForm()
-    context = {'form': form}
-    return render(request, 'rental/contact.html', context)
+    # handle messaging
+    contact.send_confirmation()
+    contact.send_notification()
+
+    # redirect to success page
+    return render(request, 'rental/contact_merci.html', {})
