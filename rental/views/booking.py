@@ -7,7 +7,30 @@ from rental.forms.booking import BookingForm
 from rental.models.booking import Booking
 from rental.models.guest import Guest
 from rental.models.place import Place
+import stripe
 
+def pay(request):
+    if request.method == 'GET':
+        return render(request, 'rental/pay.html', {})
+
+    session = stripe.checkout.Session.create(
+        payment_method_types=["card"],
+        line_items=[
+            {
+                "price_data": {
+                    "currency": "eur",
+                    "product_data": {"name": "Nassira Basmaison: Réservation du 28/01/2021 au 8/02/2021"},
+                    "unit_amount": 91300,
+                },
+                "quantity": 1,
+            }
+        ],
+        mode="payment",
+        success_url="http://villafleuriegp.com/",
+        cancel_url="http://villafleuriegp.com/paiement",
+    )
+
+    return {"id": session.id}
 
 def view(request):
     """Return initial booking form."""

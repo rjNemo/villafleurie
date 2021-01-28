@@ -17,6 +17,7 @@ urlpatterns = [
     path('contact/', contact.view, name='contact'),
 
     path('reservation/', booking.view, name='reservation'),
+    path('paiement/', booking.pay, name='payment'),
 
     path('', place.index, name='index'),
     path('hebergements/', place.all, name='list_place'),

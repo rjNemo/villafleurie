@@ -1,0 +1,68 @@
+{% extends 'rental/base.html' %} {% load static %} {% block content %}
+
+  <script src="https://js.stripe.com/v3/"></script>
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Merci pour votre réservation</h1>
+          <span class="color-text-a"
+            >En cliquant sur le bouton ci-dessous vous serez redirigé vers une page de paiement sécurisé.<br />
+          </span>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-box d-flex justify-content-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:index' %}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="{% url 'rental:list_place' %}">Hébergements</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Paiement
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div class="property-summary">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-md-12 mb-1">
+            <button id="checkout-button">Procéder au paiement</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+    const stripe = Stripe('pk_test_dRAhoGxhyiGRjuKRMityEI5r');
+    const checkoutForm = document.getElementById('checkout-form');
+
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        const plainFormData = Object.fromEntries(formData.entries());
+        const formDataJsonString = JSON.stringify(plainFormData);
+
+        fetch('http://127.0.0.1:8000/paiement', {method: 'POST', body: formDataJsonString})
+            .then((response) => response.json())
+            .then((session) => stripe.redirectToCheckout({sessionId: session.id}))
+            .then(({error}) => {
+                if (error) {
+                    alert(error.message);
+                }
+            })
+            .catch((error) => console.error('Error:', error));
+    });
+</script>
+
+{% endblock %}
