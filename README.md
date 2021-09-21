@@ -1,13 +1,17 @@
 # 🏡 Villafleurie
 
-![](https://img.shields.io/github/license/rjNemo/villafleurie?style=for-the-badge)
-![](https://img.shields.io/github/v/release/rjNemo/villafleurie?style=for-the-badge)
+![license](https://img.shields.io/github/license/rjNemo/villafleurie?style=for-the-badge)
+![release tag](https://img.shields.io/github/v/release/rjNemo/villafleurie?style=for-the-badge)
 
-![](https://socialify.git.ci/rjnemo/villafleurie/image?description=1&font=Rokkitt&logo=http%3A%2F%2Fvillafleuriegp.com%2Fstatic%2Frental%2Fimg%2Fapple-touch-icon.png&owner=1&pattern=Charlie%20Brown&theme=Light)
+![header image](https://socialify.git.ci/rjnemo/villafleurie/image?description=1&font=Rokkitt&logo=http%3A%2F%2Fvillafleuriegp.com%2Fstatic%2Frental%2Fimg%2Fapple-touch-icon.png&owner=1&pattern=Charlie%20Brown&theme=Light)
 
-`V 1.0 Le site est prêt à l'emploi`
+## Demo
 
-Auteur : Ruidy Nemausat
+🚀 [Live at this address](http://villafleuriegp.com)
+
+### Screenshot
+
+![Screenshot](docs/vf_home.png)
 
 ## Projet
 
