@@ -20,7 +20,7 @@ idna==2.9
 importlib-metadata==1.6.0
 kombu==4.6.8
 oauthlib==3.1.0
-Pillow==10.0.1
+Pillow==10.2.0
 protobuf==3.18.3
 psycopg2==2.8.5
 pyasn1==0.4.8
