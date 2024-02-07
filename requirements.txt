@@ -6,7 +6,7 @@ cachetools==4.0.0
 celery==5.2.2
 certifi==2023.7.22
 chardet==3.0.4
-Django==3.1.14
+Django==3.2.24
 google==2.0.3
 google-api-core==1.16.0
 google-api-python-client==1.8.0
